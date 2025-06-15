@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="q_site_title">Cuestionario de Proyecto Web - por elsantin</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="questionnaire.css">
+</head>
+<body>
+
+    <header class="questionnaire-header">
+        <nav class="questionnaire-header-nav">
+            <a href="index.html" class="questionnaire-logo" data-lang-key="q_logo_link_title" title="Volver al Dev Hub">elsantin</a>
+            <button id="language-switcher" data-lang-key="q_lang_switcher_text">ENG</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <header class="form-title-header">
+            <h1 data-lang-key="q_title">Hablemos de tu Proyecto Web</h1>
+            <p data-lang-key="q_greeting_1">Hola, espero que te encuentres bien.</p>
+            <p data-lang-key="q_intro_1">Este es el primer paso para que podamos dar forma a tu proyecto web. Te agradecería mucho si dedicas unos minutos a estas preguntas.</p>
+            <p data-lang-key="q_intro_2">Tus ideas y visión son la base para crear algo que realmente funcione para ti.</p>
+        </header>
+
+        <!-- COMENTARIO ESTRATÉGICO: Formulario configurado para FormSubmit.co. 
+             Reemplaza TU_EMAIL_AQUI con tu dirección de email real. -->
+        <form id="clientForm" action="https://formsubmit.co/santiago.narvaez.84@gmail.com" method="POST">
+
+            <fieldset>
+                <legend data-lang-key="q_fs1_legend">Empecemos por ti y tu práctica</legend>
+                
+                <div>
+                    <label for="clientEmail" data-lang-key="q_fs1_f_email_label">Tu Dirección de Email:</label>
+                    <input type="email" id="clientEmail" name="email" 
+                           data-lang-key="q_fs1_f_email_placeholder" placeholder="Ej: tuemail@dominio.com" required>
+                </div>
+
+                <div>
+                    <label for="especialidadPrincipal" data-lang-key="q_fs1_f1_label">Especialidad Principal:</label>
+                    <input type="text" id="especialidadPrincipal" name="especialidadPrincipal" 
+                           data-lang-key="q_fs1_f1_placeholder" placeholder="Ej: Cardiología, Diseño Gráfico" required>
+                </div>
+                
+                <div>
+                    <label for="serviciosEstrella" data-lang-key="q_fs1_f2_label">Tus Servicios Estrella (hasta 3, en orden de importancia, que SÍ o SÍ deben destacarse):</label>
+                    <textarea id="serviciosEstrella" name="serviciosEstrella" rows="4" 
+                              data-lang-key="q_fs1_f2_placeholder" placeholder="1. Mi servicio más importante...&#10;2. Mi segundo servicio clave...&#10;3. Otro servicio a destacar..." required></textarea>
+                </div>
+
+                <div>
+                    <label for="diferenciadorUnico" data-lang-key="q_fs1_f3_label">Tu Diferenciador Único (en 1 frase breve): ¿Qué te hace especial o diferente?</label>
+                    <textarea id="diferenciadorUnico" name="diferenciadorUnico" rows="2" required></textarea>
+                </div>
+                
+                <div>
+                    <label for="valoresFundamentales" data-lang-key="q_fs1_f4_label">Valores Clave (1 o 2 que te representen: Confianza, Innovación, Empatía, Calidez, Profesionalismo, Cercanía, Otro):</label>
+                    <input type="text" id="valoresFundamentales" name="valoresFundamentales" 
+                           data-lang-key="q_fs1_f4_placeholder" placeholder="Ej: Confianza, Empatía" required>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend data-lang-key="q_fs2_legend">Definiendo el éxito de tu web</legend>
+                <div>
+                    <label for="metaPaginaWeb" data-lang-key="q_fs2_f1_label">Meta Nº1 de tu Página Web (en pocas palabras): Ej: "Conseguir que nuevos pacientes pidan cita"</label>
+                    <textarea id="metaPaginaWeb" name="metaPaginaWeb" rows="2"
+                              data-lang-key="q_fs2_f1_placeholder" placeholder="Ej: Conseguir que nuevos pacientes pidan cita" required></textarea>
+                </div>
+                <div>
+                    <label for="accionVisitante" data-lang-key="q_fs2_f2_label">Acción MÁS Importante del Visitante (elige solo UNA: Contactar por formulario/email, Llamar, Agendar cita, Ubicar consulta, Otra):</label>
+                    <input type="text" id="accionVisitante" name="accionVisitante" 
+                           data-lang-key="q_fs2_f2_placeholder" placeholder="Ej: Contactar por formulario" required>
+                </div>
+                <div>
+                    <label for="pacienteIdeal" data-lang-key="q_fs2_f3_label">Tu Paciente/Cliente Ideal (descríbelo en 3-5 palabras clave): Ej: "Mujeres 30-50, buscan estética"</label>
+                    <input type="text" id="pacienteIdeal" name="pacienteIdeal" 
+                           data-lang-key="q_fs2_f3_placeholder" placeholder="Ej: Mujeres 30-50, buscan estética" required>
+                </div>
+                <div>
+                    <label for="topDatos" data-lang-key="q_fs2_f4_label">Información Clave que tus visitantes DEBEN encontrar al instante (puedes listar varios puntos o describirlo en un párrafo):</label>
+                    <textarea id="topDatos" name="topDatos" rows="3" 
+                              data-lang-key="q_fs2_f4_placeholder" placeholder="Ej: Horarios, Servicios principales, Teléfono de contacto..." required></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend data-lang-key="q_fs3_legend">La esencia visual y la sensación que buscas</legend>
+                <div>
+                    <label for="adjetivosDiseño" data-lang-key="q_fs3_f1_label">Adjetivos para el Diseño (elige 3-4: Elegante, Moderno, Profesional, Minimalista, Cálido, Sereno, Innovador, Confiable, Cercano, Otro):</label>
+                    <input type="text" id="adjetivosDiseño" name="adjetivosDiseño" 
+                           data-lang-key="q_fs3_f1_placeholder" placeholder="Ej: Elegante, Profesional, Sereno" required>
+                </div>
+                <div>
+                    <label for="tonalidadColores" data-lang-key="q_fs3_f2_label">Tonalidad general de colores (Clara, Oscura, Neutra):</label>
+                    <input type="text" id="tonalidadColores" name="tonalidadColores" 
+                           data-lang-key="q_fs3_f2_placeholder" placeholder="Ej: Oscura" required>
+                </div>
+                <div>
+                    <label for="colorAcento" data-lang-key="q_fs3_f3_label">Algún color de acento que te guste (o de tu logo, si tienes):</label>
+                    <input type="text" id="colorAcento" name="colorAcento">
+                </div>
+                <div>
+                    <label for="colorNoGusta" data-lang-key="q_fs3_f4_label">Algún color que prefieras evitar:</label>
+                    <input type="text" id="colorNoGusta" name="colorNoGusta">
+                </div>
+                <div>
+                    <label for="estiloLetra" data-lang-key="q_fs3_f5_label">Estilo de Letra Preferido (Clásico/Formal o Moderno/Limpio):</label>
+                    <input type="text" id="estiloLetra" name="estiloLetra" 
+                           data-lang-key="q_fs3_f5_placeholder" placeholder="Ej: Moderno/Limpio" required>
+                </div>
+                <div class="optional-section"> 
+                    <p class="form-section-subtitle" data-lang-key="q_fs3_opt_subtitle"><strong>Inspiración Visual (OPCIONAL – pero muy útil si tienes ejemplos):</strong></p>
+                    <div>
+                        <label for="sitioGustaURL" data-lang-key="q_fs3_opt_f1_label">Un sitio web que te GUSTE mucho por su diseño (enlace URL):</label>
+                        <input type="text" id="sitioGustaURL" name="sitioGustaURL" 
+                               data-lang-key="q_fs3_opt_f1_placeholder" placeholder="https://ejemplo.com">
+                    </div>
+                    <div>
+                        <label for="sitioGustaRazon" data-lang-key="q_fs3_opt_f2_label">¿Qué te gusta de él (en una frase)?:</label>
+                        <input type="text" id="sitioGustaRazon" name="sitioGustaRazon">
+                    </div>
+                    <div style="margin-top:1rem;">
+                        <label for="sitioNoGustaURL" data-lang-key="q_fs3_opt_f3_label">Un sitio web que NO te guste por su diseño (enlace URL):</label>
+                        <input type="text" id="sitioNoGustaURL" name="sitioNoGustaURL" 
+                               data-lang-key="q_fs3_opt_f3_placeholder" placeholder="https://ejemplo-no.com">
+                    </div>
+                    <div>
+                        <label for="sitioNoGustaRazon" data-lang-key="q_fs3_opt_f4_label">¿Qué te disgusta de él (en una frase)?:</label>
+                        <input type="text" id="sitioNoGustaRazon" name="sitioNoGustaRazon">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend data-lang-key="q_fs4_legend">Contenido y herramientas clave para tu página</legend>
+                <div>
+                    <label for="bloquesEsenciales" data-lang-key="q_fs4_f1_label">Bloques de Información Esenciales (3-5 más importantes para tu página única: Bienvenida, Sobre Mí breve, Servicio Estrella 1, Servicio Estrella 2, Cómo funciona/Proceso, Testimonios breves, Llamada a la Acción/Contacto, Ubicación/Mapa):</label>
+                    <textarea id="bloquesEsenciales" name="bloquesEsenciales" rows="3" 
+                              data-lang-key="q_fs4_f1_placeholder" placeholder="Ej: Bienvenida, Sobre Mí, Servicio Estrella 1, Contacto, Ubicación" required></textarea>
+                </div>
+                
+                <div style="margin-top:1.25rem;">
+                    <p class="form-section-subtitle" data-lang-key="q_fs4_mat_subtitle">Material que YA TIENES Listo:</p>
+                    <div class="radio-question-group">
+                        <p class="radio-question-text" data-lang-key="q_fs4_mat_q1">Logo profesional:</p>
+                        <div class="radio-options-container">
+                            <span class="radio-option"><input type="radio" id="tieneLogoSi" name="tieneLogo" value="Si"> <label for="tieneLogoSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
+                            <span class="radio-option"><input type="radio" id="tieneLogoNo" name="tieneLogo" value="No"> <label for="tieneLogoNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                        </div>
+                    </div>
+                    <div class="radio-question-group">
+                        <p class="radio-question-text" data-lang-key="q_fs4_mat_q2">Fotos de buena calidad:</p>
+                        <div class="radio-options-container">
+                            <span class="radio-option"><input type="radio" id="tieneFotosSi" name="tieneFotos" value="Si"> <label for="tieneFotosSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
+                            <span class="radio-option"><input type="radio" id="tieneFotosNo" name="tieneFotos" value="No"> <label for="tieneFotosNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                        </div>
+                    </div>
+                    <div class="radio-question-group">
+                        <p class="radio-question-text" data-lang-key="q_fs4_mat_q3">Textos básicos para alguna sección:</p>
+                        <div class="radio-options-container">
+                            <span class="radio-option"><input type="radio" id="tieneTextosSi" name="tieneTextos" value="Si"> <label for="tieneTextosSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
+                            <span class="radio-option"><input type="radio" id="tieneTextosNo" name="tieneTextos" value="No"> <label for="tieneTextosNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:1.25rem;">
+                    <p class="form-section-subtitle" data-lang-key="q_fs4_func_subtitle">Funcionalidades que NECESITAS:</p>
+                    <div class="radio-question-group">
+                        <p class="radio-question-text" data-lang-key="q_fs4_func_q1">Formulario de contacto:</p>
+                        <div class="radio-options-container">
+                            <span class="radio-option"><input type="radio" id="necesitaFormularioSi" name="necesitaFormulario" value="Si"> <label for="necesitaFormularioSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
+                            <span class="radio-option"><input type="radio" id="necesitaFormularioNo" name="necesitaFormulario" value="No"> <label for="necesitaFormularioNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                        </div>
+                    </div>
+                    <div class="radio-question-group">
+                        <p class="radio-question-text" data-lang-key="q_fs4_func_q2">Mapa de ubicación:</p>
+                        <div class="radio-options-container">
+                            <span class="radio-option"><input type="radio" id="necesitaMapaSi" name="necesitaMapa" value="Si"> <label for="necesitaMapaSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
+                            <span class="radio-option"><input type="radio" id="necesitaMapaNo" name="necesitaMapa" value="No"> <label for="necesitaMapaNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                        </div>
+                    </div>
+                    <div class="radio-question-group">
+                        <p class="radio-question-text" data-lang-key="q_fs4_func_q3">Enlaces a Redes Sociales:</p>
+                        <div class="radio-options-container">
+                            <span class="radio-option"><input type="radio" id="necesitaRedesSi" name="necesitaRedes" value="Si"> <label for="necesitaRedesSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
+                            <span class="radio-option"><input type="radio" id="necesitaRedesNo" name="necesitaRedes" value="No"> <label for="necesitaRedesNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                        </div>
+                        <input type="text" id="cualesRedes" name="cualesRedes" 
+                               data-lang-key="q_fs4_func_q3_placeholder" placeholder="Si es Sí, especifica aquí (ej: Facebook, Instagram)" style="margin-top: 0.5rem; font-size:0.9em; padding: 4px 8px; width:100%; box-sizing: border-box;">
+                    </div>
+                     <div class="radio-question-group">
+                        <p class="radio-question-text" data-lang-key="q_fs4_func_q4">Botón para llamar por WhatsApp o teléfono:</p>
+                        <div class="radio-options-container">
+                            <span class="radio-option"><input type="radio" id="necesitaBotonLlamarSi" name="necesitaBotonLlamar" value="Si"> <label for="necesitaBotonLlamarSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
+                            <span class="radio-option"><input type="radio" id="necesitaBotonLlamarNo" name="necesitaBotonLlamar" value="No"> <label for="necesitaBotonLlamarNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <input type="hidden" name="_subject" value="Nuevo Contacto Web: Cuestionario elsantin Dev Hub">
+            <input type="hidden" name="_captcha" value="false">
+
+            <input type="hidden" name="form_current_language" value="es" id="form_language_hidden">
+            
+            <button type="submit" class="submit-button" data-lang-key="q_submit_button">Enviar Mis Respuestas</button>
+        </form>
+
+        <div class="cierre-cuestionario">
+            <p data-lang-key="q_closing_text">Agradezco mucho que te tomaras el tiempo para compartir tus ideas; esta información es realmente valiosa. Revisaré tus respuestas con atención y te contactaré pronto para que conversemos sobre los próximos pasos.</p>
+            <p data-lang-key="q_closing_signature">Un saludo,<br>elsantin</p>
+        </div>
+
+        <div id="formConfirmation" class="form-confirmation-message" style="margin-top:1.25rem; padding:1rem; border-radius:6px; text-align:center; display:none;">
+            </div>
+        
+        <footer>
+            <p data-lang-key="q_footer_text">&copy; <span id="currentYear"></span> elsantin</p>
+        </footer>
+    </div>
+
+    <a href="#" id="back-to-top-btn" class="back-to-top-button" aria-label="Volver arriba" data-lang-key="q_btt_label_aria" title="Volver arriba">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="questionnaire.js"></script>
+</body>
+</html>
