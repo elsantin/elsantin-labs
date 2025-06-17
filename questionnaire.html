@@ -1,237 +1,220 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="q_site_title">Cuestionario de Proyecto Web - por elsantin</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Cuestionario de Proyecto - elsantin Labs</title>
 
-    <link rel="stylesheet" href="questionnaire.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/questionnaire.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- COMENTARIO ESTRATÉGICO:
+         Se añade un bloque de <style> para sobrescribir los estilos de los campos de texto
+         de 'questionnaire.css' y unificarlos con la estética del sitio principal
+         (definida en 'style.css'), sin necesidad de editar los archivos CSS.
+    -->
+    <style>
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="url"],
+        .form-container textarea {
+            background-color: var(--color-dev-hub-surface) !important;
+            border: 1px solid var(--color-dev-hub-border) !important;
+            color: var(--color-dev-hub-text-primary) !important;
+            border-radius: 8px !important;
+            padding: 0.75rem 1rem !important;
+        }
+
+        .form-container input[type="text"]:focus,
+        .form-container input[type="email"]:focus,
+        .form-container input[type="url"]:focus,
+        .form-container textarea:focus {
+            border-color: var(--color-accent-gold) !important;
+            box-shadow: 0 0 0 3px rgba(163, 126, 79, 0.3) !important;
+            outline: none;
+        }
+    </style>
 </head>
-<body>
 
-    <header class="questionnaire-header">
-        <nav class="questionnaire-header-nav">
-            <a href="index.html" class="questionnaire-logo" data-lang-key="q_logo_link_title" title="Volver al Dev Hub">elsantin</a>
-            <button id="language-switcher" data-lang-key="q_lang_switcher_text">ENG</button>
+<body class="bg-gray-900">
+    <header class="header">
+        <nav class="nav">
+            <!-- COMENTARIO ESTRATÉGICO: Se ha eliminado el span "elsantin Labs" del logo de la navbar,
+                 dejando solo los corchetes para la animación limpia que querías. -->
+            <a href="index.html#inicio" class="logo"><span class="logo-brackets logo-bracket left">{</span><span
+                    class="logo-brackets logo-bracket right">}</span></a>
+            <div class="nav-menu">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html#servicios">Planes</a></li>
+                    <li><a href="index.html#addons">Add-Ons</a></li>
+                    <li><a href="index.html#portfolio">Portafolio</a></li>
+                    <li><a href="index.html#proceso">Proceso</a></li>
+                    <li><a href="index.html#testimonios">Testimonios</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                </button>
+            </div>
         </nav>
     </header>
 
-    <div class="container">
-        <header class="form-title-header">
-            <h1 data-lang-key="q_title">Hablemos de tu Proyecto Web</h1>
-            <p data-lang-key="q_greeting_1">Hola, espero que te encuentres bien.</p>
-            <p data-lang-key="q_intro_1">Este es el primer paso para que podamos dar forma a tu proyecto web. Te agradecería mucho si dedicas unos minutos a estas preguntas.</p>
-            <p data-lang-key="q_intro_2">Tus ideas y visión son la base para crear algo que realmente funcione para ti.</p>
-        </header>
+    <!-- COMENTARIO ESTRATÉGICO:
+         Se ha añadido esta sección 'hero' para replicar el título grande
+         de la página principal, creando una experiencia de marca unificada.
+    -->
+    <section id="inicio-cuestionario" class="hero container"
+        style="min-height: auto; padding-top: 5rem; padding-bottom: 3rem;">
+        <h1 class="hero-brand" style="font-size: clamp(2rem, 8vw, 4rem); letter-spacing: -1px;">
+            <span class="logo-brackets">{</span> <span class="logo-text">elsantin Labs</span> <span
+                class="logo-brackets">}</span>
+        </h1>
+    </section>
 
-        <!-- COMENTARIO ESTRATÉGICO: Formulario configurado para FormSubmit.co. 
-             Reemplaza TU_EMAIL_AQUI con tu dirección de email real. -->
-        <form id="clientForm" action="https://formsubmit.co/santiago.narvaez.84@gmail.com" method="POST">
-
-            <fieldset>
-                <legend data-lang-key="q_fs1_legend">Empecemos por ti y tu práctica</legend>
-                
-                <div>
-                    <label for="clientEmail" data-lang-key="q_fs1_f_email_label">Tu Dirección de Email:</label>
-                    <input type="email" id="clientEmail" name="email" 
-                           data-lang-key="q_fs1_f_email_placeholder" placeholder="Ej: tuemail@dominio.com" required>
-                </div>
-
-                <div>
-                    <label for="especialidadPrincipal" data-lang-key="q_fs1_f1_label">Especialidad Principal:</label>
-                    <input type="text" id="especialidadPrincipal" name="especialidadPrincipal" 
-                           data-lang-key="q_fs1_f1_placeholder" placeholder="Ej: Cardiología, Diseño Gráfico" required>
-                </div>
-                
-                <div>
-                    <label for="serviciosEstrella" data-lang-key="q_fs1_f2_label">Tus Servicios Estrella (hasta 3, en orden de importancia, que SÍ o SÍ deben destacarse):</label>
-                    <textarea id="serviciosEstrella" name="serviciosEstrella" rows="4" 
-                              data-lang-key="q_fs1_f2_placeholder" placeholder="1. Mi servicio más importante...&#10;2. Mi segundo servicio clave...&#10;3. Otro servicio a destacar..." required></textarea>
+    <main>
+        <section class="section" style="padding-top: 0;">
+            <div class="container form-container">
+                <div class="form-title-header">
+                    <h1>Hablemos de tu Proyecto Web</h1>
+                    <p>
+                        Este es el primer paso para que podamos dar forma a tu proyecto web. Te agradecería mucho si
+                        dedicas unos minutos a estas preguntas. Tus ideas y visión son la base para crear algo que
+                        realmente funcione para ti.
+                    </p>
                 </div>
 
-                <div>
-                    <label for="diferenciadorUnico" data-lang-key="q_fs1_f3_label">Tu Diferenciador Único (en 1 frase breve): ¿Qué te hace especial o diferente?</label>
-                    <textarea id="diferenciadorUnico" name="diferenciadorUnico" rows="2" required></textarea>
-                </div>
-                
-                <div>
-                    <label for="valoresFundamentales" data-lang-key="q_fs1_f4_label">Valores Clave (1 o 2 que te representen: Confianza, Innovación, Empatía, Calidez, Profesionalismo, Cercanía, Otro):</label>
-                    <input type="text" id="valoresFundamentales" name="valoresFundamentales" 
-                           data-lang-key="q_fs1_f4_placeholder" placeholder="Ej: Confianza, Empatía" required>
-                </div>
-            </fieldset>
+                <form action="#" method="POST" class="space-y-8 max-w-4xl mx-auto">
 
-            <fieldset>
-                <legend data-lang-key="q_fs2_legend">Definiendo el éxito de tu web</legend>
-                <div>
-                    <label for="metaPaginaWeb" data-lang-key="q_fs2_f1_label">Meta Nº1 de tu Página Web (en pocas palabras): Ej: "Conseguir que nuevos pacientes pidan cita"</label>
-                    <textarea id="metaPaginaWeb" name="metaPaginaWeb" rows="2"
-                              data-lang-key="q_fs2_f1_placeholder" placeholder="Ej: Conseguir que nuevos pacientes pidan cita" required></textarea>
-                </div>
-                <div>
-                    <label for="accionVisitante" data-lang-key="q_fs2_f2_label">Acción MÁS Importante del Visitante (elige solo UNA: Contactar por formulario/email, Llamar, Agendar cita, Ubicar consulta, Otra):</label>
-                    <input type="text" id="accionVisitante" name="accionVisitante" 
-                           data-lang-key="q_fs2_f2_placeholder" placeholder="Ej: Contactar por formulario" required>
-                </div>
-                <div>
-                    <label for="pacienteIdeal" data-lang-key="q_fs2_f3_label">Tu Paciente/Cliente Ideal (descríbelo en 3-5 palabras clave): Ej: "Mujeres 30-50, buscan estética"</label>
-                    <input type="text" id="pacienteIdeal" name="pacienteIdeal" 
-                           data-lang-key="q_fs2_f3_placeholder" placeholder="Ej: Mujeres 30-50, buscan estética" required>
-                </div>
-                <div>
-                    <label for="topDatos" data-lang-key="q_fs2_f4_label">Información Clave que tus visitantes DEBEN encontrar al instante (puedes listar varios puntos o describirlo en un párrafo):</label>
-                    <textarea id="topDatos" name="topDatos" rows="3" 
-                              data-lang-key="q_fs2_f4_placeholder" placeholder="Ej: Horarios, Servicios principales, Teléfono de contacto..." required></textarea>
-                </div>
-            </fieldset>
+                    <fieldset class="space-y-6">
+                        <legend>Empecemos por ti y tu práctica</legend>
 
-            <fieldset>
-                <legend data-lang-key="q_fs3_legend">La esencia visual y la sensación que buscas</legend>
-                <div>
-                    <label for="adjetivosDiseño" data-lang-key="q_fs3_f1_label">Adjetivos para el Diseño (elige 3-4: Elegante, Moderno, Profesional, Minimalista, Cálido, Sereno, Innovador, Confiable, Cercano, Otro):</label>
-                    <input type="text" id="adjetivosDiseño" name="adjetivosDiseño" 
-                           data-lang-key="q_fs3_f1_placeholder" placeholder="Ej: Elegante, Profesional, Sereno" required>
-                </div>
-                <div>
-                    <label for="tonalidadColores" data-lang-key="q_fs3_f2_label">Tonalidad general de colores (Clara, Oscura, Neutra):</label>
-                    <input type="text" id="tonalidadColores" name="tonalidadColores" 
-                           data-lang-key="q_fs3_f2_placeholder" placeholder="Ej: Oscura" required>
-                </div>
-                <div>
-                    <label for="colorAcento" data-lang-key="q_fs3_f3_label">Algún color de acento que te guste (o de tu logo, si tienes):</label>
-                    <input type="text" id="colorAcento" name="colorAcento">
-                </div>
-                <div>
-                    <label for="colorNoGusta" data-lang-key="q_fs3_f4_label">Algún color que prefieras evitar:</label>
-                    <input type="text" id="colorNoGusta" name="colorNoGusta">
-                </div>
-                <div>
-                    <label for="estiloLetra" data-lang-key="q_fs3_f5_label">Estilo de Letra Preferido (Clásico/Formal o Moderno/Limpio):</label>
-                    <input type="text" id="estiloLetra" name="estiloLetra" 
-                           data-lang-key="q_fs3_f5_placeholder" placeholder="Ej: Moderno/Limpio" required>
-                </div>
-                <div class="optional-section"> 
-                    <p class="form-section-subtitle" data-lang-key="q_fs3_opt_subtitle"><strong>Inspiración Visual (OPCIONAL – pero muy útil si tienes ejemplos):</strong></p>
-                    <div>
-                        <label for="sitioGustaURL" data-lang-key="q_fs3_opt_f1_label">Un sitio web que te GUSTE mucho por su diseño (enlace URL):</label>
-                        <input type="text" id="sitioGustaURL" name="sitioGustaURL" 
-                               data-lang-key="q_fs3_opt_f1_placeholder" placeholder="https://ejemplo.com">
-                    </div>
-                    <div>
-                        <label for="sitioGustaRazon" data-lang-key="q_fs3_opt_f2_label">¿Qué te gusta de él (en una frase)?:</label>
-                        <input type="text" id="sitioGustaRazon" name="sitioGustaRazon">
-                    </div>
-                    <div style="margin-top:1rem;">
-                        <label for="sitioNoGustaURL" data-lang-key="q_fs3_opt_f3_label">Un sitio web que NO te guste por su diseño (enlace URL):</label>
-                        <input type="text" id="sitioNoGustaURL" name="sitioNoGustaURL" 
-                               data-lang-key="q_fs3_opt_f3_placeholder" placeholder="https://ejemplo-no.com">
-                    </div>
-                    <div>
-                        <label for="sitioNoGustaRazon" data-lang-key="q_fs3_opt_f4_label">¿Qué te disgusta de él (en una frase)?:</label>
-                        <input type="text" id="sitioNoGustaRazon" name="sitioNoGustaRazon">
-                    </div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend data-lang-key="q_fs4_legend">Contenido y herramientas clave para tu página</legend>
-                <div>
-                    <label for="bloquesEsenciales" data-lang-key="q_fs4_f1_label">Bloques de Información Esenciales (3-5 más importantes para tu página única: Bienvenida, Sobre Mí breve, Servicio Estrella 1, Servicio Estrella 2, Cómo funciona/Proceso, Testimonios breves, Llamada a la Acción/Contacto, Ubicación/Mapa):</label>
-                    <textarea id="bloquesEsenciales" name="bloquesEsenciales" rows="3" 
-                              data-lang-key="q_fs4_f1_placeholder" placeholder="Ej: Bienvenida, Sobre Mí, Servicio Estrella 1, Contacto, Ubicación" required></textarea>
-                </div>
-                
-                <div style="margin-top:1.25rem;">
-                    <p class="form-section-subtitle" data-lang-key="q_fs4_mat_subtitle">Material que YA TIENES Listo:</p>
-                    <div class="radio-question-group">
-                        <p class="radio-question-text" data-lang-key="q_fs4_mat_q1">Logo profesional:</p>
-                        <div class="radio-options-container">
-                            <span class="radio-option"><input type="radio" id="tieneLogoSi" name="tieneLogo" value="Si"> <label for="tieneLogoSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
-                            <span class="radio-option"><input type="radio" id="tieneLogoNo" name="tieneLogo" value="No"> <label for="tieneLogoNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <label for="email">Tu Dirección de Email:</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <div>
+                                <label for="specialty">Especialidad Principal:</label>
+                                <input type="text" id="specialty" name="specialty">
+                            </div>
                         </div>
-                    </div>
-                    <div class="radio-question-group">
-                        <p class="radio-question-text" data-lang-key="q_fs4_mat_q2">Fotos de buena calidad:</p>
-                        <div class="radio-options-container">
-                            <span class="radio-option"><input type="radio" id="tieneFotosSi" name="tieneFotos" value="Si"> <label for="tieneFotosSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
-                            <span class="radio-option"><input type="radio" id="tieneFotosNo" name="tieneFotos" value="No"> <label for="tieneFotosNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
-                        </div>
-                    </div>
-                    <div class="radio-question-group">
-                        <p class="radio-question-text" data-lang-key="q_fs4_mat_q3">Textos básicos para alguna sección:</p>
-                        <div class="radio-options-container">
-                            <span class="radio-option"><input type="radio" id="tieneTextosSi" name="tieneTextos" value="Si"> <label for="tieneTextosSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
-                            <span class="radio-option"><input type="radio" id="tieneTextosNo" name="tieneTextos" value="No"> <label for="tieneTextosNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
-                        </div>
-                    </div>
-                </div>
 
-                <div style="margin-top:1.25rem;">
-                    <p class="form-section-subtitle" data-lang-key="q_fs4_func_subtitle">Funcionalidades que NECESITAS:</p>
-                    <div class="radio-question-group">
-                        <p class="radio-question-text" data-lang-key="q_fs4_func_q1">Formulario de contacto:</p>
-                        <div class="radio-options-container">
-                            <span class="radio-option"><input type="radio" id="necesitaFormularioSi" name="necesitaFormulario" value="Si"> <label for="necesitaFormularioSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
-                            <span class="radio-option"><input type="radio" id="necesitaFormularioNo" name="necesitaFormulario" value="No"> <label for="necesitaFormularioNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                        <div>
+                            <label for="star-services">Tus Servicios Estrella (hasta 3, en orden de
+                                importancia):</label>
+                            <input type="text" id="star-services" name="star-services">
                         </div>
-                    </div>
-                    <div class="radio-question-group">
-                        <p class="radio-question-text" data-lang-key="q_fs4_func_q2">Mapa de ubicación:</p>
-                        <div class="radio-options-container">
-                            <span class="radio-option"><input type="radio" id="necesitaMapaSi" name="necesitaMapa" value="Si"> <label for="necesitaMapaSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
-                            <span class="radio-option"><input type="radio" id="necesitaMapaNo" name="necesitaMapa" value="No"> <label for="necesitaMapaNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                        <div>
+                            <label for="differentiator">Tu Diferenciador Único (en 1 frase breve):</label>
+                            <input type="text" id="differentiator" name="differentiator">
                         </div>
-                    </div>
-                    <div class="radio-question-group">
-                        <p class="radio-question-text" data-lang-key="q_fs4_func_q3">Enlaces a Redes Sociales:</p>
-                        <div class="radio-options-container">
-                            <span class="radio-option"><input type="radio" id="necesitaRedesSi" name="necesitaRedes" value="Si"> <label for="necesitaRedesSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
-                            <span class="radio-option"><input type="radio" id="necesitaRedesNo" name="necesitaRedes" value="No"> <label for="necesitaRedesNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                        <div>
+                            <label for="key-values">Valores Clave (1 o 2 que te representen):</label>
+                            <input type="text" id="key-values" name="key-values"
+                                placeholder="Confianza, Innovación, Empatía, Calidez...">
                         </div>
-                        <input type="text" id="cualesRedes" name="cualesRedes" 
-                               data-lang-key="q_fs4_func_q3_placeholder" placeholder="Si es Sí, especifica aquí (ej: Facebook, Instagram)" style="margin-top: 0.5rem; font-size:0.9em; padding: 4px 8px; width:100%; box-sizing: border-box;">
-                    </div>
-                     <div class="radio-question-group">
-                        <p class="radio-question-text" data-lang-key="q_fs4_func_q4">Botón para llamar por WhatsApp o teléfono:</p>
-                        <div class="radio-options-container">
-                            <span class="radio-option"><input type="radio" id="necesitaBotonLlamarSi" name="necesitaBotonLlamar" value="Si"> <label for="necesitaBotonLlamarSi" class="radio-label" data-lang-key="q_radio_yes">Sí</label></span>
-                            <span class="radio-option"><input type="radio" id="necesitaBotonLlamarNo" name="necesitaBotonLlamar" value="No"> <label for="necesitaBotonLlamarNo" class="radio-label" data-lang-key="q_radio_no">No</label></span>
+                    </fieldset>
+
+                    <fieldset class="space-y-6">
+                        <legend>Definiendo el éxito de tu web</legend>
+
+                        <div>
+                            <label for="main-goal">Meta Nº1 de tu Página Web (en pocas palabras):</label>
+                            <input type="text" id="main-goal" name="main-goal"
+                                placeholder="Ej: Conseguir que nuevos pacientes pidan cita">
                         </div>
+                        <div>
+                            <label for="main-action">Acción MÁS Importante del Visitante (elige solo UNA):</label>
+                            <input type="text" id="main-action" name="main-action"
+                                placeholder="Contactar por formulario, Llamar, Agendar cita...">
+                        </div>
+                        <div>
+                            <label for="ideal-client">Tu Paciente/Cliente Ideal (describelo en 3-5 palabras
+                                clave):</label>
+                            <input type="text" id="ideal-client" name="ideal-client"
+                                placeholder="Ej: Mujeres 30-50, buscan estética">
+                        </div>
+                        <div>
+                            <label for="key-info">Información Clave que tus visitantes DEBEN encontrar al
+                                instante:</label>
+                            <input type="text" id="key-info" name="key-info"
+                                placeholder="Ej: Horarios, Servicios Principales, Contacto">
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="space-y-6">
+                        <legend>La esencia visual y la sensación que buscas</legend>
+
+                        <div>
+                            <label for="design-adjectives">Adjetivos para el Diseño (elige 3-4):</label>
+                            <input type="text" id="design-adjectives" name="design-adjectives"
+                                placeholder="Elegante, Profesional, Minimalista, Cálido...">
+                        </div>
+                        <div>
+                            <label for="color-tone">Tonalidad general de colores (Clara, Oscura, Neutra):</label>
+                            <input type="text" id="color-tone" name="color-tone">
+                        </div>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <label for="avoid-color">Algún color que prefieras evitar:</label>
+                                <input type="text" id="avoid-color" name="avoid-color">
+                            </div>
+                            <div>
+                                <label for="font-style">Estilo de Letra Preferido (Clínico/Formal o
+                                    Moderno/Limpio):</label>
+                                <input type="text" id="font-style" name="font-style">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="space-y-6">
+                        <legend>Inspiración Visual (OPCIONAL - pero muy útil si tienes ejemplos)</legend>
+
+                        <div>
+                            <label for="like-site">Un sitio web que te GUSTE mucho por su diseño (enlace/URL):</label>
+                            <input type="url" id="like-site" name="like-site" placeholder="https://ejemplo.com">
+                        </div>
+                        <div>
+                            <label for="like-reason">¿Qué te gusta de él (en una frase)?:</label>
+                            <input type="text" id="like-reason" name="like-reason">
+                        </div>
+                        <div>
+                            <label for="dislike-site">Un sitio web que NO te guste por su diseño (enlace/URL):</label>
+                            <input type="url" id="dislike-site" name="dislike-site"
+                                placeholder="https://ejemplo-no.com">
+                        </div>
+                        <div>
+                            <label for="dislike-reason">¿Qué te disgusta de él (en una frase)?:</label>
+                            <input type="text" id="dislike-reason" name="dislike-reason">
+                        </div>
+                    </fieldset>
+
+                    <div style="padding-top: 1rem;">
+                        <button type="submit" class="w-full plan-button">Enviar Cuestionario</button>
                     </div>
-                </div>
-            </fieldset>
 
-            <input type="hidden" name="_subject" value="Nuevo Contacto Web: Cuestionario elsantin Dev Hub">
-            <input type="hidden" name="_captcha" value="false">
-
-            <input type="hidden" name="form_current_language" value="es" id="form_language_hidden">
-            
-            <button type="submit" class="submit-button" data-lang-key="q_submit_button">Enviar Mis Respuestas</button>
-        </form>
-
-        <div class="cierre-cuestionario">
-            <p data-lang-key="q_closing_text">Agradezco mucho que te tomaras el tiempo para compartir tus ideas; esta información es realmente valiosa. Revisaré tus respuestas con atención y te contactaré pronto para que conversemos sobre los próximos pasos.</p>
-            <p data-lang-key="q_closing_signature">Un saludo,<br>elsantin</p>
-        </div>
-
-        <div id="formConfirmation" class="form-confirmation-message" style="margin-top:1.25rem; padding:1rem; border-radius:6px; text-align:center; display:none;">
+                </form>
             </div>
-        
-        <footer>
-            <p data-lang-key="q_footer_text">&copy; <span id="currentYear"></span> elsantin</p>
-        </footer>
-    </div>
+        </section>
+    </main>
 
-    <a href="#" id="back-to-top-btn" class="back-to-top-button" aria-label="Volver arriba" data-lang-key="q_btt_label_aria" title="Volver arriba">
-        <i class="fas fa-chevron-up"></i>
-    </a>
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-bottom">© <span id="current-year">2024</span> elsantin Labs. Desarrollo Web desde la Isla
+                de Margarita, Venezuela.<br>Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
-    <script src="questionnaire.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
 </body>
+
 </html>

@@ -143,19 +143,14 @@
                     colaboración única enfocada en resultados.
                 </p>
 
+                <!-- COMENTARIO_ESTRATÉGICO:
+                    Ahora el grid está limpio. El JS identificará qué tarjeta se clickeó por su posición (0, 1, 2, 3)
+                    en lugar de leer atributos, lo que elimina la fuente de errores.
+                -->
                 <div id="project-grid" class="portfolio-grid">
 
-                    <!-- COMENTARIO ESTRATÉGICO:
-                        Hemos corregido los data-attributes para que contengan el texto final a mostrar.
-                        Por ejemplo, 'data-title' ahora tiene "Chill Chess Club" directamente.
-                        El JavaScript leerá estos atributos y los mostrará en el modal.
-                    -->
-
                     <!-- Proyecto 1: Chill Chess Club -->
-                    <div class="project-card" data-title="Chill Chess Club"
-                        data-description="Una aplicación web interactiva para entusiastas del ajedrez, con análisis de partidas y puzzles diarios. El objetivo era crear una comunidad online vibrante y un recurso educativo."
-                        data-image="assets/images/chill-chess-club-layout.jpg" data-technologies="HTML,CSS,JavaScript"
-                        data-live-url="#" data-repo-url="#">
+                    <div class="project-card">
                         <img class="project-card-image" src="assets/images/chill-chess-club-layout.jpg"
                             alt="Chill Chess Club Screenshot">
                         <div class="project-card-content">
@@ -168,10 +163,7 @@
                     </div>
 
                     <!-- Proyecto 2: Dra. Hanoi Online -->
-                    <div class="project-card" data-title="Dra. Hanoi Online"
-                        data-description="Sitio web profesional para una ginecóloga obstetra, enfocado en la presentación de servicios, perfil médico y un blog informativo. Se priorizó un diseño limpio, profesional y que generara confianza."
-                        data-image="assets/images/dra-hanoi-online-layout.jpg" data-technologies="HTML,CSS,JavaScript"
-                        data-live-url="#" data-repo-url="#">
+                    <div class="project-card">
                         <img class="project-card-image" src="assets/images/dra-hanoi-online-layout.jpg"
                             alt="Dra. Hanoi Online Website Screenshot">
                         <div class="project-card-content">
@@ -184,10 +176,7 @@
                     </div>
 
                     <!-- Proyecto 3: Portfolio de Arte IA -->
-                    <div class="project-card" data-title="Santiago Narváez: AI Art Portfolio"
-                        data-description="Un portafolio artístico y experimental para mostrar obras generadas con IA. Se utilizó p5.js para crear efectos visuales interactivos que complementan las piezas de arte digital."
-                        data-image="assets/images/santiago-narvaez-portfolio-layout.jpg"
-                        data-technologies="HTML,CSS,p5.js" data-live-url="#" data-repo-url="#">
+                    <div class="project-card">
                         <img class="project-card-image" src="assets/images/santiago-narvaez-portfolio-layout.jpg"
                             alt="Santiago Narváez Artistic Portfolio Screenshot">
                         <div class="project-card-content">
@@ -200,10 +189,7 @@
                     </div>
 
                     <!-- Proyecto 4: Veridia -->
-                    <div class="project-card" data-title="Sitio Web Veridia"
-                        data-description="Página de aterrizaje para un proyecto de tecnología sostenible. El diseño busca transmitir innovación y ecología a través de una interfaz limpia y animaciones sutiles."
-                        data-image="assets/images/veridia-layout.jpg" data-technologies="HTML,CSS,JavaScript"
-                        data-live-url="#" data-repo-url="#">
+                    <div class="project-card">
                         <img class="project-card-image" src="assets/images/veridia-layout.jpg"
                             alt="Screenshot of the Veridia project homepage">
                         <div class="project-card-content">
@@ -218,7 +204,6 @@
                 </div>
             </div>
         </section>
-
 
         <section id="proceso" class="section">
             <div class="container">
