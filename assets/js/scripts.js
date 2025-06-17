@@ -1,53 +1,52 @@
-// (function() { ... })(); es una IIFE (Immediately Invoked Function Expression).
-// Esto crea un ámbito privado para nuestro código, protegiéndolo de conflictos.
 (function () {
-  "use strict"; // Activa el modo estricto de JavaScript.
+  "use strict";
 
-  // COMENTARIO_ESTRATÉGICO (DIAGNÓSTICO):
-  // Si ves este mensaje en la consola del navegador (F12), significa que
-  // el archivo correcto se ha cargado. Si no lo ves, el navegador usa caché.
-  console.log("✅ Hotfix Script v2 Cargado Correctamente");
-
+  // COMENTARIO_ESTRATÉGICO (HOTFIX):
+  // La información de los proyectos ha sido actualizada con las descripciones y enlaces finales.
+  // Este es el "Single Source of Truth" definitivo para el contenido del portafolio.
   const portfolioProjects = [
     {
       title: "Chill Chess Club",
       description:
-        "Una aplicación web interactiva para entusiastas del ajedrez, con análisis de partidas y puzzles diarios. El objetivo era crear una comunidad online vibrante y un recurso educativo.",
+        "SPA bilingüe para una academia de ajedrez online. Promueve un método de enseñanza moderno asistido por IA e incluye un formulario para consultas y registro. Desarrollado con HTML5, CSS3 y JavaScript.",
       image: "assets/images/chill-chess-club-layout.jpg",
       technologies: ["HTML", "CSS", "JavaScript"],
-      liveUrl: "#",
-      repoUrl: "#",
+      liveUrl: "https://elsantin.github.io/chill-chess-club/",
+      repoUrl: "https://github.com/elsantin/chill-chess-club",
     },
     {
       title: "Dra. Hanoi Online",
       description:
-        "Sitio web profesional para una ginecóloga obstetra, enfocado en la presentación de servicios, perfil médico y un blog informativo. Se priorizó un diseño limpio, profesional y que generara confianza.",
+        "Sitio web profesional enfocado en la presentación de servicios médicos y la interacción con pacientes. Presenta un diseño limpio, responsivo y facilita la solicitud de citas.",
       image: "assets/images/dra-hanoi-online-layout.jpg",
       technologies: ["HTML", "CSS", "JavaScript"],
-      liveUrl: "#",
-      repoUrl: "#",
+      liveUrl: "https://elsantin.github.io/dra.hanoi.online/",
+      repoUrl: "https://github.com/elsantin/dra.hanoi.online",
     },
     {
-      title: "Santiago Narváez: AI Art Portfolio",
+      title: "Santiago Narváez: AI Art",
       description:
-        "Un portafolio artístico y experimental para mostrar obras generadas con IA. Se utilizó p5.js para crear efectos visuales interactivos que complementan las piezas de arte digital.",
+        "Portafolio web personal que exhibe creaciones visuales y fotografías. Ofrece una galería inmersiva con una estética que combina arte tradicional y tecnología, incluyendo elementos interactivos con p5.js.",
       image: "assets/images/santiago-narvaez-portfolio-layout.jpg",
       technologies: ["HTML", "CSS", "p5.js"],
-      liveUrl: "#",
-      repoUrl: "#",
+      liveUrl: "https://elsantin.github.io/santiago-narvaez-portfolio/",
+      repoUrl: "https://github.com/elsantin/santiago-narvaez-portfolio",
     },
     {
       title: "Sitio Web Veridia",
       description:
-        "Página de aterrizaje para un proyecto de tecnología sostenible. El diseño busca transmitir innovación y ecología a través de una interfaz limpia y animaciones sutiles.",
+        "Web oficial para Veridia, empresa de automatización inteligente. Presenta sus servicios (IPA, RPA, IA) y metodología a través de un diseño moderno y un formulario de captación de leads.",
       image: "assets/images/veridia-layout.jpg",
       technologies: ["HTML", "CSS", "JavaScript"],
-      liveUrl: "#",
-      repoUrl: "#",
+      liveUrl: "https://elsantin.github.io/veridia/",
+      repoUrl: "https://github.com/elsantin/veridia",
     },
   ];
 
   document.addEventListener("DOMContentLoaded", () => {
+    // Diagnóstico para verificar la carga del script
+    console.log("✅ Hotfix Final Script (con contenido real) Cargado");
+
     const currentYearElement = document.getElementById("current-year");
     if (currentYearElement) {
       currentYearElement.textContent = new Date().getFullYear();
@@ -84,6 +83,7 @@
     const modal = document.getElementById("project-modal");
 
     if (!projectGrid || !modal) {
+      console.error("Error: Elementos del portafolio no encontrados.");
       return;
     }
 
@@ -118,6 +118,13 @@
     allProjectCards.forEach((card, index) => {
       const projectData = portfolioProjects[index];
       if (projectData) {
+        // COMENTARIO_ESTRATÉGICO: Se actualiza dinámicamente el título en la tarjeta
+        // para asegurar consistencia con la "Single Source of Truth".
+        const titleElement = card.querySelector(".project-card-title");
+        if (titleElement) {
+          titleElement.textContent = projectData.title;
+        }
+
         const techContainer = card.querySelector(".project-card-tech-icons");
         renderTechIcons(techContainer, projectData.technologies);
       }
