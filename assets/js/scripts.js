@@ -17,7 +17,7 @@
     {
       title: "Dra. Hanoi Online",
       description:
-        "Sitio web profesional enfocado en la presentación de servicios médicos y la interacción con pacientes. Presenta un diseño limpio, responsivo y facilita la solicitud de citas.",
+        "Sitio web profesional para una ginecóloga obstetra, enfocado en la presentación de servicios médicos y la interacción con pacientes. Presenta un diseño limpio, responsivo y facilita la solicitud de citas.",
       image: "assets/images/dra-hanoi-online-layout.jpg",
       technologies: ["HTML", "CSS", "JavaScript"],
       liveUrl: "https://elsantin.github.io/dra.hanoi.online/",
@@ -28,7 +28,7 @@
       description:
         "Portafolio web personal que exhibe creaciones visuales y fotografías. Ofrece una galería inmersiva con una estética que combina arte tradicional y tecnología, incluyendo elementos interactivos con p5.js.",
       image: "assets/images/santiago-narvaez-portfolio-layout.jpg",
-      technologies: ["HTML", "CSS", "p5.js"],
+      technologies: ["HTML", "CSS", "JavaScript", "p5.js"],
       liveUrl: "https://elsantin.github.io/santiago-narvaez-portfolio/",
       repoUrl: "https://github.com/elsantin/santiago-narvaez-portfolio",
     },
@@ -45,7 +45,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     // Diagnóstico para verificar la carga del script
-    console.log("✅ Hotfix Final Script (con contenido real) Cargado");
+    console.log("✅ Hotfix Final Script (con icono p5.js real) Cargado");
 
     const currentYearElement = document.getElementById("current-year");
     if (currentYearElement) {
@@ -96,6 +96,8 @@
 
     let currentProjectIndex = 0;
 
+    // COMENTARIO_ESTRATÉGICO: La función ahora usa una etiqueta <img> para p5.js
+    // cuando detecta esa tecnología, en lugar de un ícono de FontAwesome.
     const renderTechIcons = (container, techsArray) => {
       if (!container || !techsArray) return;
       container.innerHTML = "";
@@ -105,7 +107,7 @@
         javascript:
           '<i class="fab fa-js-square" title="JavaScript" style="color: #f7df1e;"></i>',
         "p5.js":
-          '<i class="fas fa-palette" title="p5.js" style="color: #ed225d;"></i>',
+          '<img src="assets/images/p5-logo.png" alt="p5.js logo" title="p5.js" style="height: 24px; width: auto;">',
       };
       techsArray.forEach((tech) => {
         const key = tech.toLowerCase();
@@ -118,13 +120,10 @@
     allProjectCards.forEach((card, index) => {
       const projectData = portfolioProjects[index];
       if (projectData) {
-        // COMENTARIO_ESTRATÉGICO: Se actualiza dinámicamente el título en la tarjeta
-        // para asegurar consistencia con la "Single Source of Truth".
         const titleElement = card.querySelector(".project-card-title");
         if (titleElement) {
           titleElement.textContent = projectData.title;
         }
-
         const techContainer = card.querySelector(".project-card-tech-icons");
         renderTechIcons(techContainer, projectData.technologies);
       }
