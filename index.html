@@ -16,7 +16,7 @@
     <header class="header">
         <nav class="nav">
             <a href="#inicio" class="logo"><span class="logo-brackets logo-bracket left">{</span> <span
-                    class="logo-text">elsantin Labs</span> <span class="logo-brackets logo-bracket right">}</span></a>
+                    class="logo-text"></span> <span class="logo-brackets logo-bracket right">}</span></a>
             <div class="nav-menu">
                 <ul class="nav-links" id="nav-links">
                     <li><a href="#servicios">Planes</a></li>
@@ -45,7 +45,6 @@
                     Web Vitals</span><span class="tech-tag">IA Asistida</span><span class="tech-tag">SEO</span></div>
         </section>
 
-        <!-- SECCIÓN DE PRECIOS CON VALORES ACTUALIZADOS -->
         <section id="servicios" class="section">
             <div class="container">
                 <h2 class="section-title">Planes de Desarrollo Web</h2>
@@ -132,9 +131,6 @@
             </div>
         </section>
 
-        <!-- ======================================================================= -->
-        <!--   HTML: Reemplaza únicamente la sección de portafolio con este bloque   -->
-        <!-- ======================================================================= -->
         <section id="portfolio" class="section" style="background-color: var(--color-dev-hub-surface);">
             <div class="container">
                 <h2 class="section-title">Portafolio de Trabajos</h2>
@@ -142,69 +138,58 @@
                     Un vistazo a algunas de las soluciones digitales que hemos construido. Cada proyecto es una
                     colaboración única enfocada en resultados.
                 </p>
-
-                <!-- COMENTARIO_ESTRATÉGICO:
-                    Grid limpio. El JS identificará qué tarjeta se clickeó por su posición (0, 1, 2, 3)
-                    en lugar de leer atributos, lo que elimina la fuente de errores.
-                -->
                 <div id="project-grid" class="portfolio-grid">
-
-                    <!-- Proyecto 1: Chill Chess Club -->
                     <div class="project-card">
                         <img class="project-card-image" src="assets/images/chill-chess-club-layout.jpg"
                             alt="Chill Chess Club Screenshot">
                         <div class="project-card-content">
                             <h3 class="project-card-title">Chill Chess Club</h3>
+                            <p class="project-card-description"></p>
                             <div class="project-card-footer">
                                 <div class="project-card-tech-icons"></div>
                                 <button class="project-card-button">Ver Detalles</button>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Proyecto 2: Dra. Hanoi Online -->
                     <div class="project-card">
                         <img class="project-card-image" src="assets/images/dra-hanoi-online-layout.jpg"
                             alt="Dra. Hanoi Online Website Screenshot">
                         <div class="project-card-content">
                             <h3 class="project-card-title">Dra. Hanoi Online</h3>
+                            <p class="project-card-description"></p>
                             <div class="project-card-footer">
                                 <div class="project-card-tech-icons"></div>
                                 <button class="project-card-button">Ver Detalles</button>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Proyecto 3: Portfolio de Arte IA -->
                     <div class="project-card">
                         <img class="project-card-image" src="assets/images/santiago-narvaez-portfolio-layout.jpg"
                             alt="Santiago Narváez Artistic Portfolio Screenshot">
                         <div class="project-card-content">
-                            <h3 class="project-card-title">Santiago Narváez: AI Art Portfolio</h3>
+                            <h3 class="project-card-title">Santiago Narváez: AI Art</h3>
+                            <p class="project-card-description"></p>
                             <div class="project-card-footer">
                                 <div class="project-card-tech-icons"></div>
                                 <button class="project-card-button">Ver Detalles</button>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Proyecto 4: Veridia -->
                     <div class="project-card">
                         <img class="project-card-image" src="assets/images/veridia-layout.jpg"
                             alt="Screenshot of the Veridia project homepage">
                         <div class="project-card-content">
                             <h3 class="project-card-title">Sitio Web Veridia</h3>
+                            <p class="project-card-description"></p>
                             <div class="project-card-footer">
                                 <div class="project-card-tech-icons"></div>
                                 <button class="project-card-button">Ver Detalles</button>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
-
 
         <section id="proceso" class="section">
             <div class="container">
@@ -295,10 +280,18 @@
                     <p class="contact-text">Cada gran proyecto comienza con una conversación. Contáctame para discutir
                         tus ideas y cómo podemos transformarlas en una poderosa herramienta digital para tu marca.</p>
                     <div class="contact-buttons">
-                        <a href="https://wa.me/584121969544" target="_blank" class="contact-button"><i
-                                class="fab fa-whatsapp"></i> Enviar WhatsApp</a>
-                        <a href="mailto:santiago.narvaez.84@gmail.com" class="contact-button secondary"><i
-                                class="fas fa-envelope"></i> Enviar Email</a>
+                        <a href="https://wa.me/584121969544" target="_blank" class="contact-button">
+                            <i class="fab fa-whatsapp"></i> Enviar WhatsApp
+                        </a>
+                        <div class="email-contact-group">
+                            <a href="mailto:santiago.narvaez.84@gmail.com" class="contact-button secondary">
+                                <i class="fas fa-envelope"></i> Enviar Email
+                            </a>
+                            <button id="copy-email-btn" class="contact-button icon-only" title="Copiar email"
+                                data-email="santiago.narvaez.84@gmail.com">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -314,7 +307,6 @@
         </div>
     </footer>
 
-    <!-- MODAL PARA EL PORTAFOLIO -->
     <div id="project-modal" class="modal-container">
         <button id="modal-prev-project" class="modal-nav-arrow prev" aria-label="Proyecto anterior"
             title="Proyecto anterior"><i class="fas fa-chevron-left"></i></button>
@@ -335,7 +327,12 @@
             title="Siguiente proyecto"><i class="fas fa-chevron-right"></i></button>
     </div>
 
-    <a href="#inicio" class="go-to-top" id="go-to-top"><i class="fas fa-chevron-up"></i></a>
+    <button id="goToTopBtn" title="Ir arriba">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
 
     <script src="assets/js/scripts.js"></script>
 </body>

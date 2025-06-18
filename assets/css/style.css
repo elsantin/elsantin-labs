@@ -582,6 +582,7 @@ body {
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .contact-button {
@@ -597,10 +598,12 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  border: 1px solid var(--color-accent-gold);
 }
 
 .contact-button:hover {
   background: var(--color-accent-gold-hover);
+  border-color: var(--color-accent-gold-hover);
   transform: translateY(-2px);
 }
 
@@ -614,6 +617,57 @@ body {
   border-color: var(--color-accent-gold);
   color: var(--color-accent-gold);
   background: var(--color-dev-hub-surface);
+}
+
+.email-contact-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.email-contact-group .contact-button.secondary {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+
+.contact-button.icon-only {
+  padding: 0.8rem;
+  width: auto;
+  font-size: 1.1rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  position: relative;
+  background: var(--color-dev-hub-surface);
+  color: var(--color-dev-hub-text-secondary);
+  border: 1px solid var(--color-dev-hub-border);
+}
+
+.contact-button.icon-only:hover {
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold);
+  background: var(--color-dev-hub-surface);
+}
+
+.contact-button .copy-feedback {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-accent-gold);
+  color: var(--color-text-on-gold);
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 10;
+}
+
+.contact-button .copy-feedback.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* --- Footer --- */
@@ -642,41 +696,46 @@ body {
   font-size: 0.9rem;
 }
 
-/* --- Go to Top Button --- */
-.go-to-top {
+/* --- Go to Top Button (Refined) --- */
+#goToTopBtn {
+  display: none;
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 25px;
+  right: 25px;
+  z-index: 999;
+  background-color: rgba(22, 27, 34, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-dev-hub-border);
+  border-radius: 50%;
   width: 50px;
   height: 50px;
-  background: none;
-  border-radius: 50%;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  z-index: 999;
   opacity: 0;
-  visibility: hidden;
+  transition: opacity 0.4s ease, transform 0.3s ease, background-color 0.3s ease;
 }
 
-.go-to-top.visible {
+#goToTopBtn.visible {
+  display: flex;
   opacity: 1;
-  visibility: visible;
 }
 
-.go-to-top svg {
-  width: 32px;
-  height: 32px;
-  stroke: var(--color-dev-hub-text-secondary);
-  stroke-width: 2.5px;
-  transition: all 0.3s ease;
-}
-
-.go-to-top:hover svg {
-  stroke: var(--color-accent-gold);
+#goToTopBtn:hover {
+  background-color: var(--color-accent-gold);
+  border-color: var(--color-accent-gold-hover);
   transform: translateY(-4px);
+}
+
+#goToTopBtn svg {
+  stroke: var(--color-dev-hub-text-secondary);
+  transition: stroke 0.3s ease;
+}
+
+#goToTopBtn:hover svg {
+  stroke: var(--color-text-on-gold);
 }
 
 /* --- Responsive Design (Mobile Menu) --- */
@@ -725,7 +784,8 @@ body {
     min-height: initial;
   }
 }
-/* --- Portfolio Section (Nueva sección para Labs) --- */
+
+/* --- Portfolio Section --- */
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -739,6 +799,8 @@ body {
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
@@ -754,31 +816,44 @@ body {
 
 .project-card-content {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .project-card-title {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-card-description {
+  font-size: 0.9rem;
+  color: var(--color-dev-hub-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
 
 .project-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: auto;
 }
 
 .project-card-tech-icons {
   display: flex;
   gap: 0.8rem;
-  font-size: 1.5rem;
+  align-items: center;
+  font-size: 1.2rem;
 }
 
 .project-card-tech-icons .tech-icon-img {
-  height: 24px;
+  height: 1.2rem;
   width: auto;
+  vertical-align: middle;
 }
 
 .project-card-button {
@@ -877,6 +952,20 @@ body {
   display: flex;
   gap: 1rem;
   font-size: 1.8rem;
+  align-items: center;
+}
+
+/* COMENTARIO_ESTRATÉGICO: Estilos para el estado de error de la imagen en el MODAL */
+.modal-tech-icons .tech-icon-img {
+  height: 1.8rem;
+  width: auto;
+  vertical-align: middle;
+  font-size: 0.8rem;
+  color: var(--color-dev-hub-text-secondary);
+  background-color: var(--color-dev-hub-border);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  line-height: 1.4rem;
 }
 
 .modal-description {
