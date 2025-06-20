@@ -62,8 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "Professional website for Dr. Hanoi, showcasing services and facil...",
       full_description:
         "Sitio web profesional y cálido para una ginecóloga obstetra. El diseño prioriza la confianza y la facilidad de contacto, presentando la información médica de forma clara y accesible para las pacientes.",
-      liveUrl: "https://elsantin.github.io/dra-hanoi-online/",
-      repoUrl: "https://github.com/elsantin/dra-hanoi-online",
+      liveUrl: "https://elsantin.github.io/dra.hanoi.online/",
+      repoUrl: "https://github.com/elsantin/dra.hanoi.online",
       tech_card: [
         {
           type: "icon",
