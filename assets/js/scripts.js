@@ -1,4 +1,6 @@
 // scripts.js - elsantin Labs Frontend (Version Final Unificada 2025-01-21)
+
+// === IMPORTACIONES ===
 import {
   getServices,
   getAddOns,
@@ -6,6 +8,32 @@ import {
   setLanguage,
   getTexts,
 } from "../../sanityClient.js";
+
+// === FUNCIÓN PARA CREAR SKELETONS ===
+function createSkeletonCard(type = "service") {
+  const skeleton = document.createElement("div");
+  skeleton.className =
+    type === "addon"
+      ? "addon-card skeleton-card addon-skeleton"
+      : "plan-card skeleton-card";
+
+  if (type === "service") {
+    skeleton.innerHTML = `
+      <div class="skeleton-line skeleton-title"></div>
+      <div class="skeleton-line skeleton-text"></div>
+      <div class="skeleton-line skeleton-text" style="width: 60%;"></div>
+      <div class="skeleton-line skeleton-price"></div>
+      <div class="skeleton-line skeleton-button"></div>
+    `;
+  } else {
+    skeleton.innerHTML = `
+      <div class="skeleton-line skeleton-title" style="width: 80%;"></div>
+      <div class="skeleton-line skeleton-text" style="width: 90%;"></div>
+      <div class="skeleton-line skeleton-price" style="width: 40%;"></div>
+    `;
+  }
+  return skeleton;
+}
 
 // Variables globales
 let currentLanguage = "es";
@@ -105,34 +133,37 @@ function forceStyleReapplication() {
   console.log("Re-aplicación mínima completada");
 }
 
-// Cargar servicios desde Sanity
+// Cargar servicios desde Sanity (AHORA CON SKELETONS)
 async function loadServicesFromSanity() {
-  console.log(`Cargando servicios en ${currentLanguage.toUpperCase()}...`);
+  console.log(
+    `🔄 Cargando servicios en ${currentLanguage.toUpperCase()} con skeletons...`
+  );
+  const plansGrid = document.querySelector(".plans-grid");
+  if (!plansGrid) {
+    console.warn(".plans-grid no encontrado");
+    return;
+  }
+
+  // Mostrar skeletons inmediatamente
+  plansGrid.innerHTML = "";
+  for (let i = 0; i < 3; i++) {
+    plansGrid.appendChild(createSkeletonCard("service"));
+  }
 
   try {
     if (typeof getServices !== "function") {
       throw new Error("getServices no disponible");
     }
 
-    const plansGrid = document.querySelector(".plans-grid");
-    if (!plansGrid) {
-      console.warn(".plans-grid no encontrado");
-      return;
-    }
+    const services = await getServices(currentLanguage);
+    console.log(`Servicios obtenidos: ${services.length}`);
 
-    let services = [];
-    try {
-      services = await getServices(currentLanguage);
-      console.log(`Servicios obtenidos: ${services.length}`);
-    } catch (sanityError) {
-      console.warn("Error obteniendo servicios:", sanityError.message);
-      services = [];
-    }
+    // Pequeño delay para apreciar el shimmer (opcional)
+    await new Promise((resolve) => setTimeout(resolve, 800));
 
+    // Reemplazar skeletons con contenido real
+    plansGrid.innerHTML = "";
     if (services.length === 0) {
-      while (plansGrid.firstChild) {
-        plansGrid.removeChild(plansGrid.firstChild);
-      }
       const messageDiv = document.createElement("div");
       messageDiv.className = "no-services-message";
       messageDiv.innerHTML = `
@@ -140,55 +171,40 @@ async function loadServicesFromSanity() {
         <p>Estamos trabajando en cargar el contenido...</p>
       `;
       plansGrid.appendChild(messageDiv);
-      return;
+    } else {
+      services.forEach((service, index) => {
+        try {
+          const serviceCard = createServiceCard(service);
+          plansGrid.appendChild(serviceCard);
+        } catch (cardError) {
+          console.error(`Error creando tarjeta ${index}:`, cardError);
+        }
+      });
     }
-
-    // Limpiar contenedor
-    while (plansGrid.firstChild) {
-      plansGrid.removeChild(plansGrid.firstChild);
-    }
-
-    // Crear tarjetas con la clase correcta
-    services.forEach((service, index) => {
-      try {
-        const serviceCard = createServiceCard(service);
-        plansGrid.appendChild(serviceCard);
-      } catch (cardError) {
-        console.error(`Error creando tarjeta ${index}:`, cardError);
-      }
-    });
 
     try {
       configureCTAButtons();
     } catch (ctaError) {
       console.error("Error configurando botones CTA:", ctaError);
     }
-
-    console.log(`${services.length} servicios cargados exitosamente`);
+    console.log(`✨ ${services.length} servicios cargados con éxito`);
   } catch (error) {
-    console.error("Error general en loadServicesFromSanity:", error);
-
-    const plansGrid = document.querySelector(".plans-grid");
-    if (plansGrid) {
-      while (plansGrid.firstChild) {
-        plansGrid.removeChild(plansGrid.firstChild);
-      }
-      const errorDiv = document.createElement("div");
-      errorDiv.className = "error-message";
-      errorDiv.innerHTML = `
-        <h3>Error temporal</h3>
-        <p>No se pudieron cargar los servicios. Inténtalo recargando la página.</p>
-      `;
-      plansGrid.appendChild(errorDiv);
-    }
+    console.error("❌ Error general en loadServicesFromSanity:", error);
+    plansGrid.innerHTML = "";
+    const errorDiv = document.createElement("div");
+    errorDiv.className = "error-message";
+    errorDiv.innerHTML = `
+      <h3>Error temporal</h3>
+      <p>No se pudieron cargar los servicios. Inténtalo recargando la página.</p>
+    `;
+    plansGrid.appendChild(errorDiv);
   }
 }
 
-// Crear tarjeta de servicio (CORREGIDO - CLASE CSS CORRECTA)
+// Crear tarjeta de servicio (CLASE CSS CORREGIDA)
 function createServiceCard(service) {
   const card = document.createElement("div");
-  // 🎯 SOLUCIÓN: Usar la clase correcta que coincide con tu CSS
-  card.className = "plan-card"; // ← CORREGIDO: era "pricing-card"
+  card.className = "plan-card";
 
   if (service.featured) {
     card.classList.add("featured");
@@ -235,9 +251,22 @@ function createServiceCard(service) {
   return card;
 }
 
-// Cargar add-ons desde Sanity
+// Cargar add-ons desde Sanity (AHORA CON SKELETONS)
 async function loadAddOnsFromSanity() {
-  console.log(`Cargando add-ons en ${currentLanguage.toUpperCase()}...`);
+  console.log(
+    `🔄 Cargando add-ons en ${currentLanguage.toUpperCase()} con skeletons...`
+  );
+  const addonsGrid = document.querySelector(".addons-grid");
+  if (!addonsGrid) {
+    console.warn(".addons-grid no encontrado");
+    return;
+  }
+
+  // Mostrar skeletons inmediatamente
+  addonsGrid.innerHTML = "";
+  for (let i = 0; i < 4; i++) {
+    addonsGrid.appendChild(createSkeletonCard("addon"));
+  }
 
   try {
     if (typeof getAddOns !== "function") {
@@ -245,27 +274,15 @@ async function loadAddOnsFromSanity() {
       return;
     }
 
-    const addonsGrid = document.querySelector(".addons-grid");
-    if (!addonsGrid) {
-      console.warn(".addons-grid no encontrado");
-      return;
-    }
+    const addOns = await getAddOns(currentLanguage);
+    console.log(`Add-ons obtenidos: ${addOns.length}`);
 
-    let addons = [];
-    try {
-      addons = await getAddOns(currentLanguage);
-      console.log(`Add-ons obtenidos: ${addons.length}`);
-    } catch (sanityError) {
-      console.warn("Error obteniendo add-ons:", sanityError.message);
-      addons = [];
-    }
+    // Pequeño delay para apreciar el shimmer (opcional)
+    await new Promise((resolve) => setTimeout(resolve, 600));
 
-    // Limpiar contenedor
-    while (addonsGrid.firstChild) {
-      addonsGrid.removeChild(addonsGrid.firstChild);
-    }
-
-    if (addons.length === 0) {
+    // Reemplazar skeletons con contenido real
+    addonsGrid.innerHTML = "";
+    if (addOns.length === 0) {
       const messageDiv = document.createElement("div");
       messageDiv.className = "no-addons-message";
       messageDiv.innerHTML = `
@@ -273,22 +290,19 @@ async function loadAddOnsFromSanity() {
         <p>Estamos trabajando en cargar el contenido...</p>
       `;
       addonsGrid.appendChild(messageDiv);
-      return;
+    } else {
+      addOns.forEach((addon, index) => {
+        try {
+          const addonCard = createAddonCard(addon);
+          addonsGrid.appendChild(addonCard);
+        } catch (cardError) {
+          console.error(`Error creando add-on ${index}:`, cardError);
+        }
+      });
     }
-
-    // Crear tarjetas de add-ons
-    addons.forEach((addon, index) => {
-      try {
-        const addonCard = createAddonCard(addon);
-        addonsGrid.appendChild(addonCard);
-      } catch (cardError) {
-        console.error(`Error creando add-on ${index}:`, cardError);
-      }
-    });
-
-    console.log(`${addons.length} add-ons cargados exitosamente`);
+    console.log(`✨ ${addOns.length} add-ons cargados con éxito`);
   } catch (error) {
-    console.error("Error general en loadAddOnsFromSanity:", error);
+    console.error("❌ Error general en loadAddOnsFromSanity:", error);
   }
 }
 
@@ -297,20 +311,17 @@ function createAddonCard(addon) {
   const card = document.createElement("div");
   card.className = "plan-card addon-card";
 
-  // Mapeo de iconos específicos por servicio
   const iconMap = {
     "Sistema de Citas": "fas fa-calendar-alt",
     "Galería Premium": "fas fa-images",
     "Blog con Contenido": "fas fa-blog",
     "Newsletter Integration": "fas fa-envelope",
-    // Fallbacks en inglés
     "Appointment System": "fas fa-calendar-alt",
     "Premium Gallery": "fas fa-images",
     "Blog with Content": "fas fa-blog",
     Newsletter: "fas fa-envelope",
   };
 
-  // Seleccionar icono específico o usar default
   const iconClass = iconMap[addon.name] || "fas fa-puzzle-piece";
 
   card.innerHTML = `
@@ -335,26 +346,20 @@ function createAddonCard(addon) {
 
 // Configurar botones CTA - VERSIÓN CORREGIDA
 function configureCTAButtons() {
-  // Remover listeners existentes primero
   document.querySelectorAll(".cta-btn").forEach((btn) => {
-    // Crear botón nuevo sin listeners antiguos
     const newBtn = btn.cloneNode(true);
     btn.parentNode.replaceChild(newBtn, btn);
   });
 
-  // Agregar listener único a cada botón
   document.querySelectorAll(".cta-btn").forEach((btn) => {
     btn.addEventListener("click", function (e) {
-      e.preventDefault(); // Prevenir cualquier acción por defecto
-
+      e.preventDefault();
       const serviceName = this.dataset.serviceName;
       const servicePrice = this.dataset.price;
-
-      // NAVEGACIÓN EN LA MISMA PESTAÑA (mejor UX)
       const questionnaireUrl = `questionnaire.html?service=${encodeURIComponent(
         serviceName
       )}&price=${encodeURIComponent(servicePrice)}`;
-      window.location.href = questionnaireUrl; // ← Cambiado de window.open
+      window.location.href = questionnaireUrl;
     });
   });
 
@@ -372,7 +377,6 @@ async function handleLanguageChange(event) {
 
   try {
     showLoadingState(true);
-
     const plansGrid = document.querySelector(".plans-grid");
     const addonsGrid = document.querySelector(".addons-grid");
     const originalPlansClasses = plansGrid ? plansGrid.className : "";
@@ -382,10 +386,8 @@ async function handleLanguageChange(event) {
     currentLanguage = newLanguage;
     updateLanguageButtons();
 
-    // Cargar contenido en el nuevo idioma
     await Promise.all([loadServicesFromSanity(), loadAddOnsFromSanity()]);
 
-    // Restaurar clases originales
     if (plansGrid && originalPlansClasses) {
       plansGrid.className = originalPlansClasses;
     }
@@ -413,7 +415,7 @@ const projectsData = [
     short_description:
       "SPA for online chess courses with an AI-assisted, personalized in...",
     full_description:
-      "Plataforma web para un club de ajedrez, diseñada para fomentar la comunidad. Incluye un visor de partidas PGN interactivo y un diseño elegante que invita a la concentración y al juego.",
+      "Plataforma web para un club de ajedrez, diseñada para fomentar la comunidad. Incluye un visor de partidas PGN interactivo y un diseño elegante que invita a la concentración y al juego. ",
     liveUrl: "https://elsantin.github.io/chill-chess-club/",
     repoUrl: "https://github.com/elsantin/chill-chess-club",
     tech_card: [
@@ -455,7 +457,7 @@ const projectsData = [
     short_description:
       "Professional website for Dr. Hanoi, showcasing services and facil...",
     full_description:
-      "Sitio web profesional y cálido para una ginecóloga obstetra. El diseño prioriza la confianza y la facilidad de contacto, presentando la información médica de forma clara y accesible para las pacientes.",
+      "Sitio web profesional y cálido para una ginecóloga obstetra. El diseño prioriza la confianza y la facilidad de contacto, presentando la información médica de forma clara y accesible para las pacientes. ",
     liveUrl: "https://elsantin.github.io/dra.hanoi.online/",
     repoUrl: "https://github.com/elsantin/dra.hanoi.online",
     tech_card: [
@@ -591,7 +593,6 @@ function populateProjectCards() {
 function renderTechIcons(techArray, container) {
   if (!container) return;
   container.innerHTML = "";
-
   techArray.forEach((techItem) => {
     if (techItem.type === "icon") {
       const icon = document.createElement("i");
@@ -636,6 +637,7 @@ function initializeProjectModal() {
     const modalIconsContainer = document.getElementById(
       "modal-tech-icons-outside-image"
     );
+
     renderTechIcons(project.tech_modal, modalIconsContainer);
 
     modal.classList.add("modal-active");
@@ -676,7 +678,6 @@ function initializeProjectModal() {
 function initializeHamburgerMenu() {
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("nav-links");
-
   if (hamburger && navLinks) {
     hamburger.addEventListener("click", () => {
       navLinks.classList.toggle("active");
@@ -722,7 +723,7 @@ function initializeCopyEmail() {
   if (!feedbackSpan) {
     feedbackSpan = document.createElement("span");
     feedbackSpan.className = "copy-feedback";
-    feedbackSpan.textContent = "Copiado!";
+    feedbackSpan.textContent = "Copiado! ";
     copyEmailBtn.appendChild(feedbackSpan);
   }
 
@@ -750,6 +751,7 @@ function updateCurrentYear() {
     console.log("Año actualizado");
   }
 }
+
 // ============================================================================
 // ESTILOS CSS
 // ============================================================================
@@ -793,6 +795,20 @@ function addLanguageStyles() {
   document.head.appendChild(styleElement);
 }
 
+// Crear y agregar barra de progreso
+function initializeScrollProgress() {
+  const progressBar = document.createElement("div");
+  progressBar.className = "scroll-progress";
+  document.body.appendChild(progressBar);
+
+  window.addEventListener("scroll", () => {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (winScroll / height) * 100;
+    progressBar.style.width = Math.min(scrolled, 100) + "%";
+  });
+}
+
 // ============================================================================
 // INICIALIZACIÓN
 // ============================================================================
@@ -814,6 +830,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     initializeGoToTopButton();
     initializeCopyEmail();
     updateCurrentYear();
+    initializeScrollProgress();
 
     isInitialized = true;
     console.log("elsantin Labs inicializado exitosamente");
@@ -860,6 +877,7 @@ window.quickCheck = function () {
     results.plansGrid
       ? "✅ SISTEMA OPERATIVO"
       : "❌ PROBLEMAS DETECTADOS";
+
   console.log(status);
 
   // Verificación adicional del grid
@@ -879,23 +897,3 @@ console.log(
   "scripts.js cargado correctamente - Version Final Unificada 2025-01-21"
 );
 console.log("Función disponible: quickCheck() - Verificación rápida de estado");
-
-// Crear y agregar barra de progreso
-function initializeScrollProgress() {
-  const progressBar = document.createElement("div");
-  progressBar.className = "scroll-progress";
-  document.body.appendChild(progressBar);
-
-  window.addEventListener("scroll", () => {
-    const winScroll = document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled = (winScroll / height) * 100;
-    progressBar.style.width = Math.min(scrolled, 100) + "%";
-  });
-}
-
-// Agregar a tu DOMContentLoaded
-document.addEventListener("DOMContentLoaded", async function () {
-  // ...código existente...
-  initializeScrollProgress(); // ← Agregar esta línea
-});
