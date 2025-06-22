@@ -292,14 +292,30 @@ async function loadAddOnsFromSanity() {
   }
 }
 
-// Crear tarjeta de add-on
+// Crear tarjeta de add-on con iconos específicos
 function createAddonCard(addon) {
   const card = document.createElement("div");
   card.className = "plan-card addon-card";
 
+  // Mapeo de iconos específicos por servicio
+  const iconMap = {
+    "Sistema de Citas": "fas fa-calendar-alt",
+    "Galería Premium": "fas fa-images",
+    "Blog con Contenido": "fas fa-blog",
+    "Newsletter Integration": "fas fa-envelope",
+    // Fallbacks en inglés
+    "Appointment System": "fas fa-calendar-alt",
+    "Premium Gallery": "fas fa-images",
+    "Blog with Content": "fas fa-blog",
+    Newsletter: "fas fa-envelope",
+  };
+
+  // Seleccionar icono específico o usar default
+  const iconClass = iconMap[addon.name] || "fas fa-puzzle-piece";
+
   card.innerHTML = `
     <div class="addon-icon">
-      <i class="fas fa-puzzle-piece"></i>
+      <i class="${iconClass}"></i>
     </div>
     <h3 class="plan-name">${addon.name}</h3>
     <p class="addon-description">${addon.description || ""}</p>
@@ -317,19 +333,32 @@ function createAddonCard(addon) {
   return card;
 }
 
-// Configurar botones CTA
+// Configurar botones CTA - VERSIÓN CORREGIDA
 function configureCTAButtons() {
+  // Remover listeners existentes primero
   document.querySelectorAll(".cta-btn").forEach((btn) => {
-    btn.addEventListener("click", function () {
+    // Crear botón nuevo sin listeners antiguos
+    const newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
+  });
+
+  // Agregar listener único a cada botón
+  document.querySelectorAll(".cta-btn").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault(); // Prevenir cualquier acción por defecto
+
       const serviceName = this.dataset.serviceName;
       const servicePrice = this.dataset.price;
-      const message = `Hola! Me interesa el servicio "${serviceName}" ($${servicePrice}). ¿Podrías darme más información?`;
-      const whatsappUrl = `https://wa.me/+584120935579?text=${encodeURIComponent(
-        message
-      )}`;
-      window.open(whatsappUrl, "_blank");
+
+      // NAVEGACIÓN EN LA MISMA PESTAÑA (mejor UX)
+      const questionnaireUrl = `questionnaire.html?service=${encodeURIComponent(
+        serviceName
+      )}&price=${encodeURIComponent(servicePrice)}`;
+      window.location.href = questionnaireUrl; // ← Cambiado de window.open
     });
   });
+
+  console.log("CTAs configurados correctamente");
 }
 
 // Manejar cambio de idioma
@@ -850,3 +879,23 @@ console.log(
   "scripts.js cargado correctamente - Version Final Unificada 2025-01-21"
 );
 console.log("Función disponible: quickCheck() - Verificación rápida de estado");
+
+// Crear y agregar barra de progreso
+function initializeScrollProgress() {
+  const progressBar = document.createElement("div");
+  progressBar.className = "scroll-progress";
+  document.body.appendChild(progressBar);
+
+  window.addEventListener("scroll", () => {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (winScroll / height) * 100;
+    progressBar.style.width = Math.min(scrolled, 100) + "%";
+  });
+}
+
+// Agregar a tu DOMContentLoaded
+document.addEventListener("DOMContentLoaded", async function () {
+  // ...código existente...
+  initializeScrollProgress(); // ← Agregar esta línea
+});

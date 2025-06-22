@@ -358,17 +358,30 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.plan-price .currency {
-  font-size: 1.5rem;
-  font-weight: 400;
-  vertical-align: super;
-  margin-right: 0.2rem;
+.plan-price {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-accent-gold);
+  margin-bottom: 1.5rem;
+  /* SOLUCIÓN: Usar flexbox para alineación perfecta */
+  display: flex;
+  align-items: baseline; /* ← CLAVE: alineación por línea base */
+  justify-content: center;
+  line-height: 1;
 }
 
-.plan-price small {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--color-dev-hub-text-secondary);
+.plan-price .currency {
+  font-size: 2rem; /* Proporcionado con el número */
+  font-weight: 600;
+  margin-right: 0.1rem;
+  /* Ajuste fino vertical */
+  position: relative;
+  top: -0.15rem; /* Sube ligeramente el símbolo */
+}
+
+.plan-price .amount {
+  font-size: 3rem;
+  font-weight: 700;
 }
 
 .plan-features {
@@ -1021,4 +1034,40 @@ body {
   .modal-nav-arrow.next {
     right: 1rem;
   }
+}
+/* Alternativa con gradiente sutil */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #d4af3766, #b8915e);
+  z-index: 9999;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 8px #d4af3766;
+}
+
+/* ========================================
+   HOVER EFFECTS ELEGANTES - MEJORA VISUAL
+   ======================================== */
+
+/* Transiciones suaves para todas las tarjetas */
+.plan-card,
+.addon-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Efectos hover elegantes */
+.plan-card:hover,
+.addon-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25) !important;
+  border-color: rgba(212, 175, 55, 0.6) !important;
+}
+
+/* Efecto especial para tarjetas featured */
+.plan-card.featured:hover {
+  box-shadow: 0 25px 50px rgba(212, 175, 55, 0.35) !important;
+  transform: translateY(-10px) scale(1.03) !important;
 }
