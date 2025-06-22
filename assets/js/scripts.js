@@ -678,12 +678,47 @@ function initializeProjectModal() {
 function initializeHamburgerMenu() {
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("nav-links");
+
   if (hamburger && navLinks) {
-    hamburger.addEventListener("click", () => {
+    // Toggle del menú principal
+    hamburger.addEventListener("click", (e) => {
+      e.stopPropagation();
       navLinks.classList.toggle("active");
       hamburger.classList.toggle("active");
     });
-    console.log("Menu hamburguesa inicializado");
+
+    // Cerrar menú al hacer click en cualquier enlace o botón de idioma
+    navLinks.addEventListener("click", (e) => {
+      if (
+        e.target.tagName === "A" ||
+        e.target.classList.contains("nav-lang-btn")
+      ) {
+        navLinks.classList.remove("active");
+        hamburger.classList.remove("active");
+      }
+    });
+
+    // Cerrar menú al hacer click fuera del área de navegación
+    document.addEventListener("click", (e) => {
+      if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+        navLinks.classList.remove("active");
+        hamburger.classList.remove("active");
+      }
+    });
+
+    // Cerrar menú al hacer scroll (UX móvil moderna)
+    let scrollTimeout;
+    window.addEventListener("scroll", () => {
+      if (navLinks.classList.contains("active")) {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          navLinks.classList.remove("active");
+          hamburger.classList.remove("active");
+        }, 100);
+      }
+    });
+
+    console.log("Menu hamburguesa inteligente inicializado");
   }
 }
 
