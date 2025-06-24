@@ -1578,3 +1578,58 @@ body {
   color: var(--color-accent-gold) !important;
   font-weight: 600;
 }
+/* === HERO BACKGROUND CINEMATOGRÁFICO === */
+.hero {
+  position: relative;
+  background-image: url("../images/hero.jpg"); /* Ruta corregida: sube a assets, luego a images */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Efecto parallax sutil en desktop */
+  overflow: hidden;
+}
+
+/* Overlay inteligente para legibilidad perfecta */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 17, 23, 0.8) 0%,
+    rgba(13, 17, 23, 0.6) 50%,
+    rgba(13, 17, 23, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+/* Contenido por encima del overlay */
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Optimización móvil crítica */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll; /* Mejor performance en móvil */
+    background-position: center top;
+  }
+}
+
+/* Mejora de contraste para texto hero */
+.hero-brand,
+.hero-subtitle {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Tech tags con glassmorphism mejorado */
+.tech-tags .tech-tag {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(22, 27, 34, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
