@@ -1566,3 +1566,15 @@ body {
     background-color: var(--color-accent-gold);
   }
 }
+/* === BRANDING CONSISTENTE: "Labs" DORADO UNIVERSAL === */
+.brand-labs {
+  color: var(--color-accent-gold) !important;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Aplicación específica en footer */
+.footer-bottom .brand-labs {
+  color: var(--color-accent-gold) !important;
+  font-weight: 600;
+}
