@@ -4,336 +4,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>elsantin Labs - Desarrollo Web Profesional</title>
+    <title>elsantin Labs - Desarrollo Web JAMstack con IA</title>
+    <meta name="description"
+        content="Creamos sitios web de alto rendimiento con tecnología JAMstack y asistencia de IA. Optimizados para velocidad, seguridad y conversión.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
+    <!-- Header & Navigation -->
     <header class="header">
         <nav class="nav">
-            <a href="#inicio" class="logo"><span class="logo-brackets logo-bracket left">{</span> <span
-                    class="logo-text"></span> <span class="logo-brackets logo-bracket right">}</span></a>
+            <!-- Logo a la izquierda -->
+            <a href="#" class="logo">
+                <span class="logo-bracket left">{</span>
+                <span class="logo-text"></span>
+                <span class="logo-bracket right">}</span>
+            </a>
+
+            <!-- CRÍTICO: Contenedor nav-menu que el JavaScript necesita -->
             <div class="nav-menu">
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="#servicios">Planes</a></li>
-                    <li><a href="#addons">Add-Ons</a></li>
-                    <li><a href="#portfolio">Portafolio</a></li>
-                    <li><a href="#proceso">Proceso</a></li>
-                    <li><a href="#testimonios">Testimonios</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#add-ons">Add-ons</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#process">Proceso</a></li>
+                    <li><a href="#contact">Contacto</a></li>
                 </ul>
-                <button class="hamburger" id="hamburger">
-                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-                </button>
+                <!-- El selector de idiomas se insertará aquí vía JavaScript -->
             </div>
+
+            <!-- Hamburger para móvil -->
+            <button class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </nav>
     </header>
 
-    <main>
-        <section id="inicio" class="hero container">
-            <h1 class="hero-brand"><span class="logo-brackets">{</span> <span class="logo-text">elsantin Labs</span>
-                <span class="logo-brackets">}</span>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-brand">
+                <span class="logo-bracket left">{</span>
+                <span class="logo-text">elsantin<span class="hero-labs">Labs</span></span>
+                <span class="logo-bracket right">}</span>
             </h1>
-            <p class="hero-subtitle">Creamos sitios web de alto rendimiento con tecnología Jamstack. Optimizados para
-                velocidad, seguridad y una experiencia de usuario que convierte visitantes en clientes.</p>
-            <div class="tech-tags"><span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span
-                    class="tech-tag">JavaScript</span><span class="tech-tag">Jamstack</span><span class="tech-tag">Core
-                    Web Vitals</span><span class="tech-tag">IA Asistida</span><span class="tech-tag">SEO</span></div>
-        </section>
+            <p class="hero-subtitle">
+                Creamos sitios web de alto rendimiento con tecnología Jamstack. Optimizados para velocidad, seguridad y
+                una experiencia de usuario que convierte visitantes en clientes.
+            </p>
+            <div class="tech-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Jamstack</span>
+                <span class="tech-tag">Core Web Vitals</span>
+                <span class="tech-tag">IA Asistida</span>
+                <span class="tech-tag">SEO</span>
+            </div>
+        </div>
+    </section>
 
-        <section id="servicios" class="section">
-            <div class="container">
-                <h2 class="section-title">Planes de Desarrollo Web</h2>
-                <p class="section-subtitle">Sitios web modernos creados con tecnología Jamstack y asistencia de
-                    inteligencia artificial para garantizar rendimiento excepcional y diseño único.</p>
-                <div class="plans-grid">
-                    <div class="plan-card">
-                        <h3 class="plan-name">Presencia Esencial</h3>
-                        <p class="plan-description">Para profesionales y marcas que necesitan una base digital sólida y
-                            profesional.</p>
-                        <div class="plan-price"><span class="currency">$</span>299</div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Hasta 4 páginas</li>
-                            <li><i class="fas fa-check"></i> Diseño 100% personalizado</li>
-                            <li><i class="fas fa-check"></i> Formulario de contacto funcional</li>
-                            <li><i class="fas fa-check"></i> Optimización SEO básica</li>
-                        </ul>
-                        <a href="questionnaire.html" class="plan-button">Me Interesa</a>
+    <!-- Services Section - PLANES DE DESARROLLO WEB -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">Planes de Desarrollo Web</h2>
+            <p class="section-subtitle">
+                Sitios web modernos creados con tecnología Jamstack y asistencia de inteligencia artificial para
+                garantizar rendimiento excepcional y diseño único.
+            </p>
+            <div class="plans-grid">
+                <!-- Las tarjetas se cargan dinámicamente desde Sanity -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Add-ons Section - SERVICIOS ADICIONALES -->
+    <section class="section" id="add-ons">
+        <div class="container">
+            <h2 class="section-title">Servicios Adicionales</h2>
+            <p class="section-subtitle">
+                Mejora tu sitio web con funcionalidades específicas y contenido generado con inteligencia artificial.
+            </p>
+            <div class="addons-grid">
+                <!-- Las tarjetas se cargan dinámicamente desde Sanity -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portafolio de Trabajos</h2>
+            <p class="section-subtitle">
+                Un vistazo a algunas de las soluciones digitales que hemos construido. Cada proyecto es una colaboración
+                única enfocada en resultados.
+            </p>
+            <div class="portfolio-grid" id="project-grid">
+                <!-- Proyecto 1: Chill Chess Club -->
+                <div class="project-card">
+                    <img src="assets/images/chill-chess-club-layout.jpg" alt="Chill Chess Club"
+                        class="project-card-image">
+                    <div class="project-card-content">
+                        <h3 class="project-card-title">Chill Chess Club</h3>
+                        <p class="project-card-description">SPA for online chess courses with an AI-assisted,
+                            personalized interface designed for learning and community engagement.</p>
+                        <div class="project-card-footer">
+                            <div class="project-card-tech-icons">
+                                <i class="fab fa-html5" style="color: #E34F26;" title="HTML5"></i>
+                                <i class="fab fa-css3-alt" style="color: #1572B6;" title="CSS3"></i>
+                                <i class="fab fa-js-square" style="color: #F7DF1E;" title="JavaScript"></i>
+                                <img src="assets/images/p5-logo.png" alt="p5.js" class="tech-icon-img" title="p5.js">
+                            </div>
+                            <button class="project-card-button">Ver Proyecto</button>
+                        </div>
                     </div>
-                    <div class="plan-card featured">
-                        <div class="plan-badge new">Más Popular</div>
-                        <h3 class="plan-name">Crecimiento Profesional</h3>
-                        <p class="plan-description">Ideal para expandir tu alcance, compartir tu conocimiento y conectar
-                            con tu audiencia.</p>
-                        <div class="plan-price"><span class="currency">$</span>449</div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Todo del plan Esencial, más:</li>
-                            <li><i class="fas fa-check"></i> Hasta 7 páginas</li>
-                            <li><i class="fas fa-check"></i> Blog o Portafolio integrado</li>
-                            <li><i class="fas fa-check"></i> Carga de 3 artículos/proyectos</li>
-                        </ul>
-                        <a href="questionnaire.html" class="plan-button">Iniciar Consulta</a>
+                </div>
+
+                <!-- Proyecto 2: Dra. Hanoi Online -->
+                <div class="project-card">
+                    <img src="assets/images/dra-hanoi-online-layout.jpg" alt="Dra. Hanoi Online"
+                        class="project-card-image">
+                    <div class="project-card-content">
+                        <h3 class="project-card-title">Dra. Hanoi Online</h3>
+                        <p class="project-card-description">Professional website for Dr. Hanoi, showcasing services and
+                            facilitating patient communication with a warm, trustworthy design.</p>
+                        <div class="project-card-footer">
+                            <div class="project-card-tech-icons">
+                                <i class="fab fa-html5" style="color: #E34F26;" title="HTML5"></i>
+                                <i class="fab fa-css3-alt" style="color: #1572B6;" title="CSS3"></i>
+                                <i class="fab fa-js-square" style="color: #F7DF1E;" title="JavaScript"></i>
+                            </div>
+                            <button class="project-card-button">Ver Proyecto</button>
+                        </div>
                     </div>
-                    <div class="plan-card">
-                        <h3 class="plan-name">Líder de Opinión</h3>
-                        <p class="plan-description">La solución completa para establecerte como una autoridad en tu
-                            sector.</p>
-                        <div class="plan-price"><span class="currency">$</span>599</div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Todo del plan Profesional, más:</li>
-                            <li><i class="fas fa-check"></i> Hasta 10 páginas</li>
-                            <li><i class="fas fa-check"></i> Optimización SEO Avanzada</li>
-                            <li><i class="fas fa-check"></i> Integración con Google Analytics</li>
-                        </ul>
-                        <a href="questionnaire.html" class="plan-button">Conversemos</a>
+                </div>
+
+                <!-- Proyecto 3: Santiago Narváez AI Art -->
+                <div class="project-card">
+                    <img src="assets/images/santiago-narvaez-portfolio-layout.jpg" alt="Santiago Narvaez: AI Art"
+                        class="project-card-image">
+                    <div class="project-card-content">
+                        <h3 class="project-card-title">Santiago Narváez: AI Art</h3>
+                        <p class="project-card-description">Visual exploration at the intersection of imagination and
+                            artificial intelligence, showcasing AI-generated artistic creations.</p>
+                        <div class="project-card-footer">
+                            <div class="project-card-tech-icons">
+                                <i class="fab fa-html5" style="color: #E34F26;" title="HTML5"></i>
+                                <i class="fab fa-css3-alt" style="color: #1572B6;" title="CSS3"></i>
+                                <i class="fab fa-js-square" style="color: #F7DF1E;" title="JavaScript"></i>
+                            </div>
+                            <button class="project-card-button">Ver Proyecto</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 4: Sitio Web Veridia -->
+                <div class="project-card">
+                    <img src="assets/images/veridia-layout.jpg" alt="Sitio Web Veridia" class="project-card-image">
+                    <div class="project-card-content">
+                        <h3 class="project-card-title">Sitio Web Veridia</h3>
+                        <p class="project-card-description">Official SPA for Veridia, showcasing intelligent automation
+                            solutions with a modern, clean design focused on efficiency.</p>
+                        <div class="project-card-footer">
+                            <div class="project-card-tech-icons">
+                                <i class="fab fa-html5" style="color: #E34F26;" title="HTML5"></i>
+                                <i class="fab fa-css3-alt" style="color: #1572B6;" title="CSS3"></i>
+                                <i class="fab fa-js-square" style="color: #F7DF1E;" title="JavaScript"></i>
+                            </div>
+                            <button class="project-card-button">Ver Proyecto</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="addons" class="section">
-            <div class="container">
-                <h2 class="section-title">Servicios Adicionales</h2>
-                <p class="section-subtitle">Mejora tu sitio web con funcionalidades específicas y contenido generado con
-                    inteligencia artificial.</p>
-                <div class="addons-grid">
-                    <div class="plan-card addon-card">
-                        <div class="addon-icon"><i class="fas fa-calendar-check"></i></div>
-                        <h3 class="plan-name">Sistema de Citas</h3>
-                        <div class="plan-price">$180</div>
-                        <p class="addon-description">Integración completa con calendarios y notificaciones automáticas.
-                        </p>
-                    </div>
-                    <div class="plan-card addon-card">
-                        <div class="addon-icon"><i class="fas fa-images"></i></div>
-                        <h3 class="plan-name">Galería Premium</h3>
-                        <div class="plan-price">$120</div>
-                        <p class="addon-description">Galería avanzada con filtros, lightbox y optimización de imágenes.
-                        </p>
-                    </div>
-                    <div class="plan-card addon-card">
-                        <div class="addon-icon"><i class="fas fa-rss"></i></div>
-                        <h3 class="plan-name">Blog con Contenido</h3>
-                        <div class="plan-price">$150</div>
-                        <p class="addon-description">Blog funcional con 10 artículos optimizados para SEO.</p>
-                    </div>
-                    <div class="plan-card addon-card featured-addon">
-                        <div class="addon-icon"><i class="fas fa-envelope-open-text"></i></div>
-                        <h3 class="plan-name">Newsletter Integration</h3>
-                        <div class="plan-price">$100</div>
-                        <p class="addon-description">Sistema de suscripción y envío de newsletters automatizado.</p>
-                    </div>
+    <!-- Process Section - NUESTRO PROCESO DE TRABAJO -->
+    <section class="section" id="process">
+        <div class="container">
+            <h2 class="section-title">Nuestro Proceso de Trabajo</h2>
+            <p class="section-subtitle">
+                Un flujo transparente y eficiente en 4 pasos que garantiza resultados excepcionales y una colaboración
+                sin sorpresas.
+            </p>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <h3 class="process-title">Consulta y Estrategia</h3>
+                    <p class="process-description">
+                        Conversamos sobre tu visión y objetivos para definir el proyecto ideal y la estrategia a seguir.
+                    </p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <h3 class="process-title">Diseño y Propuesta</h3>
+                    <p class="process-description">
+                        Creamos una propuesta visual y detallada con cronograma, funcionalidades y presupuesto.
+                    </p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <h3 class="process-title">Desarrollo y Revisión</h3>
+                    <p class="process-description">
+                        Construimos tu sitio con tecnología de vanguardia, manteniéndote informado en cada etapa.
+                    </p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <h3 class="process-title">Lanzamiento y Soporte</h3>
+                    <p class="process-description">
+                        Desplegamos tu web, configuramos el hosting y te capacitamos para el éxito continuo.
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="portfolio" class="section" style="background-color: var(--color-dev-hub-surface);">
-            <div class="container">
-                <h2 class="section-title">Portafolio de Trabajos</h2>
-                <p class="section-subtitle">
-                    Un vistazo a algunas de las soluciones digitales que hemos construido. Cada proyecto es una
-                    colaboración única enfocada en resultados.
+    <!-- Hosting Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Hosting y Mantenimiento Anual</h2>
+            <p class="section-subtitle">
+                Tu sitio web merece estar en un entorno rápido, seguro y siempre disponible. Olvídate de los problemas
+                técnicos, nosotros nos encargamos.
+            </p>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3 class="plan-name">Gestión Básica</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>
+                        <span class="amount">60</span>
+                        <span style="font-size: 1rem; color: var(--color-dev-hub-text-secondary);">/año</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i>Hosting de alto rendimiento</li>
+                        <li><i class="fas fa-check"></i>Dominio .com (1er año)</li>
+                        <li><i class="fas fa-check"></i>Certificado de Seguridad (SSL)</li>
+                        <li><i class="fas fa-check"></i>Monitoreo de disponibilidad</li>
+                        <li><i class="fas fa-check"></i>Soporte técnico vía email</li>
+                    </ul>
+                    <button class="plan-button">Seleccionar</button>
+                </div>
+                <div class="plan-card featured">
+                    <div class="plan-badge new">Recomendado</div>
+                    <h3 class="plan-name">Gestión Prioritaria</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>
+                        <span class="amount">200</span>
+                        <span style="font-size: 1rem; color: var(--color-dev-hub-text-secondary);">/año</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i>Todo del plan Básico, más:</li>
+                        <li><i class="fas fa-check"></i>Soporte prioritario (Email/WA)</li>
+                        <li><i class="fas fa-check"></i>Actualizaciones menores de contenido</li>
+                        <li><i class="fas fa-check"></i>Backups de seguridad</li>
+                        <li><i class="fas fa-check"></i>Tranquilidad total</li>
+                    </ul>
+                    <button class="plan-button">Seleccionar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Lo que Dicen Nuestros Clientes</h2>
+            <div class="testimonial">
+                <img src="assets/images/hanoi.png" alt="Dra. Hanoi Yánez" class="testimonial-photo">
+                <p class="testimonial-text">
+                    "Santiago captó perfectamente la esencia de mi práctica médica. Mi sitio web refleja mi enfoque
+                    integral y transmite esa calidez y confianza que busco generar en mis pacientes. Una experiencia
+                    completa y armoniosa."
                 </p>
-                <div id="project-grid" class="portfolio-grid">
-                    <div class="project-card">
-                        <img class="project-card-image" src="assets/images/chill-chess-club-layout.jpg"
-                            alt="Chill Chess Club Screenshot">
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">Chill Chess Club</h3>
-                            <p class="project-card-description"></p>
-                            <div class="project-card-footer">
-                                <div class="project-card-tech-icons"></div>
-                                <button class="project-card-button">Ver Detalles</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img class="project-card-image" src="assets/images/dra-hanoi-online-layout.jpg"
-                            alt="Dra. Hanoi Online Website Screenshot">
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">Dra. Hanoi Online</h3>
-                            <p class="project-card-description"></p>
-                            <div class="project-card-footer">
-                                <div class="project-card-tech-icons"></div>
-                                <button class="project-card-button">Ver Detalles</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img class="project-card-image" src="assets/images/santiago-narvaez-portfolio-layout.jpg"
-                            alt="Santiago Narváez Artistic Portfolio Screenshot">
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">Santiago Narváez: AI Art</h3>
-                            <p class="project-card-description"></p>
-                            <div class="project-card-footer">
-                                <div class="project-card-tech-icons"></div>
-                                <button class="project-card-button">Ver Detalles</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img class="project-card-image" src="assets/images/veridia-layout.jpg"
-                            alt="Screenshot of the Veridia project homepage">
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">Sitio Web Veridia</h3>
-                            <p class="project-card-description"></p>
-                            <div class="project-card-footer">
-                                <div class="project-card-tech-icons"></div>
-                                <button class="project-card-button">Ver Detalles</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h4 class="testimonial-author">Dra. Hanoi Yánez</h4>
+                <p class="testimonial-role">Ginecóloga Obstetra, Venezuela</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="proceso" class="section">
-            <div class="container">
-                <h2 class="section-title">Nuestro Proceso de Trabajo</h2>
-                <p class="section-subtitle">Un flujo transparente y eficiente en 4 pasos que garantiza resultados
-                    excepcionales y una colaboración sin sorpresas.</p>
-                <div class="process-grid">
-                    <div class="process-step">
-                        <div class="process-number">1</div>
-                        <h3 class="process-title">Consulta y Estrategia</h3>
-                        <p class="process-description">Conversamos sobre tu visión y objetivos para definir el proyecto
-                            ideal y la estrategia a seguir.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-number">2</div>
-                        <h3 class="process-title">Diseño y Propuesta</h3>
-                        <p class="process-description">Creamos una propuesta visual y detallada con cronograma,
-                            funcionalidades y presupuesto.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-number">3</div>
-                        <h3 class="process-title">Desarrollo y Revisión</h3>
-                        <p class="process-description">Construimos tu sitio con tecnología de vanguardia, manteniéndote
-                            informado en cada etapa.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-number">4</div>
-                        <h3 class="process-title">Lanzamiento y Soporte</h3>
-                        <p class="process-description">Desplegamos tu web, configuramos el hosting y te capacitamos para
-                            el éxito continuo.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="hosting" class="section" style="background-color: var(--color-dev-hub-surface);">
-            <div class="container">
-                <h2 class="section-title">Hosting y Mantenimiento Anual</h2>
-                <p class="section-subtitle">Tu sitio web merece estar en un entorno rápido, seguro y siempre disponible.
-                    Olvídate de los problemas técnicos, nosotros nos encargamos.</p>
-                <div class="plans-grid">
-                    <div class="plan-card">
-                        <h3 class="plan-name">Gestión Básica</h3>
-                        <div class="plan-price"><span class="currency">$</span>60<small>/año</small></div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Hosting de alto rendimiento</li>
-                            <li><i class="fas fa-check"></i> Dominio .com (1er año)</li>
-                            <li><i class="fas fa-check"></i> Certificado de Seguridad (SSL)</li>
-                            <li><i class="fas fa-check"></i> Monitoreo de disponibilidad</li>
-                            <li><i class="fas fa-check"></i> Soporte técnico vía email</li>
-                        </ul><a href="#contacto" class="plan-button">Seleccionar</a>
-                    </div>
-                    <div class="plan-card featured">
-                        <div class="plan-badge new">Recomendado</div>
-                        <h3 class="plan-name">Gestión Prioritaria</h3>
-                        <div class="plan-price"><span class="currency">$</span>200<small>/año</small></div>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Todo del plan Básico, más:</li>
-                            <li><i class="fas fa-check"></i> Soporte prioritario (Email/WA)</li>
-                            <li><i class="fas fa-check"></i> Actualizaciones menores de contenido</li>
-                            <li><i class="fas fa-check"></i> Backups de seguridad</li>
-                            <li><i class="fas fa-check"></i> Tranquilidad total</li>
-                        </ul><a href="#contacto" class="plan-button">Seleccionar</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="testimonios" class="section">
-            <div class="container">
-                <h2 class="section-title">Lo que Dicen Nuestros Clientes</h2>
-                <div class="testimonial">
-                    <img src="assets/images/hanoi.png" alt="Foto de la Dra. Hanoi Yánez" class="testimonial-photo"
-                        onerror="this.onerror=null;this.src='https://i.imgur.com/kHqV1Cf.jpeg';">
-                    <p class="testimonial-text">"Santiago captó perfectamente la esencia de mi práctica médica. Mi sitio
-                        web refleja mi enfoque integral y transmite esa calidez y confianza que busco generar en mis
-                        pacientes. Una experiencia completa y armoniosa."</p>
-                    <div class="testimonial-author">Dra. Hanoi Yánez</div>
-                    <div class="testimonial-role">Ginecóloga Obstetra, Venezuela</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contacto" class="section" style="background-color: var(--color-dev-hub-surface);">
-            <div class="container">
-                <div class="contact-content">
-                    <h2 class="section-title">¿Listo para Elevar tu Presencia Digital?</h2>
-                    <p class="contact-text">Cada gran proyecto comienza con una conversación. Contáctame para discutir
-                        tus ideas y cómo podemos transformarlas en una poderosa herramienta digital para tu marca.</p>
-                    <div class="contact-buttons">
-                        <a href="https://wa.me/584121969544" target="_blank" class="contact-button">
-                            <i class="fab fa-whatsapp"></i> Enviar WhatsApp
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">¿Listo para Elevar tu Presencia Digital?</h2>
+                <p class="contact-text">
+                    Cada gran proyecto comienza con una conversación. Contáctame para discutir tus ideas y cómo podemos
+                    transformarlas en una poderosa herramienta digital para tu marca.
+                </p>
+                <div class="contact-buttons">
+                    <a href="https://wa.me/584127878450?text=Hola%20Santiago,%20estoy%20interesado%20en%20desarrollar%20un%20sitio%20web%20con%20elsantin%20Labs"
+                        class="contact-button" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        Enviar WhatsApp
+                    </a>
+                    <div class="email-contact-group">
+                        <a href="mailto:santiago@elsantin.com?subject=Consulta%20sobre%20Desarrollo%20Web&body=Hola%20Santiago,%0A%0AEstoy%20interesado%20en%20desarrollar%20un%20sitio%20web%20con%20elsantin%20Labs.%0A%0ASaludos"
+                            class="contact-button secondary">
+                            <i class="fas fa-envelope"></i>
+                            Enviar Email
                         </a>
-                        <div class="email-contact-group">
-                            <a href="mailto:santiago.narvaez.84@gmail.com" class="contact-button secondary">
-                                <i class="fas fa-envelope"></i> Enviar Email
-                            </a>
-                            <button id="copy-email-btn" class="contact-button icon-only" title="Copiar email"
-                                data-email="santiago.narvaez.84@gmail.com">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                        </div>
+                        <button class="contact-button icon-only" id="copy-email-btn" data-email="santiago@elsantin.com"
+                            title="Copiar email">
+                            <i class="fas fa-copy"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <a href="#inicio" class="logo"><span class="logo-brackets">{</span> <span class="logo-text">elsantin
-                    Labs</span> <span class="logo-brackets">}</span></a>
-            <p class="footer-bottom">© <span id="current-year">2024</span> elsantin Labs. Desarrollo Web desde la Isla
-                de Margarita, Venezuela.<br>Todos los derechos reservados.</p>
+            <a href="#" class="logo">
+                <span class="logo-bracket left">{</span>
+                <span class="logo-text"></span>
+                <span class="logo-bracket right">}</span>
+            </a>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2025</span> elsantin Labs. Desarrollo Web desde la Isla de Margarita,
+                    Venezuela.</p>
+                <p>Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
 
-    <div id="project-modal" class="modal-container">
-        <button id="modal-prev-project" class="modal-nav-arrow prev" aria-label="Proyecto anterior"
-            title="Proyecto anterior"><i class="fas fa-chevron-left"></i></button>
+    <!-- Portfolio Modal - CRÍTICO: Flechas FUERA del content-item -->
+    <div class="modal-container" id="project-modal">
+        <button class="modal-nav-arrow prev" id="modal-prev-project">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="modal-nav-arrow next" id="modal-next-project">
+            <i class="fas fa-chevron-right"></i>
+        </button>
         <div class="modal-content-item">
-            <button id="close-modal-btn" class="modal-close-button" aria-label="Cerrar modal">&times;</button>
-            <img id="modal-project-image" src="" alt="Imagen del proyecto" class="modal-image">
-            <div class="modal-text-content">
-                <h3 id="modal-project-title" class="modal-title"></h3>
-                <div id="modal-tech-icons-outside-image" class="modal-tech-icons"></div>
-                <p id="modal-project-description" class="modal-description"></p>
-                <div class="modal-links">
-                    <a id="modal-project-live-url" href="#" target="_blank" class="plan-button">Ver Demo</a>
-                    <a id="modal-project-repo-url" href="#" target="_blank" class="plan-button consult">Ver Código</a>
-                </div>
+            <button class="modal-close-button" id="close-modal-btn">&times;</button>
+            <img src="" alt="" class="modal-image" id="modal-project-image">
+            <div class="modal-tech-icons" id="modal-tech-icons-outside-image"></div>
+            <h3 class="modal-title" id="modal-project-title"></h3>
+            <p class="modal-description" id="modal-project-description"></p>
+            <div class="modal-links">
+                <a href="#" target="_blank" class="contact-button" id="modal-project-live-url">
+                    <i class="fas fa-external-link-alt"></i>
+                    Ver Sitio
+                </a>
+                <a href="#" target="_blank" class="contact-button secondary" id="modal-project-repo-url">
+                    <i class="fab fa-github"></i>
+                    Ver Código
+                </a>
             </div>
         </div>
-        <button id="modal-next-project" class="modal-nav-arrow next" aria-label="Siguiente proyecto"
-            title="Siguiente proyecto"><i class="fas fa-chevron-right"></i></button>
     </div>
 
+    <!-- Go to Top Button -->
     <button id="goToTopBtn" title="Ir arriba">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 15l-6-6-6 6" />
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6" />
         </svg>
     </button>
 
+    <!-- Scripts -->
     <script type="module" src="assets/js/scripts.js"></script>
 </body>
 
