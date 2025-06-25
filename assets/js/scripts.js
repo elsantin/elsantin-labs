@@ -788,38 +788,9 @@ function updateCurrentYear() {
 }
 
 // === FUNCIÓN CRÍTICA: ESTILOS DEL SELECTOR DE IDIOMAS ===
-function addLanguageStyles() {
-  if (document.getElementById("language-styles")) return;
-
-  const styleElement = document.createElement("style");
-  styleElement.id = "language-styles";
-  styleElement.textContent = `
-      #languageToggle {
-          margin-left: 20px;
-      }
-      .nav-lang-btn {
-          padding: 6px 14px;
-          border: none;
-          border-radius: 18px;
-          background: transparent;
-          color: rgba(255, 255, 255, 0.75);
-          cursor: pointer;
-          font-weight: 500;
-          font-size: 12px;
-          transition: all 0.25s ease;
-      }
-      .nav-lang-btn:hover {
-          color: #ffffff;
-          background: rgba(255, 255, 255, 0.1);
-      }
-      .nav-lang-btn.active {
-          background: rgba(255, 255, 255, 0.2);
-          color: #ffffff;
-          font-weight: 600;
-      }
-  `;
-  document.head.appendChild(styleElement);
-}
+// ELIMINADA: Estilos movidos a style.css para evitar conflictos
+// Esta función causaba conflictos al inyectar CSS dinámico que sobrescribía
+// los estilos estáticos del archivo CSS principal
 
 // === BARRA DE PROGRESO DORADA ===
 function initializeScrollProgress() {
@@ -880,7 +851,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   try {
     await initializeLanguage();
-    addLanguageStyles(); // CRÍTICO: Estilos del selector ES/EN
+    // addLanguageStyles(); // ELIMINADO: Causaba conflictos con CSS estático
     createLanguageToggle();
 
     await Promise.all([loadServicesFromSanity(), loadAddOnsFromSanity()]);
@@ -956,6 +927,6 @@ window.quickCheck = function () {
 };
 
 console.log(
-  "scripts.js cargado correctamente - Version Final Consolidada 2025-06-23"
+  "scripts.js cargado correctamente - Version Final Consolidada 2025-06-24"
 );
 console.log("Función disponible: quickCheck() - Verificación rápida de estado");

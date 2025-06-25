@@ -186,51 +186,53 @@ body {
   background: rgba(212, 175, 55, 0.08);
 }
 
-/* === SELECTOR IDIOMAS CONSOLIDADO ÚNICO === */
+/* === SELECTOR IDIOMAS - ESTILO PEQUEÑO DORADO PERFECTO === */
 #languageToggle {
   display: flex;
   gap: 0.15rem;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(22, 27, 34, 0.8);
   border-radius: 10px;
   padding: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   flex-shrink: 0;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: auto;
 }
 
 #languageToggle:hover {
-  border-color: rgba(212, 175, 55, 0.2);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--color-accent-gold);
+  background: rgba(22, 27, 34, 0.9);
 }
 
 .nav-lang-btn {
-  padding: 4px 8px;
+  padding: 6px 14px; /* Tu estilo pequeño preferido */
   border: none;
-  border-radius: 8px;
+  border-radius: 18px; /* Tu estilo pequeño preferido */
   background: transparent;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.75);
   cursor: pointer;
   font-weight: 500;
-  font-size: 10px;
-  transition: all 0.2s ease;
+  font-size: 12px; /* Tu estilo pequeño preferido */
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   min-width: 24px;
   text-align: center;
   pointer-events: auto;
 }
 
 .nav-lang-btn:hover {
-  color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .nav-lang-btn.active {
-  background: rgba(212, 175, 55, 0.8);
+  background: var(--color-accent-gold); /* DORADO EXACTO DE MARCA */
   color: var(--color-text-on-gold);
   font-weight: 600;
   transform: scale(1.02);
+  border: 1px solid var(--color-accent-gold);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Hamburger oculto en desktop */
@@ -343,26 +345,77 @@ body {
   font-weight: 400;
 }
 
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.8rem;
-  margin-top: 2rem;
-}
-
-.tech-tag {
+/* === TECH TAGS DINÁMICOS - EFECTOS CINEMATOGRÁFICOS === */
+.tech-tags .tech-tag {
   background: var(--color-dev-hub-surface);
   border: 1px solid var(--color-dev-hub-border);
   color: var(--color-dev-hub-text-secondary);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+
+  /* Efectos dinámicos */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  cursor: default;
 }
 
-.tech-tag:hover {
-  border-color: var(--color-dev-hub-text-secondary);
+.tech-tags .tech-tag:hover {
+  transform: translateY(-4px) scale(1.08);
+  border-color: var(--color-accent-gold);
+  background: rgba(163, 126, 79, 0.15);
+  color: var(--color-accent-gold);
+  box-shadow: 0 8px 25px rgba(163, 126, 79, 0.25), 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Variación sutil por posición */
+.tech-tags .tech-tag:nth-child(odd):hover {
+  transform: translateY(-4px) scale(1.08) rotate(1deg);
+}
+
+.tech-tags .tech-tag:nth-child(even):hover {
+  transform: translateY(-4px) scale(1.08) rotate(-1deg);
+}
+
+/* Animación de entrada escalonada */
+.tech-tags .tech-tag {
+  opacity: 0;
+  animation: techTagEntry 0.6s ease-out forwards;
+}
+
+.tech-tags .tech-tag:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.tech-tags .tech-tag:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.tech-tags .tech-tag:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.tech-tags .tech-tag:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.tech-tags .tech-tag:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.tech-tags .tech-tag:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.tech-tags .tech-tag:nth-child(7) {
+  animation-delay: 0.7s;
+}
+
+@keyframes techTagEntry {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* --- Plans & Cards (Used by multiple sections) --- */
@@ -1523,7 +1576,7 @@ body {
     z-index: 1001;
   }
 
-  /* Selector idiomas en menú móvil */
+  /* Selector idiomas optimizado para móvil */
   #languageToggle {
     display: flex !important;
     justify-content: center !important;
@@ -1535,6 +1588,7 @@ body {
     background: transparent !important;
     border-radius: 0 !important;
     backdrop-filter: none !important;
+    border: none !important;
   }
 
   .nav-lang-btn {
@@ -1547,6 +1601,7 @@ body {
 
   .nav-lang-btn.active {
     background: var(--color-accent-gold) !important;
+    color: var(--color-text-on-gold) !important;
     border-color: var(--color-accent-gold) !important;
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3) !important;
   }
@@ -1566,6 +1621,7 @@ body {
     background-color: var(--color-accent-gold);
   }
 }
+
 /* === BRANDING CONSISTENTE: "Labs" DORADO UNIVERSAL === */
 .brand-labs {
   color: var(--color-accent-gold) !important;
@@ -1578,18 +1634,35 @@ body {
   color: var(--color-accent-gold) !important;
   font-weight: 600;
 }
-/* === HERO BACKGROUND CINEMATOGRÁFICO === */
+/* ===============================
+   HERO BACKGROUND CINEMATOGRÁFICO - VERSIÓN FINAL
+   elsantinLabs Production-Ready
+   =============================== */
+
 .hero {
   position: relative;
-  background-image: url("../images/hero.jpg"); /* Ruta corregida: sube a assets, luego a images */
+  text-align: center;
+  padding-top: var(--header-height);
+  min-height: 100vh; /* Altura completa cinematográfica */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* 🎬 BACKGROUND CINEMATOGRÁFICO */
+  background-color: var(--color-dev-hub-bg); /* Fallback si imagen no carga */
+  background-image: url("../images/hero.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Efecto parallax sutil en desktop */
-  overflow: hidden;
+  background-attachment: fixed; /* ⭐ PARALLAX SUTIL */
+
+  /* Transición suave */
+  transition: background-image 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Overlay inteligente para legibilidad perfecta */
+/* 🎭 OVERLAY INTELIGENTE - Legibilidad perfecta */
 .hero::before {
   content: "";
   position: absolute;
@@ -1600,36 +1673,39 @@ body {
   background: linear-gradient(
     135deg,
     rgba(13, 17, 23, 0.8) 0%,
-    rgba(13, 17, 23, 0.6) 50%,
-    rgba(13, 17, 23, 0.8) 100%
+    /* Oscuro en esquinas */ rgba(13, 17, 23, 0.6) 50%,
+    /* Más claro en centro */ rgba(13, 17, 23, 0.8) 100%
+      /* Oscuro en esquinas */
   );
-  z-index: 1;
+  z-index: 1; /* Entre imagen y contenido */
 }
 
-/* Contenido por encima del overlay */
+/* 📝 CONTENIDO POR ENCIMA DEL OVERLAY */
 .hero .container {
   position: relative;
-  z-index: 2;
+  z-index: 2; /* Siempre visible */
+  color: #f8f8f8;
 }
 
-/* Optimización móvil crítica */
+/* 📱 OPTIMIZACIÓN MÓVIL CRÍTICA */
 @media (max-width: 768px) {
   .hero {
-    background-attachment: scroll; /* Mejor performance en móvil */
+    background-attachment: scroll; /* Desactiva parallax en móvil */
     background-position: center top;
+    min-height: 90vh; /* Altura optimizada móvil */
   }
 }
 
-/* Mejora de contraste para texto hero */
+/* ✨ MEJORAS DE CONTRASTE */
 .hero-brand,
 .hero-subtitle {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
-/* Tech tags con glassmorphism mejorado */
+/* 🔮 GLASSMORPHISM EN TECH TAGS */
 .tech-tags .tech-tag {
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari compatibility */
   background: rgba(22, 27, 34, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
