@@ -345,7 +345,17 @@ body {
   font-weight: 400;
 }
 
-/* === TECH TAGS DINÁMICOS - EFECTOS CINEMATOGRÁFICOS === */
+/* === TECH TAGS DINÁMICOS - RESPONSIVE OPTIMIZADO === */
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap; /* CRÍTICO: Permite salto de línea automático */
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 2rem;
+  max-width: 100%;
+  padding: 0 1rem; /* Espaciado lateral para móvil */
+}
+
 .tech-tags .tech-tag {
   background: var(--color-dev-hub-surface);
   border: 1px solid var(--color-dev-hub-border);
@@ -353,13 +363,18 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
+  white-space: nowrap; /* Evita corte de texto dentro del tag */
 
-  /* Efectos dinámicos */
+  /* Efectos dinámicos preservados */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center;
   cursor: default;
+
+  /* Animación de entrada escalonada preservada */
+  opacity: 0;
+  animation: techTagEntry 0.6s ease-out forwards;
 }
 
 .tech-tags .tech-tag:hover {
@@ -370,7 +385,7 @@ body {
   box-shadow: 0 8px 25px rgba(163, 126, 79, 0.25), 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Variación sutil por posición */
+/* Variación sutil por posición preservada */
 .tech-tags .tech-tag:nth-child(odd):hover {
   transform: translateY(-4px) scale(1.08) rotate(1deg);
 }
@@ -379,12 +394,7 @@ body {
   transform: translateY(-4px) scale(1.08) rotate(-1deg);
 }
 
-/* Animación de entrada escalonada */
-.tech-tags .tech-tag {
-  opacity: 0;
-  animation: techTagEntry 0.6s ease-out forwards;
-}
-
+/* Animaciones escalonadas preservadas (7 elementos) */
 .tech-tags .tech-tag:nth-child(1) {
   animation-delay: 0.1s;
 }
@@ -415,6 +425,43 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+/* === OPTIMIZACIÓN RESPONSIVE PROGRESIVA === */
+@media (max-width: 768px) {
+  .tech-tags {
+    gap: 0.6rem; /* Menos espacio entre tags en tablet */
+    margin-top: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .tech-tag {
+    padding: 0.4rem 0.8rem; /* Padding reducido para tablet */
+    font-size: 0.85rem;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-tags {
+    gap: 0.4rem; /* Espacio mínimo para móvil estándar */
+    margin-top: 1rem;
+    padding: 0 0.25rem;
+  }
+
+  .tech-tag {
+    padding: 0.35rem 0.7rem; /* Padding compacto para móvil */
+    font-size: 0.8rem;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .tech-tag {
+    padding: 0.3rem 0.6rem; /* Ultra compacto para pantallas pequeñas */
+    font-size: 0.75rem;
+    border-radius: 12px;
   }
 }
 
@@ -1635,9 +1682,9 @@ body {
   font-weight: 600;
 }
 /* ===============================
-   HERO BACKGROUND CINEMATOGRÁFICO - VERSIÓN FINAL
-   elsantinLabs Production-Ready
-   =============================== */
+    HERO BACKGROUND CINEMATOGRÁFICO - VERSIÓN FINAL
+    elsantinLabs Production-Ready
+    =============================== */
 
 .hero {
   position: relative;
