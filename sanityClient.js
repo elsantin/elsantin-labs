@@ -356,3 +356,33 @@ export async function getAllServices(language = "es") {
     };
   }
 }
+
+// 🌟 NUEVA FUNCIÓN: Obtener contenido del Hero (Hero Section)
+export async function getHeroContent(language = "es") {
+  try {
+    console.log(
+      `✨ Cargando contenido del Hero en ${language.toUpperCase()}`
+    );
+
+    const query = `
+      *[_type == "siteSettings"][0]{
+        "headline": coalesce(heroHeadline.${language}, heroHeadline.es),
+        "subheadline": coalesce(heroSubheadline.${language}, heroSubheadline.es),
+        "footerText": coalesce(footerText.${language}, footerText.es)
+      }
+    `;
+
+    const result = await client.fetch(query);
+
+    if (!result) {
+      console.warn("⚠️ No se encontró contenido para el Hero en Sanity.");
+      return null;
+    }
+
+    console.log(`✅ Contenido del Hero cargado:`, result);
+    return result;
+  } catch (error) {
+    console.error(`❌ Error cargando contenido del Hero:`, error);
+    return null;
+  }
+}

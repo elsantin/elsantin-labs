@@ -1,5 +1,5 @@
-// scripts.js - elsantin Labs Frontend (DEPURADO CONSOLIDADO 2025-06-23)
-// PARTE 1/3: Configuración inicial, variables globales y sistema bilingüe completo
+// scripts.js - elsantin Labs Frontend (CORREGIDO DEFINITIVO 2025-06-27)
+// CRISIS RECOVERY - Sin funciones duplicadas + Sanity integrado + Portable Text
 
 // === IMPORTACIONES ===
 import {
@@ -8,11 +8,53 @@ import {
   detectLanguage,
   setLanguage,
   getTexts,
+  getHeroContent,
 } from "../../sanityClient.js";
 
 // === VARIABLES GLOBALES ===
 let currentLanguage = "es";
 let isInitialized = false;
+
+// === PORTABLE TEXT SERIALIZER ROBUSTO ===
+function renderPortableText(content) {
+  if (!content || !Array.isArray(content)) return "";
+
+  return content
+    .map((block) => {
+      if (block._type === "block" && block.children) {
+        const text = block.children
+          .map((child) => {
+            let segmentText = child.text || "";
+            if (child.marks) {
+              if (child.marks.includes("strong")) {
+                segmentText = `<strong>${segmentText}</strong>`;
+              }
+              if (child.marks.includes("em")) {
+                segmentText = `<em>${segmentText}</em>`;
+              }
+            }
+            return segmentText;
+          })
+          .join("");
+
+        const style = block.style || "normal";
+        switch (style) {
+          case "h1":
+            return `<h1>${text}</h1>`;
+          case "h2":
+            return `<h2>${text}</h2>`;
+          case "h3":
+            return `<h3>${text}</h3>`;
+          case "blockquote":
+            return `<blockquote>${text}</blockquote>`;
+          default:
+            return `<p>${text}</p>`;
+        }
+      }
+      return "";
+    })
+    .join("");
+}
 
 // === FUNCIÓN PARA CREAR SKELETONS ===
 function createSkeletonCard(type = "service") {
@@ -42,16 +84,13 @@ function createSkeletonCard(type = "service") {
 
 // === SISTEMA BILINGÜE - FUNCIONES PRINCIPALES ===
 
-// Inicializar idioma
 async function initializeLanguage() {
   try {
     currentLanguage = await detectLanguage();
     console.log(`Idioma detectado: ${currentLanguage.toUpperCase()}`);
-
     setTimeout(() => {
       updateLanguageToggleState();
     }, 100);
-
     return currentLanguage;
   } catch (error) {
     console.error("Error detectando idioma:", error);
@@ -60,7 +99,6 @@ async function initializeLanguage() {
   }
 }
 
-// Crear selector de idiomas minimalista
 function createLanguageToggle() {
   const navMenu = document.querySelector(".nav-menu");
   if (!navMenu) {
@@ -81,9 +119,7 @@ function createLanguageToggle() {
   `;
 
   try {
-    // CRÍTICO: Insertar DENTRO de nav-menu, DESPUÉS de nav-links
     navMenu.insertAdjacentHTML("beforeend", toggleHTML);
-
     const toggleElement = document.getElementById("languageToggle");
     if (toggleElement) {
       toggleElement.addEventListener("click", handleLanguageChangeWithEffects);
@@ -94,13 +130,11 @@ function createLanguageToggle() {
   }
 }
 
-// Actualizar estado del selector
 function updateLanguageToggleState() {
   const toggleElement = document.getElementById("languageToggle");
   if (!toggleElement) return;
 
   toggleElement.setAttribute("data-active-lang", currentLanguage);
-
   const buttons = toggleElement.querySelectorAll(".nav-lang-btn");
   buttons.forEach((btn) => {
     const isActive = btn.dataset.lang === currentLanguage;
@@ -109,7 +143,6 @@ function updateLanguageToggleState() {
   });
 }
 
-// Cambio de idioma con efectos premium
 async function handleLanguageChangeWithEffects(event) {
   if (!event.target.classList.contains("nav-lang-btn")) return;
 
@@ -124,7 +157,6 @@ async function handleLanguageChangeWithEffects(event) {
   try {
     clickedButton.classList.add("loading");
     showLoadingState(true);
-
     toggleElement.setAttribute("data-active-lang", newLanguage);
 
     const plansGrid = document.querySelector(".plans-grid");
@@ -136,7 +168,13 @@ async function handleLanguageChangeWithEffects(event) {
     currentLanguage = newLanguage;
 
     updateLanguageToggleState();
-    await Promise.all([loadServicesFromSanity(), loadAddOnsFromSanity()]);
+    updateSectionTexts();
+    await Promise.all([
+      loadServicesFromSanity(),
+      loadAddOnsFromSanity(),
+      loadHeroContent(),
+      loadFooterContent(),
+    ]);
 
     if (plansGrid && originalPlansClasses) {
       plansGrid.className = originalPlansClasses;
@@ -167,7 +205,6 @@ async function handleLanguageChangeWithEffects(event) {
   }
 }
 
-// Mostrar estado de carga
 function showLoadingState(isLoading) {
   const buttons = document.querySelectorAll(".nav-lang-btn");
   buttons.forEach((btn) => {
@@ -176,7 +213,6 @@ function showLoadingState(isLoading) {
   });
 }
 
-// Forzar re-aplicación de estilos
 function forceStyleReapplication() {
   document.body.offsetHeight;
   if (window.FontAwesome && window.FontAwesome.dom) {
@@ -184,9 +220,85 @@ function forceStyleReapplication() {
   }
   console.log("Re-aplicación mínima completada");
 }
+
 // === CARGA DE CONTENIDO DESDE SANITY ===
 
-// Cargar servicios desde Sanity
+async function loadHeroContent() {
+  console.log(
+    `🔄 Cargando contenido del Hero en ${currentLanguage.toUpperCase()}...`
+  );
+  const heroHeadlineEl = document.getElementById("hero-headline-content");
+  const heroSubheadlineEl = document.querySelector(".hero-subtitle");
+
+  if (!heroHeadlineEl || !heroSubheadlineEl) {
+    console.warn("Elementos del Hero no encontrados en el DOM.");
+    return;
+  }
+
+  try {
+    const heroData = await getHeroContent(currentLanguage);
+    if (heroData) {
+      if (heroData.headline) {
+        heroHeadlineEl.innerHTML = renderPortableText(heroData.headline);
+      }
+      if (heroData.subheadline) {
+        heroSubheadlineEl.textContent = heroData.subheadline;
+      }
+      console.log("✨ Contenido del Hero cargado con éxito.");
+    } else {
+      console.warn("⚠️ No se pudo cargar el contenido del Hero desde Sanity.");
+    }
+  } catch (error) {
+    console.error("❌ Error cargando contenido del Hero:", error);
+  }
+}
+
+// FUNCIÓN ÚNICA - SIN DUPLICADO (ESTA ERA LA CAUSA DEL ERROR)
+async function loadFooterContent() {
+  console.log(
+    `🔄 Cargando contenido del Footer en ${currentLanguage.toUpperCase()}...`
+  );
+  const footerMainTextEl = document.getElementById("footer-main-text");
+
+  if (!footerMainTextEl) {
+    console.warn("Elemento del Footer no encontrado en el DOM.");
+    return;
+  }
+
+  try {
+    const heroData = await getHeroContent(currentLanguage);
+    if (heroData && heroData.footerText) {
+      footerMainTextEl.innerHTML = renderPortableText(heroData.footerText);
+      console.log("✨ Contenido del Footer cargado con éxito.");
+    } else {
+      console.warn(
+        "⚠️ No se pudo cargar el contenido del Footer desde Sanity."
+      );
+    }
+  } catch (error) {
+    console.error("❌ Error cargando contenido del Footer:", error);
+  }
+}
+
+function updateSectionTexts() {
+  const texts = getTexts(currentLanguage);
+
+  const servicesTitleEl = document.querySelector("#services .section-title");
+  const servicesSubtitleEl = document.querySelector(
+    "#services .section-subtitle"
+  );
+  if (servicesTitleEl) servicesTitleEl.textContent = texts.servicesTitle;
+  if (servicesSubtitleEl)
+    servicesSubtitleEl.textContent = texts.servicesSubtitle;
+
+  const addonsTitleEl = document.querySelector("#add-ons .section-title");
+  const addonsSubtitleEl = document.querySelector("#add-ons .section-subtitle");
+  if (addonsTitleEl) addonsTitleEl.textContent = texts.addonsTitle;
+  if (addonsSubtitleEl) addonsSubtitleEl.textContent = texts.addonsSubtitle;
+
+  console.log("✨ Textos de secciones actualizados.");
+}
+
 async function loadServicesFromSanity() {
   console.log(
     `🔄 Cargando servicios en ${currentLanguage.toUpperCase()} con skeletons...`
@@ -217,8 +329,8 @@ async function loadServicesFromSanity() {
       const messageDiv = document.createElement("div");
       messageDiv.className = "no-services-message";
       messageDiv.innerHTML = `
-              <h3>Servicios temporalmente no disponibles</h3>
-              <p>Estamos trabajando en cargar el contenido...</p>
+              <h3>${getTexts(currentLanguage).noServices}</h3>
+              <p>${getTexts(currentLanguage).loading}</p>
           `;
       plansGrid.appendChild(messageDiv);
     } else {
@@ -240,14 +352,13 @@ async function loadServicesFromSanity() {
     const errorDiv = document.createElement("div");
     errorDiv.className = "error-message";
     errorDiv.innerHTML = `
-          <h3>Error temporal</h3>
-          <p>No se pudieron cargar los servicios. Inténtalo recargando la página.</p>
+          <h3>${getTexts(currentLanguage).error}</h3>
+          <p>${getTexts(currentLanguage).error}</p>
       `;
     plansGrid.appendChild(errorDiv);
   }
 }
 
-// Crear tarjeta de servicio
 function createServiceCard(service) {
   const card = document.createElement("div");
   card.className = "plan-card";
@@ -271,7 +382,7 @@ function createServiceCard(service) {
       ${
         service.featured
           ? `<div class="plan-badge new">${
-              currentLanguage === "es" ? "Más Popular" : "Most Popular"
+              getTexts(currentLanguage).featured
             }</div>`
           : ""
       }
@@ -297,7 +408,6 @@ function createServiceCard(service) {
   return card;
 }
 
-// Cargar add-ons desde Sanity
 async function loadAddOnsFromSanity() {
   console.log(
     `🔄 Cargando add-ons en ${currentLanguage.toUpperCase()} con skeletons...`
@@ -329,8 +439,8 @@ async function loadAddOnsFromSanity() {
       const messageDiv = document.createElement("div");
       messageDiv.className = "no-addons-message";
       messageDiv.innerHTML = `
-              <h3>Add-ons temporalmente no disponibles</h3>
-              <p>Estamos trabajando en cargar el contenido...</p>
+              <h3>${getTexts(currentLanguage).noAddons}</h3>
+              <p>${getTexts(currentLanguage).loadingAddons}</p>
           `;
       addonsGrid.appendChild(messageDiv);
     } else {
@@ -349,7 +459,6 @@ async function loadAddOnsFromSanity() {
   }
 }
 
-// Crear tarjeta de add-on
 function createAddonCard(addon) {
   const card = document.createElement("div");
   card.className = "plan-card addon-card";
@@ -387,7 +496,6 @@ function createAddonCard(addon) {
   return card;
 }
 
-// Configurar botones CTA
 function configureCTAButtons() {
   document.querySelectorAll(".cta-btn").forEach((btn) => {
     const newBtn = btn.cloneNode(true);
@@ -407,6 +515,9 @@ function configureCTAButtons() {
   });
   console.log("CTAs configurados correctamente");
 }
+// scripts.js - elsantin Labs Frontend (CORREGIDO DEFINITIVO 2025-06-27)
+// Parte 2/2 - PROYECTOS Y FUNCIONALIDADES EXISTENTES, INICIALIZACIÓN CONSOLIDADA
+
 // === PROYECTOS Y FUNCIONALIDADES EXISTENTES ===
 
 const projectsData = [
@@ -787,11 +898,6 @@ function updateCurrentYear() {
   }
 }
 
-// === FUNCIÓN CRÍTICA: ESTILOS DEL SELECTOR DE IDIOMAS ===
-// ELIMINADA: Estilos movidos a style.css para evitar conflictos
-// Esta función causaba conflictos al inyectar CSS dinámico que sobrescribía
-// los estilos estáticos del archivo CSS principal
-
 // === BARRA DE PROGRESO DORADA ===
 function initializeScrollProgress() {
   const existingBar = document.querySelector(".scroll-progress");
@@ -829,10 +935,7 @@ function initScrollAnimations() {
         }
       });
     },
-    {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    }
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
   );
 
   elements.forEach((el) => {
@@ -851,10 +954,15 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   try {
     await initializeLanguage();
-    // addLanguageStyles(); // ELIMINADO: Causaba conflictos con CSS estático
     createLanguageToggle();
 
-    await Promise.all([loadServicesFromSanity(), loadAddOnsFromSanity()]);
+    updateSectionTexts();
+    await Promise.all([
+      loadServicesFromSanity(),
+      loadAddOnsFromSanity(),
+      loadHeroContent(),
+      loadFooterContent(),
+    ]);
 
     populateProjectCards();
     initializeProjectModal();
@@ -922,11 +1030,10 @@ window.quickCheck = function () {
       children: plansGrid.children.length,
     });
   }
-
   return results;
 };
 
 console.log(
-  "scripts.js cargado correctamente - Version Final Consolidada 2025-06-24"
+  "scripts.js cargado correctamente - Version Final Consolidada 2025-06-27"
 );
 console.log("Función disponible: quickCheck() - Verificación rápida de estado");

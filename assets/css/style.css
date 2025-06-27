@@ -74,7 +74,6 @@ body {
   transition: background-color 0.3s ease;
 }
 
-/* NAVBAR FLEXBOX PERFECTO - ESPACIADO DEFINITIVO */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -87,7 +86,6 @@ body {
   pointer-events: auto;
 }
 
-/* Logo con espacio reservado */
 .logo {
   font-family: var(--font-heading);
   font-size: 1.8rem;
@@ -143,7 +141,12 @@ body {
   color: var(--color-dev-hub-text-primary);
 }
 
-/* CRÍTICO: Contenedor nav-menu con separación perfecta */
+.brand-labs {
+  color: var(--color-accent-gold) !important;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
 .nav-menu {
   display: flex;
   align-items: center;
@@ -155,7 +158,6 @@ body {
   margin-right: 20px;
 }
 
-/* Enlaces centrados sin solapamiento */
 .nav-links {
   display: flex;
   gap: 1.8rem;
@@ -207,14 +209,14 @@ body {
 }
 
 .nav-lang-btn {
-  padding: 6px 14px; /* Tu estilo pequeño preferido */
+  padding: 6px 14px;
   border: none;
-  border-radius: 18px; /* Tu estilo pequeño preferido */
+  border-radius: 18px;
   background: transparent;
   color: rgba(255, 255, 255, 0.75);
   cursor: pointer;
   font-weight: 500;
-  font-size: 12px; /* Tu estilo pequeño preferido */
+  font-size: 12px;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   min-width: 24px;
   text-align: center;
@@ -227,7 +229,7 @@ body {
 }
 
 .nav-lang-btn.active {
-  background: var(--color-accent-gold); /* DORADO EXACTO DE MARCA */
+  background: var(--color-accent-gold);
   color: var(--color-text-on-gold);
   font-weight: 600;
   transform: scale(1.02);
@@ -235,7 +237,6 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Hamburger oculto en desktop */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -273,19 +274,173 @@ body {
   }
 }
 
-/* === FIX CURSOR POINTER === */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .nav {
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+    min-width: auto;
+  }
+
+  .nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    background: rgba(13, 17, 23, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-dev-hub-border);
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links.active {
+    display: flex !important;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-links li {
+    padding: 0.8rem 0;
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    margin: 0 1rem;
+  }
+
+  .nav-links a:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateX(5px);
+  }
+
+  .hamburger {
+    display: block !important;
+    z-index: 1001;
+  }
+
+  #languageToggle {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 1rem !important;
+    margin: 1rem 0 0.8rem 0 !important;
+    padding: 1rem 0 0.8rem 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100% !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    backdrop-filter: none !important;
+    border: none !important;
+  }
+
+  .nav-lang-btn {
+    padding: 12px 24px !important;
+    border-radius: 20px !important;
+    font-size: 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    min-width: 60px !important;
+  }
+
+  .nav-lang-btn.active {
+    background: var(--color-accent-gold) !important;
+    color: var(--color-text-on-gold) !important;
+    border-color: var(--color-accent-gold) !important;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3) !important;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: var(--color-accent-gold);
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: var(--color-accent-gold);
+  }
+}
+
 .contact-button.icon-only,
 #copy-email-btn {
   cursor: pointer !important;
 }
-/* --- Hero Section --- */
+
+/* === HERO BACKGROUND CINEMATOGRÁFICO === */
 .hero {
+  position: relative;
   text-align: center;
   padding-top: var(--header-height);
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-dev-hub-bg);
+  background-image: url("../images/hero.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background-image 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 17, 23, 0.8) 0%,
+    rgba(13, 17, 23, 0.6) 50%,
+    rgba(13, 17, 23, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+  color: #f8f8f8;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll;
+    background-position: center top;
+    min-height: 90vh;
+  }
 }
 
 .hero-brand {
@@ -296,10 +451,31 @@ body {
   margin-bottom: 2rem;
   letter-spacing: -2px;
   position: relative;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0 !important;
+}
+
+.hero-brand .logo-bracket.left {
+  margin-right: -0.05em !important;
+}
+
+.hero-brand .logo-bracket.right {
+  margin-left: -0.05em !important;
+}
+
+.hero-brand .logo-bracket {
+  color: var(--color-accent-gold) !important;
 }
 
 .hero-brand .logo-text {
   color: var(--color-dev-hub-text-primary);
+}
+
+.hero-brand .brand-labs {
+  color: #b8915e;
+  font-weight: 700;
 }
 
 .hero-brand::after {
@@ -335,6 +511,15 @@ body {
   }
 }
 
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
 .hero-subtitle {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   color: var(--color-dev-hub-text-secondary);
@@ -343,36 +528,33 @@ body {
   margin-left: auto;
   margin-right: auto;
   font-weight: 400;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 /* === TECH TAGS DINÁMICOS - RESPONSIVE OPTIMIZADO === */
 .tech-tags {
   display: flex;
-  flex-wrap: wrap; /* CRÍTICO: Permite salto de línea automático */
+  flex-wrap: wrap;
   justify-content: center;
   gap: 0.8rem;
   margin-top: 2rem;
   max-width: 100%;
-  padding: 0 1rem; /* Espaciado lateral para móvil */
+  padding: 0 1rem;
 }
 
 .tech-tags .tech-tag {
-  background: var(--color-dev-hub-surface);
-  border: 1px solid var(--color-dev-hub-border);
+  background: rgba(22, 27, 34, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--color-dev-hub-text-secondary);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
-  white-space: nowrap; /* Evita corte de texto dentro del tag */
-
-  /* Efectos dinámicos preservados */
+  white-space: nowrap;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center;
   cursor: default;
-
-  /* Animación de entrada escalonada preservada */
   opacity: 0;
   animation: techTagEntry 0.6s ease-out forwards;
 }
@@ -385,7 +567,6 @@ body {
   box-shadow: 0 8px 25px rgba(163, 126, 79, 0.25), 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Variación sutil por posición preservada */
 .tech-tags .tech-tag:nth-child(odd):hover {
   transform: translateY(-4px) scale(1.08) rotate(1deg);
 }
@@ -394,7 +575,6 @@ body {
   transform: translateY(-4px) scale(1.08) rotate(-1deg);
 }
 
-/* Animaciones escalonadas preservadas (7 elementos) */
 .tech-tags .tech-tag:nth-child(1) {
   animation-delay: 0.1s;
 }
@@ -428,16 +608,15 @@ body {
   }
 }
 
-/* === OPTIMIZACIÓN RESPONSIVE PROGRESIVA === */
 @media (max-width: 768px) {
   .tech-tags {
-    gap: 0.6rem; /* Menos espacio entre tags en tablet */
+    gap: 0.6rem;
     margin-top: 1.5rem;
     padding: 0 0.5rem;
   }
 
-  .tech-tag {
-    padding: 0.4rem 0.8rem; /* Padding reducido para tablet */
+  .tech-tags .tech-tag {
+    padding: 0.4rem 0.8rem;
     font-size: 0.85rem;
     border-radius: 16px;
   }
@@ -445,13 +624,13 @@ body {
 
 @media (max-width: 480px) {
   .tech-tags {
-    gap: 0.4rem; /* Espacio mínimo para móvil estándar */
+    gap: 0.4rem;
     margin-top: 1rem;
     padding: 0 0.25rem;
   }
 
-  .tech-tag {
-    padding: 0.35rem 0.7rem; /* Padding compacto para móvil */
+  .tech-tags .tech-tag {
+    padding: 0.35rem 0.7rem;
     font-size: 0.8rem;
     border-radius: 14px;
   }
@@ -459,13 +638,20 @@ body {
 
 @media (max-width: 360px) {
   .tech-tag {
-    padding: 0.3rem 0.6rem; /* Ultra compacto para pantallas pequeñas */
+    padding: 0.3rem 0.6rem;
     font-size: 0.75rem;
     border-radius: 12px;
   }
 }
 
-/* --- Plans & Cards (Used by multiple sections) --- */
+/* === GOLDEN TEXT ANTI-CRISIS === */
+.text-golden {
+  color: var(--color-accent-gold) !important;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+/* --- Plans & Cards --- */
 .plans-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -491,7 +677,7 @@ body {
   border: 1px solid var(--color-dev-hub-border);
   border-radius: 12px;
   padding: 2.5rem 2rem;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -503,13 +689,23 @@ body {
   border-color: var(--color-accent-gold);
 }
 
+.addon-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25) !important;
+  border-color: rgba(212, 175, 55, 0.6) !important;
+}
+
 .plan-card.featured {
   border-color: var(--color-accent-gold);
   box-shadow: 0 0 25px rgba(163, 126, 79, 0.2);
   padding-top: 2.8rem;
 }
 
-/* === BADGE ETÉREO MINIMALISTA === */
+.plan-card.featured:hover {
+  box-shadow: 0 25px 50px rgba(212, 175, 55, 0.35) !important;
+  transform: translateY(-10px) scale(1.03) !important;
+}
+
 .plan-badge {
   position: absolute;
   top: 1rem;
@@ -521,28 +717,19 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.6px;
   z-index: 10;
-
-  /* Glassmorphism etéreo */
   background: rgba(212, 175, 55, 0.15);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(212, 175, 55, 0.2);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-
-  /* Centrado perfecto */
+  color: var(--color-accent-gold);
+  text-shadow: 0 0 4px rgba(212, 175, 55, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   line-height: 1;
   min-height: 22px;
-
-  /* Color exacto de marca */
-  color: var(--color-accent-gold);
-  text-shadow: 0 0 4px rgba(212, 175, 55, 0.3);
-
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .plan-badge.new {
@@ -556,7 +743,6 @@ body {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Efecto hover sutil */
 .plan-card:hover .plan-badge {
   transform: scale(1.02);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15),
@@ -564,7 +750,6 @@ body {
   border-color: rgba(212, 175, 55, 0.35);
 }
 
-/* --- Plan Card Elements --- */
 .plan-name {
   font-family: var(--font-heading);
   font-size: 1.7rem;
@@ -667,7 +852,6 @@ body {
   color: var(--color-text-on-gold);
 }
 
-/* Feedback táctil profesional */
 .plan-button:active {
   transform: scale(0.98) !important;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
@@ -765,6 +949,105 @@ body {
 .addon-card .plan-button {
   font-size: 1rem;
   padding: 0.7rem 1.2rem;
+}
+
+/* --- Portfolio Section --- */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+  justify-items: stretch;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-card {
+  background: var(--color-dev-hub-surface);
+  border: 1px solid var(--color-dev-hub-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: static !important;
+  left: auto !important;
+  bottom: auto !important;
+  z-index: auto !important;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.project-card-description {
+  font-size: 0.9rem;
+  color: var(--color-dev-hub-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.project-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  position: static !important;
+}
+
+.project-card-tech-icons {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  font-size: 1.2rem;
+  position: static !important;
+}
+
+.project-card-tech-icons .tech-icon-img {
+  height: 1.2rem;
+  width: auto;
+  vertical-align: middle;
+}
+
+.project-card-button {
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  color: var(--color-accent-gold);
+  border-radius: 6px;
+  border: 1px solid var(--color-accent-gold);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: static !important;
+}
+
+.project-card-button:hover {
+  background: var(--color-accent-gold);
+  color: var(--color-text-on-gold);
 }
 
 /* --- Testimonial Section --- */
@@ -929,13 +1212,36 @@ body {
 }
 
 .footer .logo {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  display: inline-block;
+  font-family: var(--font-heading) !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  margin-bottom: 1rem !important;
+  display: inline-block !important;
+  color: var(--color-dev-hub-text-primary) !important;
+}
+
+.footer .logo .logo-bracket,
+.footer .logo .logo-brackets {
+  color: var(--color-accent-gold) !important;
+  display: inline-block !important;
 }
 
 .footer .logo .logo-text {
-  color: var(--color-dev-hub-text-primary);
+  color: var(--color-dev-hub-text-primary) !important;
+}
+
+.footer .logo,
+.footer .logo:visited,
+.footer .logo:hover,
+.footer .logo:active {
+  color: var(--color-dev-hub-text-primary) !important;
+  text-decoration: none !important;
+}
+
+.footer .logo .logo-bracket.left,
+.footer .logo .logo-bracket.right {
+  color: var(--color-accent-gold) !important;
 }
 
 .footer-bottom {
@@ -944,6 +1250,11 @@ body {
   border-top: 1px solid var(--color-dev-hub-border);
   color: var(--color-dev-hub-text-secondary);
   font-size: 0.9rem;
+}
+
+.footer-bottom .brand-labs {
+  color: var(--color-accent-gold) !important;
+  font-weight: 600;
 }
 
 /* --- Loading Skeletons con Shimmer Dorado --- */
@@ -1022,124 +1333,8 @@ body {
   min-height: 180px;
   padding: 1.5rem;
 }
-/* === FIX QUIRÚRGICO 1: PORTFOLIO GRID RESTAURADO === */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 1.5rem;
-  margin-top: 3rem;
-  justify-items: stretch;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
-.project-card {
-  background: var(--color-dev-hub-surface);
-  border: 1px solid var(--color-dev-hub-border);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  position: static !important;
-  left: auto !important;
-  bottom: auto !important;
-  z-index: auto !important;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.project-card-image {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.project-card-content {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.project-card-title {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.project-card-description {
-  font-size: 0.9rem;
-  color: var(--color-dev-hub-text-secondary);
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
-}
-
-.project-card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-  position: static !important;
-}
-
-.project-card-tech-icons {
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
-  font-size: 1.2rem;
-  position: static !important;
-}
-
-.project-card-tech-icons .tech-icon-img {
-  height: 1.2rem;
-  width: auto;
-  vertical-align: middle;
-}
-
-.project-card-button {
-  padding: 0.6rem 1.2rem;
-  background: transparent;
-  color: var(--color-accent-gold);
-  border-radius: 6px;
-  border: 1px solid var(--color-accent-gold);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: static !important;
-}
-
-.project-card-button:hover {
-  background: var(--color-accent-gold);
-  color: var(--color-text-on-gold);
-}
-
-/* === FIX QUIRÚRGICO 2: LOGO FOOTER SIN LLAVES AZULES === */
-.footer .logo {
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  font-weight: 700;
-  text-decoration: none;
-  margin-bottom: 1rem;
-  display: inline-block;
-}
-
-.footer .logo .logo-bracket {
-  color: var(--color-accent-gold) !important;
-}
-
-.footer .logo .logo-text {
-  color: var(--color-dev-hub-text-primary) !important;
-}
-
-/* === PORTFOLIO MODAL INTERACTIVO === */
+/* --- Portfolio Modal Interactivo --- */
 .modal-container {
   position: fixed;
   top: 0;
@@ -1271,7 +1466,7 @@ body {
   right: 2rem;
 }
 
-/* === GO TO TOP BUTTON === */
+/* --- Go to Top Button --- */
 #goToTopBtn {
   display: none;
   position: fixed;
@@ -1313,7 +1508,7 @@ body {
   stroke: var(--color-text-on-gold);
 }
 
-/* === BARRA DE PROGRESO DORADA === */
+/* --- Barra de Progreso Dorada --- */
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -1326,7 +1521,7 @@ body {
   box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
 }
 
-/* === ANIMACIONES SCROLL CINEMATOGRÁFICAS === */
+/* --- Animaciones Scroll Cinematográficas --- */
 .scroll-animate {
   opacity: 0;
   transform: translateY(40px);
@@ -1354,27 +1549,8 @@ body {
   transform: translateY(0) scale(1);
 }
 
-/* === HOVER EFFECTS ELEGANTES === */
-.plan-card,
-.addon-card {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.plan-card:hover,
-.addon-card:hover {
-  transform: translateY(-8px) scale(1.02) !important;
-  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25) !important;
-  border-color: rgba(212, 175, 55, 0.6) !important;
-}
-
-.plan-card.featured:hover {
-  box-shadow: 0 25px 50px rgba(212, 175, 55, 0.35) !important;
-  transform: translateY(-10px) scale(1.03) !important;
-}
-
-/* === RESPONSIVE DESIGN CONSOLIDADO === */
+/* --- Responsive Design Consolidado --- */
 @media (max-width: 768px) {
-  /* Portfolio móvil centrado */
   .portfolio-grid {
     grid-template-columns: 1fr !important;
     justify-items: center !important;
@@ -1401,20 +1577,20 @@ body {
     justify-content: center !important;
   }
 
-  /* Modal responsive */
   .modal-nav-arrow {
     bottom: 1rem;
     top: auto;
     transform: none;
   }
+
   .modal-nav-arrow.prev {
     left: 1rem;
   }
+
   .modal-nav-arrow.next {
     right: 1rem;
   }
 
-  /* Elementos UI móvil */
   #goToTopBtn {
     width: 48px !important;
     height: 48px !important;
@@ -1427,7 +1603,6 @@ body {
   }
 }
 
-/* === DESKTOP PORTFOLIO HORIZONTAL === */
 @media (min-width: 769px) {
   .portfolio-grid {
     display: grid !important;
@@ -1455,304 +1630,4 @@ body {
   .project-card-tech-icons {
     justify-content: flex-start !important;
   }
-}
-/* === FIX DEFINITIVO: LOGO FOOTER DORADO === */
-.footer .logo {
-  font-family: var(--font-heading) !important;
-  font-size: 1.6rem !important;
-  font-weight: 700 !important;
-  text-decoration: none !important;
-  margin-bottom: 1rem !important;
-  display: inline-block !important;
-  color: var(--color-dev-hub-text-primary) !important;
-}
-
-.footer .logo .logo-bracket,
-.footer .logo .logo-brackets {
-  color: var(--color-accent-gold) !important;
-  display: inline-block !important;
-}
-
-.footer .logo .logo-text {
-  color: var(--color-dev-hub-text-primary) !important;
-}
-
-/* Sobrescribir cualquier estilo azul heredado */
-.footer .logo,
-.footer .logo:visited,
-.footer .logo:hover,
-.footer .logo:active {
-  color: var(--color-dev-hub-text-primary) !important;
-  text-decoration: none !important;
-}
-
-.footer .logo .logo-bracket.left,
-.footer .logo .logo-bracket.right {
-  color: var(--color-accent-gold) !important;
-}
-/* === FIX CRÍTICO: LOGO NAVBAR TEXTO VISIBLE === */
-.logo .logo-text {
-  position: relative;
-  z-index: 2; /* Asegura que el texto esté por encima del pseudo-elemento */
-}
-
-.logo::after {
-  z-index: 1; /* Pseudo-elemento por debajo del texto */
-}
-
-/* Eliminar restricción de ancho mínimo que puede causar problemas */
-.logo {
-  min-width: auto !important;
-}
-/* === HERO LOGO: LLAVES DORADAS Y "Labs" ARMONIOSO === */
-.hero-brand .logo-bracket {
-  color: var(--color-accent-gold) !important;
-}
-
-.hero-brand .logo-text {
-  color: var(--color-dev-hub-text-primary);
-}
-
-.hero-brand .hero-labs {
-  color: #b8915e; /* Dorado suave que armoniza perfectamente con el tema */
-  font-weight: 700;
-}
-/* === FIX 1: CURSOR FOOTER IDÉNTICO AL NAVBAR === */
-.footer .logo::after {
-  font-size: 1.8rem !important;
-  font-weight: 600 !important;
-}
-
-/* === FIX 2: HERO LOGO SIN ESPACIOS Y LLAVES DORADAS === */
-.hero-brand {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 0 !important;
-  line-height: 1 !important;
-}
-
-.hero-brand .logo-bracket,
-.hero-brand .logo-text {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Ajuste quirúrgico: márgenes negativos precisos para eliminar espacios visuales */
-.hero-brand .logo-bracket.left {
-  margin-right: -0.05em !important;
-}
-
-.hero-brand .logo-bracket.right {
-  margin-left: -0.05em !important;
-}
-
-/* Asegurar llaves doradas con alta especificidad */
-.hero-brand .logo-bracket {
-  color: var(--color-accent-gold) !important;
-}
-/* === FIX DEFINITIVO: NAVBAR MÓVIL FUNCIONAL === */
-@media (max-width: 768px) {
-  .header {
-    padding: 0 1rem;
-    box-sizing: border-box;
-  }
-
-  .nav {
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-
-  .logo {
-    font-size: 1.4rem;
-    min-width: auto;
-  }
-
-  /* CRÍTICO: nav-menu debe existir para JavaScript */
-  .nav-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    position: absolute;
-    top: var(--header-height);
-    left: 0;
-    background: rgba(13, 17, 23, 0.95);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--color-dev-hub-border);
-    padding: 1rem 0;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .nav-links.active {
-    display: flex !important;
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .nav-links li {
-    padding: 0.8rem 0;
-    width: 100%;
-  }
-
-  .nav-links a {
-    display: block;
-    padding: 0.8rem 2rem;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    margin: 0 1rem;
-  }
-
-  .nav-links a:hover {
-    background: rgba(212, 175, 55, 0.1);
-    transform: translateX(5px);
-  }
-
-  .hamburger {
-    display: block !important;
-    z-index: 1001;
-  }
-
-  /* Selector idiomas optimizado para móvil */
-  #languageToggle {
-    display: flex !important;
-    justify-content: center !important;
-    gap: 1rem !important;
-    margin: 1rem 0 0.8rem 0 !important;
-    padding: 1rem 0 0.8rem 0 !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100% !important;
-    background: transparent !important;
-    border-radius: 0 !important;
-    backdrop-filter: none !important;
-    border: none !important;
-  }
-
-  .nav-lang-btn {
-    padding: 12px 24px !important;
-    border-radius: 20px !important;
-    font-size: 14px !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    min-width: 60px !important;
-  }
-
-  .nav-lang-btn.active {
-    background: var(--color-accent-gold) !important;
-    color: var(--color-text-on-gold) !important;
-    border-color: var(--color-accent-gold) !important;
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3) !important;
-  }
-
-  /* Animaciones hamburger */
-  .hamburger.active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-    background-color: var(--color-accent-gold);
-  }
-
-  .hamburger.active .bar:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger.active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-    background-color: var(--color-accent-gold);
-  }
-}
-
-/* === BRANDING CONSISTENTE: "Labs" DORADO UNIVERSAL === */
-.brand-labs {
-  color: var(--color-accent-gold) !important;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-/* Aplicación específica en footer */
-.footer-bottom .brand-labs {
-  color: var(--color-accent-gold) !important;
-  font-weight: 600;
-}
-/* ===============================
-    HERO BACKGROUND CINEMATOGRÁFICO - VERSIÓN FINAL
-    elsantinLabs Production-Ready
-    =============================== */
-
-.hero {
-  position: relative;
-  text-align: center;
-  padding-top: var(--header-height);
-  min-height: 100vh; /* Altura completa cinematográfica */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-
-  /* 🎬 BACKGROUND CINEMATOGRÁFICO */
-  background-color: var(--color-dev-hub-bg); /* Fallback si imagen no carga */
-  background-image: url("../images/hero.jpg");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* ⭐ PARALLAX SUTIL */
-
-  /* Transición suave */
-  transition: background-image 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* 🎭 OVERLAY INTELIGENTE - Legibilidad perfecta */
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(13, 17, 23, 0.8) 0%,
-    /* Oscuro en esquinas */ rgba(13, 17, 23, 0.6) 50%,
-    /* Más claro en centro */ rgba(13, 17, 23, 0.8) 100%
-      /* Oscuro en esquinas */
-  );
-  z-index: 1; /* Entre imagen y contenido */
-}
-
-/* 📝 CONTENIDO POR ENCIMA DEL OVERLAY */
-.hero .container {
-  position: relative;
-  z-index: 2; /* Siempre visible */
-  color: #f8f8f8;
-}
-
-/* 📱 OPTIMIZACIÓN MÓVIL CRÍTICA */
-@media (max-width: 768px) {
-  .hero {
-    background-attachment: scroll; /* Desactiva parallax en móvil */
-    background-position: center top;
-    min-height: 90vh; /* Altura optimizada móvil */
-  }
-}
-
-/* ✨ MEJORAS DE CONTRASTE */
-.hero-brand,
-.hero-subtitle {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-}
-
-/* 🔮 GLASSMORPHISM EN TECH TAGS */
-.tech-tags .tech-tag {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px); /* Safari compatibility */
-  background: rgba(22, 27, 34, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
