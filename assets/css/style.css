@@ -113,30 +113,6 @@ body {
   transform: translateX(8px);
 }
 
-.logo::after {
-  content: "_";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: transparent;
-  font-weight: 600;
-}
-
-.logo:hover::after {
-  animation: blink 1.2s step-end infinite;
-}
-
-@keyframes blink {
-  from,
-  to {
-    color: transparent;
-  }
-  50% {
-    color: var(--color-accent-gold);
-  }
-}
-
 .logo .logo-text {
   color: var(--color-dev-hub-text-primary);
 }
@@ -644,11 +620,16 @@ body {
   }
 }
 
-/* === GOLDEN TEXT ANTI-CRISIS === */
+/* Golden Text Anti-Crisis Implementation */
 .text-golden {
   color: var(--color-accent-gold) !important;
   font-weight: 600;
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.hero-labs {
+  color: var(--color-accent-gold) !important;
+  font-weight: 700;
 }
 
 /* --- Plans & Cards --- */
@@ -1629,5 +1610,145 @@ body {
 
   .project-card-tech-icons {
     justify-content: flex-start !important;
+  }
+}
+/* === EFECTO CURSOR CINEMATOGRÁFICO UNIFORME === */
+
+/* Estructura base del logo para posicionamiento preciso */
+.logo .logo-text {
+  position: relative;
+  display: inline-block;
+  min-width: 1ch; /* Espacio exacto para cursor */
+  min-height: 1.2em; /* Altura definida para centrado vertical */
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* Cursor dorado - invisible por defecto */
+.logo .logo-text::after {
+  content: "_";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Centrado matemático perfecto */
+  color: transparent;
+  font-weight: 700; /* MISMO GROSOR que brackets */
+  font-size: inherit;
+  line-height: 1;
+  transition: color 0.3s ease;
+  pointer-events: none; /* Evita interferencias */
+  z-index: 1; /* Asegura visibilidad */
+}
+
+/* Animación de parpadeo profesional */
+@keyframes blinkCursor {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Responsive - ajuste en móvil */
+@media (max-width: 768px) {
+  .logo .logo-text {
+    min-width: 0.8ch;
+    min-height: 1em;
+  }
+
+  .logo .logo-text::after {
+    font-size: 0.95em;
+  }
+}
+
+/* === EFECTO BRACKETS CERRADOS → APERTURA SUTIL CON CURSOR === */
+
+/* Estado normal: brackets casi cerrados */
+.logo .logo-bracket.left {
+  transform: translateX(0.2ch); /* Mover hacia el centro */
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo .logo-bracket.right {
+  transform: translateX(-0.2ch); /* Mover hacia el centro */
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estado hover: brackets se abren sutilmente */
+.logo:hover .logo-bracket.left {
+  transform: translateX(0) !important; /* Posición original */
+}
+
+.logo:hover .logo-bracket.right {
+  transform: translateX(0) !important; /* Posición original */
+}
+
+/* Estructura del logo-text para cursor centrado */
+.logo .logo-text {
+  position: relative;
+  display: inline-block;
+  min-width: 1ch;
+  min-height: 1.2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* Cursor dorado - invisible por defecto */
+.logo .logo-text::after {
+  content: "_";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Centrado matemático perfecto */
+  color: transparent;
+  font-weight: 700; /* MISMO GROSOR que brackets */
+  font-size: inherit;
+  line-height: 1;
+  transition: color 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Activar cursor en hover */
+.logo:hover .logo-text::after {
+  color: var(--color-accent-gold);
+  animation: blinkCursor 1.2s step-end infinite;
+}
+
+/* Efecto sutil en brackets para feedback visual */
+.logo:hover .logo-bracket {
+  transform: scale(1.02);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación de parpadeo profesional */
+@keyframes blinkCursor {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Responsive - ajuste en móvil */
+@media (max-width: 768px) {
+  .logo .logo-bracket.left {
+    transform: translateX(0.15ch);
+  }
+
+  .logo .logo-bracket.right {
+    transform: translateX(-0.15ch);
+  }
+
+  .logo .logo-text::after {
+    font-size: 0.95em;
   }
 }

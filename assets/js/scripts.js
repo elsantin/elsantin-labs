@@ -238,23 +238,45 @@ async function loadHeroContent() {
   try {
     const heroData = await getHeroContent(currentLanguage);
     if (heroData) {
-      // HARDCODE: Hero title mantiene HTML directo para golden branding consistency
-      // if (heroData.headline) {
-      //     heroHeadlineEl.innerHTML = renderPortableText(heroData.headline);
-      // }
-
-      // MANTENER: Subtitle dinámico desde Sanity
+      if (heroData.headline) {
+        heroHeadlineEl.innerHTML = renderPortableText(heroData.headline);
+      }
       if (heroData.subheadline) {
         heroSubheadlineEl.textContent = heroData.subheadline;
       }
-      console.log(
-        "✨ Contenido del Hero cargado con éxito (title hardcoded, subtitle dynamic)."
-      );
+      console.log("✨ Contenido del Hero cargado con éxito.");
     } else {
       console.warn("⚠️ No se pudo cargar el contenido del Hero desde Sanity.");
     }
   } catch (error) {
     console.error("❌ Error cargando contenido del Hero:", error);
+  }
+}
+
+// FUNCIÓN ÚNICA - SIN DUPLICADO (ESTA ERA LA CAUSA DEL ERROR)
+async function loadFooterContent() {
+  console.log(
+    `🔄 Cargando contenido del Footer en ${currentLanguage.toUpperCase()}...`
+  );
+  const footerMainTextEl = document.getElementById("footer-main-text");
+
+  if (!footerMainTextEl) {
+    console.warn("Elemento del Footer no encontrado en el DOM.");
+    return;
+  }
+
+  try {
+    const heroData = await getHeroContent(currentLanguage);
+    if (heroData && heroData.footerText) {
+      footerMainTextEl.innerHTML = renderPortableText(heroData.footerText);
+      console.log("✨ Contenido del Footer cargado con éxito.");
+    } else {
+      console.warn(
+        "⚠️ No se pudo cargar el contenido del Footer desde Sanity."
+      );
+    }
+  } catch (error) {
+    console.error("❌ Error cargando contenido del Footer:", error);
   }
 }
 
