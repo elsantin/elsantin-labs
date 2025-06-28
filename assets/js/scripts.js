@@ -9,7 +9,7 @@ import {
   setLanguage,
   getTexts,
   getHeroContent,
-} from "../../sanityClient.js";
+} from "/sanityClient.js";
 
 // === VARIABLES GLOBALES ===
 let currentLanguage = "es";
