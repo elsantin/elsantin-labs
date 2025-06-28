@@ -9,7 +9,7 @@ import {
   setLanguage,
   getTexts,
   getHeroContent,
-} from "/sanityClient.js";
+} from "../../sanityClient.js"; // ✅ Ruta relativa correcta
 
 // === VARIABLES GLOBALES ===
 let currentLanguage = "es";
@@ -151,31 +151,97 @@ async function handleLanguageChangeWithEffects(event) {
   const clickedButton = event.target;
   const toggleElement = document.getElementById("languageToggle");
 
-  console.log(`🌍 Cambiando idioma: ${currentLanguage} → ${newLanguage}`);
+  console.log(
+    `🌍 Iniciando cambio idioma: ${currentLanguage} → ${newLanguage}`
+  );
 
   try {
     clickedButton.classList.add("loading");
     showLoadingState(true);
     toggleElement.setAttribute("data-active-lang", newLanguage);
 
+    // 🚨 SOLUCIÓN CRÍTICA: Re-importación dinámica para Vercel
+    console.log("🔄 Verificando disponibilidad de funciones...");
+
+    // Verificar si las funciones están disponibles, si no, re-importarlas
+    if (
+      typeof setLanguage !== "function" ||
+      typeof getTexts !== "function" ||
+      typeof getHeroContent !== "function"
+    ) {
+      console.log("⚠️ Funciones no disponibles, re-importando módulo...");
+
+      try {
+        const sanityModule = await import("../../sanityClient.js");
+
+        // Asignar funciones globalmente para garantizar disponibilidad
+        window.setLanguage = sanityModule.setLanguage;
+        window.getTexts = sanityModule.getTexts;
+        window.getHeroContent = sanityModule.getHeroContent;
+        window.getServices = sanityModule.getServices;
+        window.getAddOns = sanityModule.getAddOns;
+        window.detectLanguage = sanityModule.detectLanguage;
+
+        console.log("✅ Módulo re-importado exitosamente");
+      } catch (importError) {
+        console.error("❌ Error re-importando módulo:", importError);
+        throw new Error(
+          `No se pudo re-importar sanityClient: ${importError.message}`
+        );
+      }
+    } else {
+      console.log("✅ Funciones disponibles, continuando...");
+    }
+
     const plansGrid = document.querySelector(".plans-grid");
     const addonsGrid = document.querySelector(".addons-grid");
     const originalPlansClasses = plansGrid ? plansGrid.className : "";
     const originalAddonsClasses = addonsGrid ? addonsGrid.className : "";
 
-    await setLanguage(newLanguage);
+    // Ejecutar setLanguage con verificación adicional
+    console.log("🔄 Ejecutando setLanguage...");
+    if (typeof setLanguage === "function") {
+      await setLanguage(newLanguage);
+      console.log("✅ setLanguage completado");
+    } else {
+      throw new Error(
+        "setLanguage sigue no disponible después de re-importación"
+      );
+    }
+
     currentLanguage = newLanguage;
     updateLanguageToggleState();
     updateSectionTexts();
 
-    // RECOVERY CRÍTICO: Restaurada llamada a loadFooterContent para contenido bilingüe
-    await Promise.all([
+    // 🔧 CORRECCIÓN: Promesas paralelas sin .catch() redundante
+    console.log("🔄 Cargando contenido dinámico...");
+    const loadPromises = [
       loadServicesFromSanity(),
       loadAddOnsFromSanity(),
       loadHeroContent(),
-      loadFooterContent(), // ✅ RESTAURADO para footer dinámico bilingüe
-    ]);
+      loadFooterContent(),
+    ];
 
+    const results = await Promise.allSettled(loadPromises);
+    console.log(
+      "📊 Resultados de carga:",
+      results.map((r) => r.status)
+    );
+
+    // Log específico para errores en las cargas
+    results.forEach((result, index) => {
+      const functionNames = [
+        "loadServicesFromSanity",
+        "loadAddOnsFromSanity",
+        "loadHeroContent",
+        "loadFooterContent",
+      ];
+      if (result.status === "rejected") {
+        console.error(`❌ Error en ${functionNames[index]}:`, result.reason);
+      }
+    });
+
+    // Restaurar clases originales
     if (plansGrid && originalPlansClasses) {
       plansGrid.className = originalPlansClasses;
     }
@@ -192,14 +258,18 @@ async function handleLanguageChangeWithEffects(event) {
     }, 500);
 
     forceStyleReapplication();
-    console.log(
-      `✨ Idioma cambiado a ${newLanguage.toUpperCase()} con efectos premium`
-    );
+    console.log(`✅ Cambio de idioma completado: ${newLanguage.toUpperCase()}`);
   } catch (error) {
-    console.error("Error cambiando idioma:", error);
+    console.error("🚨 ERROR CRÍTICO en cambio de idioma:", error);
+    console.error("Stack trace completo:", error.stack);
+
+    // Rollback en caso de error
     toggleElement.setAttribute("data-active-lang", currentLanguage);
     updateLanguageToggleState();
     clickedButton.classList.remove("loading");
+
+    // Feedback visual al usuario
+    alert(`Error cambiando idioma: ${error.message}`);
   } finally {
     showLoadingState(false);
   }
