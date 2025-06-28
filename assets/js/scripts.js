@@ -291,23 +291,25 @@ function forceStyleReapplication() {
   console.log("Re-aplicación mínima completada");
 }
 // === CARGA DE CONTENIDO DESDE SANITY - RECOVERY COMPLETO ===
-
 async function loadHeroContent() {
   console.log(
     `🔄 Cargando contenido del Hero en ${currentLanguage.toUpperCase()}...`
   );
-  // RECOVERY: Hero title está hardcodeado - solo actualizamos el subtitle dinámicamente
+  // ✅ CORRECCIÓN: Usar selector confirmado por debugging
   const heroSubheadlineEl = document.querySelector(".hero-subtitle");
 
   if (!heroSubheadlineEl) {
-    console.warn("Elemento del Hero (subtitle) no encontrado en el DOM.");
+    console.warn("❌ Elemento .hero-subtitle no encontrado en el DOM.");
     return;
   }
 
   try {
     const heroData = await getHeroContent(currentLanguage);
     if (heroData && heroData.subheadline) {
-      heroSubheadlineEl.innerHTML = heroData.subheadline;
+      heroSubheadlineEl.textContent = heroData.subheadline;
+      console.log("✅ Hero subtitle actualizado correctamente.");
+    } else {
+      console.warn("⚠️ No se pudo cargar el contenido del Hero desde Sanity.");
     }
   } catch (error) {
     console.error("❌ Error cargando contenido del Hero:", error);
@@ -315,8 +317,16 @@ async function loadHeroContent() {
 }
 
 async function loadFooterContent() {
-  const footerMainTextEl = document.getElementById("footer-main-text");
-  if (!footerMainTextEl) return;
+  console.log(
+    `🔄 Cargando contenido del Footer en ${currentLanguage.toUpperCase()}...`
+  );
+  // ✅ CORRECCIÓN: Usar selector confirmado por debugging
+  const footerMainTextEl = document.querySelector(".footer-bottom p");
+
+  if (!footerMainTextEl) {
+    console.warn("❌ Elemento .footer-bottom p no encontrado en el DOM.");
+    return;
+  }
 
   // ✅ COPYRIGHT BILINGÜE CON LABS DORADO GARANTIZADO
   const copyrightTexts = {
@@ -334,6 +344,7 @@ async function loadFooterContent() {
   );
 
   footerMainTextEl.innerHTML = content;
+  console.log("✅ Footer actualizado con Labs dorado correctamente.");
 }
 
 function updateSectionTexts() {
