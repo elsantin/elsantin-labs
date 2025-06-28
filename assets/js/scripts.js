@@ -66,18 +66,18 @@ function createSkeletonCard(type = "service") {
 
   if (type === "service") {
     skeleton.innerHTML = `
-          <div class="skeleton-line skeleton-title"></div>
-          <div class="skeleton-line skeleton-text"></div>
-          <div class="skeleton-line skeleton-text" style="width: 60%;"></div>
-          <div class="skeleton-line skeleton-price"></div>
-          <div class="skeleton-line skeleton-button"></div>
-      `;
+            <div class="skeleton-line skeleton-title"></div>
+            <div class="skeleton-line skeleton-text"></div>
+            <div class="skeleton-line skeleton-text" style="width: 60%;"></div>
+            <div class="skeleton-line skeleton-price"></div>
+            <div class="skeleton-line skeleton-button"></div>
+        `;
   } else {
     skeleton.innerHTML = `
-          <div class="skeleton-line skeleton-title" style="width: 80%;"></div>
-          <div class="skeleton-line skeleton-text" style="width: 90%;"></div>
-          <div class="skeleton-line skeleton-price" style="width: 40%;"></div>
-      `;
+            <div class="skeleton-line skeleton-title" style="width: 80%;"></div>
+            <div class="skeleton-line skeleton-text" style="width: 90%;"></div>
+            <div class="skeleton-line skeleton-price" style="width: 40%;"></div>
+        `;
   }
   return skeleton;
 }
@@ -111,11 +111,11 @@ function createLanguageToggle() {
   }
 
   const toggleHTML = `
-      <div id="languageToggle" data-active-lang="${currentLanguage}" role="radiogroup" aria-label="Selección de idioma">
-          <button class="nav-lang-btn" data-lang="es" role="radio" aria-checked="true">ES</button>
-          <button class="nav-lang-btn" data-lang="en" role="radio" aria-checked="false">EN</button>
-      </div>
-  `;
+        <div id="languageToggle" data-active-lang="${currentLanguage}" role="radiogroup" aria-label="Selección de idioma">
+            <button class="nav-lang-btn" data-lang="es" role="radio" aria-checked="true">ES</button>
+            <button class="nav-lang-btn" data-lang="en" role="radio" aria-checked="false">EN</button>
+        </div>
+    `;
 
   try {
     navMenu.insertAdjacentHTML("beforeend", toggleHTML);
@@ -236,68 +236,34 @@ async function loadHeroContent() {
 
   try {
     const heroData = await getHeroContent(currentLanguage);
-    if (heroData) {
-      // HARDCODE: Hero title está hardcodeado en HTML para consistencia dorada
-      // Solo actualizamos subtitle dinámicamente para funcionalidad bilingüe
-      if (heroData.subheadline) {
-        heroSubheadlineEl.textContent = heroData.subheadline;
-        console.log(
-          `✨ Subtitle Hero actualizado (${currentLanguage}):`,
-          heroData.subheadline
-        );
-      }
-      console.log(
-        "✨ Contenido del Hero cargado (title hardcoded, subtitle dynamic)."
-      );
-    } else {
-      console.warn("⚠️ No se pudo cargar el contenido del Hero desde Sanity.");
+    if (heroData && heroData.subheadline) {
+      heroSubheadlineEl.innerHTML = heroData.subheadline;
     }
   } catch (error) {
     console.error("❌ Error cargando contenido del Hero:", error);
   }
 }
 
-// RECOVERY CRÍTICO: Función loadFooterContent RESTAURADA para contenido bilingüe dinámico
 async function loadFooterContent() {
-  console.log(
-    `🔄 Cargando contenido del Footer en ${currentLanguage.toUpperCase()}...`
-  );
   const footerMainTextEl = document.getElementById("footer-main-text");
+  if (!footerMainTextEl) return;
 
-  if (!footerMainTextEl) {
-    console.warn("Elemento del Footer no encontrado en el DOM.");
-    return;
-  }
+  // ✅ COPYRIGHT BILINGÜE CON LABS DORADO GARANTIZADO
+  const copyrightTexts = {
+    es: "© 2025 elsantinLabs. Desarrollo Web desde la Isla de Margarita, Venezuela. Todos los derechos reservados.",
+    en: "© 2025 elsantinLabs. Web Development from Margarita Island, Venezuela. All rights reserved.",
+  };
 
-  try {
-    const heroData = await getHeroContent(currentLanguage);
-    if (heroData && heroData.footerText) {
-      // Renderizar Portable Text desde Sanity
-      let renderedText = renderPortableText(heroData.footerText);
+  // Seleccionar texto según idioma actual
+  let content = copyrightTexts[currentLanguage] || copyrightTexts.es;
 
-      // CLAVE: Convertir <strong>Labs</strong> a <span class="text-golden">Labs</span>
-      // Esto funciona si en Sanity Studio marcas "Labs" como bold/strong
-      renderedText = renderedText.replace(
-        /<strong>Labs<\/strong>/g,
-        '<span class="text-golden">Labs</span>'
-      );
+  // Aplicar Labs dorado
+  content = content.replace(
+    /elsantinLabs/g,
+    'elsantin<span class="text-golden">Labs</span>'
+  );
 
-      // También manejar si viene como texto plano y necesitas aplicar golden a "Labs"
-      renderedText = renderedText.replace(
-        /\bLabs\b/g,
-        '<span class="text-golden">Labs</span>'
-      );
-
-      footerMainTextEl.innerHTML = renderedText;
-      console.log("✨ Contenido del Footer cargado con Labs dorado.");
-    } else {
-      console.warn(
-        "⚠️ No se pudo cargar el contenido del Footer desde Sanity."
-      );
-    }
-  } catch (error) {
-    console.error("❌ Error cargando contenido del Footer:", error);
-  }
+  footerMainTextEl.innerHTML = content;
 }
 
 function updateSectionTexts() {
@@ -315,8 +281,6 @@ function updateSectionTexts() {
   const addonsSubtitleEl = document.querySelector("#add-ons .section-subtitle");
   if (addonsTitleEl) addonsTitleEl.textContent = texts.addonsTitle;
   if (addonsSubtitleEl) addonsSubtitleEl.textContent = texts.addonsSubtitle;
-
-  console.log("✨ Textos de secciones actualizados.");
 }
 
 async function loadServicesFromSanity() {
@@ -349,9 +313,9 @@ async function loadServicesFromSanity() {
       const messageDiv = document.createElement("div");
       messageDiv.className = "no-services-message";
       messageDiv.innerHTML = `
-              <h3>${getTexts(currentLanguage).noServices}</h3>
-              <p>${getTexts(currentLanguage).loading}</p>
-          `;
+                <h3>${getTexts(currentLanguage).noServices}</h3>
+                <p>${getTexts(currentLanguage).loading}</p>
+            `;
       plansGrid.appendChild(messageDiv);
     } else {
       services.forEach((service, index) => {
@@ -372,9 +336,9 @@ async function loadServicesFromSanity() {
     const errorDiv = document.createElement("div");
     errorDiv.className = "error-message";
     errorDiv.innerHTML = `
-          <h3>${getTexts(currentLanguage).error}</h3>
-          <p>${getTexts(currentLanguage).error}</p>
-      `;
+            <h3>${getTexts(currentLanguage).error}</h3>
+            <p>${getTexts(currentLanguage).error}</p>
+        `;
     plansGrid.appendChild(errorDiv);
   }
 }
@@ -398,31 +362,31 @@ function createServiceCard(service) {
         }</li>`;
 
   card.innerHTML = `
-      ${
-        service.featured
-          ? `<div class="plan-badge new">${
-              getTexts(currentLanguage).featured
-            }</div>`
-          : ""
-      }
-      <h3 class="plan-name">${service.name}</h3>
-      <p class="plan-description">${service.description || ""}</p>
-      <div class="plan-price">
-          <span class="currency">$</span>
-          <span class="amount">${service.price.toFixed(0)}</span>
-      </div>
-      <ul class="plan-features">
-          ${featuresHTML}
-      </ul>
-      <button class="plan-button cta-btn" data-service-name="${
-        service.name
-      }" data-price="${service.price}">
-          ${
-            service.buttonText ||
-            (currentLanguage === "es" ? "Seleccionar" : "Select")
-          }
-      </button>
-  `;
+        ${
+          service.featured
+            ? `<div class="plan-badge new">${
+                getTexts(currentLanguage).featured
+              }</div>`
+            : ""
+        }
+        <h3 class="plan-name">${service.name}</h3>
+        <p class="plan-description">${service.description || ""}</p>
+        <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount">${service.price.toFixed(0)}</span>
+        </div>
+        <ul class="plan-features">
+            ${featuresHTML}
+        </ul>
+        <button class="plan-button cta-btn" data-service-name="${
+          service.name
+        }" data-price="${service.price}">
+            ${
+              service.buttonText ||
+              (currentLanguage === "es" ? "Seleccionar" : "Select")
+            }
+        </button>
+    `;
 
   return card;
 }
@@ -458,9 +422,9 @@ async function loadAddOnsFromSanity() {
       const messageDiv = document.createElement("div");
       messageDiv.className = "no-addons-message";
       messageDiv.innerHTML = `
-              <h3>${getTexts(currentLanguage).noAddons}</h3>
-              <p>${getTexts(currentLanguage).loadingAddons}</p>
-          `;
+                <h3>${getTexts(currentLanguage).noAddons}</h3>
+                <p>${getTexts(currentLanguage).loadingAddons}</p>
+            `;
       addonsGrid.appendChild(messageDiv);
     } else {
       addOns.forEach((addon, index) => {
@@ -496,21 +460,21 @@ function createAddonCard(addon) {
   const iconClass = iconMap[addon.name] || "fas fa-puzzle-piece";
 
   card.innerHTML = `
-      <div class="addon-icon">
-          <i class="${iconClass}"></i>
-      </div>
-      <h3 class="plan-name">${addon.name}</h3>
-      <p class="addon-description">${addon.description || ""}</p>
-      <div class="plan-price">
-          <span class="currency">$</span>
-          <span class="amount">${addon.price.toFixed(0)}</span>
-      </div>
-      <button class="plan-button cta-btn" data-service-name="${
-        addon.name
-      }" data-price="${addon.price}">
-          ${currentLanguage === "es" ? "Agregar" : "Add"}
-      </button>
-  `;
+        <div class="addon-icon">
+            <i class="${iconClass}"></i>
+        </div>
+        <h3 class="plan-name">${addon.name}</h3>
+        <p class="addon-description">${addon.description || ""}</p>
+        <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount">${addon.price.toFixed(0)}</span>
+        </div>
+        <button class="plan-button cta-btn" data-service-name="${
+          addon.name
+        }" data-price="${addon.price}">
+            ${currentLanguage === "es" ? "Agregar" : "Add"}
+        </button>
+    `;
 
   return card;
 }
