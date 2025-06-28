@@ -1,5 +1,5 @@
-// scripts.js - elsantin Labs Frontend (CORREGIDO DEFINITIVO 2025-06-27)
-// CRISIS RECOVERY - Sin funciones duplicadas + Sanity integrado + Portable Text
+// scripts.js - elsantin Labs Frontend (VERSIÓN DEFINITIVA RECOVERY 2025-06-27)
+// Sanity Recovery Complete + Logo Uniformity + Arquitectura Híbrida Optimizada
 
 // === IMPORTACIONES ===
 import {
@@ -83,7 +83,6 @@ function createSkeletonCard(type = "service") {
 }
 
 // === SISTEMA BILINGÜE - FUNCIONES PRINCIPALES ===
-
 async function initializeLanguage() {
   try {
     currentLanguage = await detectLanguage();
@@ -166,14 +165,15 @@ async function handleLanguageChangeWithEffects(event) {
 
     await setLanguage(newLanguage);
     currentLanguage = newLanguage;
-
     updateLanguageToggleState();
     updateSectionTexts();
+
+    // RECOVERY CRÍTICO: Restaurada llamada a loadFooterContent para contenido bilingüe
     await Promise.all([
       loadServicesFromSanity(),
       loadAddOnsFromSanity(),
       loadHeroContent(),
-      loadFooterContent(),
+      loadFooterContent(), // ✅ RESTAURADO para footer dinámico bilingüe
     ]);
 
     if (plansGrid && originalPlansClasses) {
@@ -220,31 +220,35 @@ function forceStyleReapplication() {
   }
   console.log("Re-aplicación mínima completada");
 }
-
-// === CARGA DE CONTENIDO DESDE SANITY ===
+// === CARGA DE CONTENIDO DESDE SANITY - RECOVERY COMPLETO ===
 
 async function loadHeroContent() {
   console.log(
     `🔄 Cargando contenido del Hero en ${currentLanguage.toUpperCase()}...`
   );
-  const heroHeadlineEl = document.getElementById("hero-headline-content");
+  // RECOVERY: Hero title está hardcodeado - solo actualizamos el subtitle dinámicamente
   const heroSubheadlineEl = document.querySelector(".hero-subtitle");
 
-  if (!heroHeadlineEl || !heroSubheadlineEl) {
-    console.warn("Elementos del Hero no encontrados en el DOM.");
+  if (!heroSubheadlineEl) {
+    console.warn("Elemento del Hero (subtitle) no encontrado en el DOM.");
     return;
   }
 
   try {
     const heroData = await getHeroContent(currentLanguage);
     if (heroData) {
-      if (heroData.headline) {
-        heroHeadlineEl.innerHTML = renderPortableText(heroData.headline);
-      }
+      // HARDCODE: Hero title está hardcodeado en HTML para consistencia dorada
+      // Solo actualizamos subtitle dinámicamente para funcionalidad bilingüe
       if (heroData.subheadline) {
         heroSubheadlineEl.textContent = heroData.subheadline;
+        console.log(
+          `✨ Subtitle Hero actualizado (${currentLanguage}):`,
+          heroData.subheadline
+        );
       }
-      console.log("✨ Contenido del Hero cargado con éxito.");
+      console.log(
+        "✨ Contenido del Hero cargado (title hardcoded, subtitle dynamic)."
+      );
     } else {
       console.warn("⚠️ No se pudo cargar el contenido del Hero desde Sanity.");
     }
@@ -253,7 +257,7 @@ async function loadHeroContent() {
   }
 }
 
-// FUNCIÓN ÚNICA - SIN DUPLICADO (ESTA ERA LA CAUSA DEL ERROR)
+// RECOVERY CRÍTICO: Función loadFooterContent RESTAURADA para contenido bilingüe dinámico
 async function loadFooterContent() {
   console.log(
     `🔄 Cargando contenido del Footer en ${currentLanguage.toUpperCase()}...`
@@ -268,8 +272,24 @@ async function loadFooterContent() {
   try {
     const heroData = await getHeroContent(currentLanguage);
     if (heroData && heroData.footerText) {
-      footerMainTextEl.innerHTML = renderPortableText(heroData.footerText);
-      console.log("✨ Contenido del Footer cargado con éxito.");
+      // Renderizar Portable Text desde Sanity
+      let renderedText = renderPortableText(heroData.footerText);
+
+      // CLAVE: Convertir <strong>Labs</strong> a <span class="text-golden">Labs</span>
+      // Esto funciona si en Sanity Studio marcas "Labs" como bold/strong
+      renderedText = renderedText.replace(
+        /<strong>Labs<\/strong>/g,
+        '<span class="text-golden">Labs</span>'
+      );
+
+      // También manejar si viene como texto plano y necesitas aplicar golden a "Labs"
+      renderedText = renderedText.replace(
+        /\bLabs\b/g,
+        '<span class="text-golden">Labs</span>'
+      );
+
+      footerMainTextEl.innerHTML = renderedText;
+      console.log("✨ Contenido del Footer cargado con Labs dorado.");
     } else {
       console.warn(
         "⚠️ No se pudo cargar el contenido del Footer desde Sanity."
@@ -362,7 +382,6 @@ async function loadServicesFromSanity() {
 function createServiceCard(service) {
   const card = document.createElement("div");
   card.className = "plan-card";
-
   if (service.featured) {
     card.classList.add("featured");
   }
@@ -515,9 +534,6 @@ function configureCTAButtons() {
   });
   console.log("CTAs configurados correctamente");
 }
-// scripts.js - elsantin Labs Frontend (CORREGIDO DEFINITIVO 2025-06-27)
-// Parte 2/2 - PROYECTOS Y FUNCIONALIDADES EXISTENTES, INICIALIZACIÓN CONSOLIDADA
-
 // === PROYECTOS Y FUNCIONALIDADES EXISTENTES ===
 
 const projectsData = [
@@ -864,12 +880,12 @@ function initializeCopyEmail() {
 
   const emailToCopy = copyEmailBtn.getAttribute("data-email");
   const originalIcon = copyEmailBtn.querySelector("i");
-
   let feedbackSpan = copyEmailBtn.querySelector(".copy-feedback");
+
   if (!feedbackSpan) {
     feedbackSpan = document.createElement("span");
     feedbackSpan.className = "copy-feedback";
-    feedbackSpan.textContent = "Copiado! ";
+    feedbackSpan.textContent = "Copiado!";
     copyEmailBtn.appendChild(feedbackSpan);
   }
 
@@ -955,13 +971,14 @@ document.addEventListener("DOMContentLoaded", async function () {
   try {
     await initializeLanguage();
     createLanguageToggle();
-
     updateSectionTexts();
+
+    // CORRECCIÓN CRÍTICA: loadFooterContent() RESTAURADO para recuperación Sanity
     await Promise.all([
       loadServicesFromSanity(),
       loadAddOnsFromSanity(),
       loadHeroContent(),
-      loadFooterContent(),
+      loadFooterContent(), // ✅ RESTAURADO para footer dinámico bilingüe
     ]);
 
     populateProjectCards();
@@ -1005,6 +1022,7 @@ window.quickCheck = function () {
     addonsGrid: !!document.querySelector(".addons-grid"),
     scrollProgress: !!document.querySelector(".scroll-progress"),
     hamburgerFunctional: !!document.getElementById("hamburger"),
+    footerContent: !!document.getElementById("footer-main-text"), // ✅ Verificación footer dinámico
   };
 
   console.log("=== VERIFICACIÓN RÁPIDA ===");
@@ -1016,7 +1034,8 @@ window.quickCheck = function () {
     results.sanityConnected &&
     results.plansGrid &&
     results.scrollProgress &&
-    results.hamburgerFunctional
+    results.hamburgerFunctional &&
+    results.footerContent
       ? "✅ SISTEMA OPERATIVO"
       : "❌ PROBLEMAS DETECTADOS";
 
@@ -1030,10 +1049,13 @@ window.quickCheck = function () {
       children: plansGrid.children.length,
     });
   }
+
   return results;
 };
 
 console.log(
-  "scripts.js cargado correctamente - Version Final Consolidada 2025-06-27"
+  "scripts.js cargado correctamente - Version Recovery Completa 2025-06-27"
 );
-console.log("Función disponible: quickCheck() - Verificación rápida de estado");
+console.log(
+  "Función disponible: quickCheck() - Verificación rápida de estado con footer dinámico"
+);
