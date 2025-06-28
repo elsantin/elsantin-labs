@@ -1093,3 +1093,100 @@ console.log(
 console.log(
   "Función disponible: quickCheck() - Verificación rápida de estado con footer dinámico"
 );
+// === FUNCIÓN PARA ENCONTRAR LOS SELECTORES CORRECTOS ===
+window.findCorrectSelectors = function () {
+  console.log("🔍 === BUSCANDO SELECTORES CORRECTOS PARA HERO Y FOOTER ===");
+
+  // Buscar todos los elementos en la sección hero
+  const heroSection = document.querySelector(".hero");
+  if (heroSection) {
+    console.log("✅ Sección hero encontrada");
+    const heroChildren = heroSection.querySelectorAll("*");
+    console.log("📋 Elementos dentro de .hero:");
+    heroChildren.forEach((el, index) => {
+      if (el.textContent && el.textContent.trim().length > 20) {
+        console.log(`Hero ${index}:`, {
+          tagName: el.tagName,
+          className: el.className,
+          id: el.id,
+          textContent: el.textContent.substring(0, 80) + "...",
+        });
+      }
+    });
+  } else {
+    console.warn("❌ No se encontró sección .hero");
+  }
+
+  // Buscar todos los elementos en footer
+  const footerSection = document.querySelector(".footer");
+  if (footerSection) {
+    console.log("✅ Sección footer encontrada");
+    const footerChildren = footerSection.querySelectorAll("*");
+    console.log("📋 Elementos dentro de .footer:");
+    footerChildren.forEach((el, index) => {
+      if (
+        el.textContent &&
+        (el.textContent.includes("2025") ||
+          el.textContent.includes("elsantin") ||
+          el.textContent.includes("Labs"))
+      ) {
+        console.log(`Footer ${index}:`, {
+          tagName: el.tagName,
+          className: el.className,
+          id: el.id,
+          textContent: el.textContent.substring(0, 100) + "...",
+        });
+      }
+    });
+  } else {
+    console.warn("❌ No se encontró sección .footer");
+  }
+
+  // Buscar elementos con texto específico
+  console.log("🔍 Buscando elementos con texto específico...");
+  const allElements = document.querySelectorAll("*");
+  const heroTextElements = [];
+  const footerTextElements = [];
+
+  allElements.forEach((el) => {
+    const text = el.textContent;
+    if (text && text.includes("Creamos sitios web de alto rendimiento")) {
+      heroTextElements.push(el);
+    }
+    if (
+      text &&
+      (text.includes("2025 elsantin") || text.includes("Todos los derechos"))
+    ) {
+      footerTextElements.push(el);
+    }
+  });
+
+  console.log("📝 Elementos con texto del hero:", heroTextElements);
+  console.log("📝 Elementos con texto del footer:", footerTextElements);
+
+  heroTextElements.forEach((el, index) => {
+    console.log(`Posible Hero Subtitle ${index}:`, {
+      tagName: el.tagName,
+      className: el.className,
+      id: el.id,
+      selector: el.className
+        ? `.${el.className.split(" ")[0]}`
+        : el.tagName.toLowerCase(),
+    });
+  });
+
+  footerTextElements.forEach((el, index) => {
+    console.log(`Posible Footer Text ${index}:`, {
+      tagName: el.tagName,
+      className: el.className,
+      id: el.id,
+      selector: el.id
+        ? `#${el.id}`
+        : el.className
+        ? `.${el.className.split(" ")[0]}`
+        : el.tagName.toLowerCase(),
+    });
+  });
+};
+
+console.log("🔧 Función de investigación agregada: findCorrectSelectors()");
