@@ -33,9 +33,23 @@
   body {
     font-family: var(--font-body);
     background-color: var(--color-dev-hub-bg);
+    background-image: url('/images/site-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--color-dev-hub-text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-dev-hub-bg);
+    opacity: 0.92;
+    z-index: -1;
   }
 }
 

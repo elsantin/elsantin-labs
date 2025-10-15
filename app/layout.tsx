@@ -18,29 +18,30 @@ const rajdhani = Rajdhani({
 
 export const metadata: Metadata = {
   title: "elsantin Labs - Desarrollo Web JAMstack con IA",
-  description: "High-performance JAMstack websites for small and medium businesses worldwide. Modern web development with AI assistance, optimized for speed, security, and conversions that transform visitors into customers.",
-  keywords: ["JAMstack development", "small business websites", "AI-assisted web design", "professional websites"],
+  description: "Creamos sitios web de alto rendimiento con tecnología Jamstack. Optimizados para velocidad, seguridad y una experiencia de usuario que convierte visitantes en clientes.",
+  keywords: ["Desarrollo JAMstack", "Sitios web profesionales", "Diseño web con IA", "Desarrollo web Venezuela"],
   authors: [{ name: "Santiago Narvaez" }],
   openGraph: {
-    title: "elsantinLabs | Modern JAMstack Websites for Growing Businesses",
-    description: "Transform your business with high-performance websites built using cutting-edge JAMstack technology.",
-    url: "https://elsantin-labs.vercel.app",
-    siteName: "elsantinLabs",
+    title: "elsantin Labs - Desarrollo Web JAMstack con IA",
+    description: "Creamos sitios web de alto rendimiento con tecnología Jamstack. Optimizados para velocidad, seguridad y conversiones.",
+    url: "https://elsantin.com",
+    siteName: "elsantin Labs",
     images: [
       {
-        url: "https://elsantin-labs.vercel.app/assets/images/og-social-banner.png",
+        url: "/images/og-social-banner.png",
         width: 1200,
         height: 630,
+        alt: "elsantin Labs - Desarrollo Web JAMstack",
       },
     ],
-    locale: "en_US",
+    locale: "es_VE",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "elsantinLabs | JAMstack Websites for Small & Medium Businesses",
-    description: "Professional websites that convert visitors into customers. JAMstack technology optimized for business growth and performance worldwide.",
-    images: ["https://elsantin-labs.vercel.app/assets/images/og-social-banner.png"],
+    title: "elsantin Labs - Desarrollo Web JAMstack con IA",
+    description: "Creamos sitios web de alto rendimiento con tecnología Jamstack. Optimizados para velocidad, seguridad y conversiones.",
+    images: ["/images/og-social-banner.png"],
   },
 };
 
