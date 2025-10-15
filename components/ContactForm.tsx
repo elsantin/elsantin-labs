@@ -1,18 +1,34 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    projectType: '',
     message: ''
   });
 
+  useEffect(() => {
+    // Detectar parámetro de URL
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get('type');
+    if (type) {
+      const typeMap: { [key: string]: string } = {
+        'landing': 'Landing Page',
+        'business': 'Sitio Corporativo',
+        'portfolio': 'Portfolio',
+        'ecommerce': 'E-commerce'
+      };
+      setFormData(prev => ({ ...prev, projectType: typeMap[type] || '' }));
+    }
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const whatsappMessage = `Hola Santiago, soy ${formData.name}.%0A%0AEmail: ${formData.email}%0ATel: ${formData.phone}%0A%0AMensaje: ${formData.message}`;
+    const whatsappMessage = `Hola Santiago, soy ${formData.name}.%0A%0AEmail: ${formData.email}%0ATel: ${formData.phone}%0ATipo de proyecto: ${formData.projectType || 'No especificado'}%0A%0AMensaje: ${formData.message}`;
     window.open(`https://wa.me/584121969544?text=${whatsappMessage}`, '_blank');
   };
 
@@ -67,6 +83,25 @@ export default function ContactForm() {
               className="w-full px-4 py-3 rounded-lg bg-dev-hub-surface border border-dev-hub-border text-dev-hub-text-primary focus:outline-none focus:border-accent-gold transition-colors"
               placeholder="+58 412 123 4567"
             />
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-dev-hub-text-primary font-semibold mb-2 text-sm">
+              Tipo de Proyecto *
+            </label>
+            <select
+              required
+              value={formData.projectType}
+              onChange={(e) => setFormData({...formData, projectType: e.target.value})}
+              className="w-full px-4 py-3 rounded-lg bg-dev-hub-surface border border-dev-hub-border text-dev-hub-text-primary focus:outline-none focus:border-accent-gold transition-colors"
+            >
+              <option value="">Selecciona un tipo</option>
+              <option value="Landing Page">Landing Page</option>
+              <option value="Sitio Corporativo">Sitio Corporativo</option>
+              <option value="Portfolio">Portfolio</option>
+              <option value="E-commerce">E-commerce</option>
+              <option value="Otro">Otro</option>
+            </select>
           </div>
 
           <div className="mb-6">
