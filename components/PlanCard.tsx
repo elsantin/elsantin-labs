@@ -35,7 +35,7 @@ export default function PlanCard({ name, description, price, features, buttonTex
         ))}
       </ul>
 
-      <button className="w-full bg-accent-gold text-dev-hub-bg py-3 px-6 rounded-lg font-bold neu-elevated-subtle transition-all duration-300 hover:bg-accent-gold-hover active:scale-95 shadow-lg">
+      <button className="w-full bg-accent-gold text-white py-3 px-6 rounded-lg font-semibold neu-elevated-subtle transition-all duration-300 hover:bg-accent-gold-hover hover:shadow-xl active:scale-95 shadow-lg">
         {buttonText}
       </button>
     </div>

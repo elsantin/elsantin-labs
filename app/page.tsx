@@ -283,7 +283,7 @@ export default function Home() {
               <div className="flex gap-4 justify-center flex-wrap">
                 <a
                   href="https://wa.me/584121969544?text=Hola%20Santiago,%20estoy%20interesado%20en%20desarrollar%20un%20sitio%20web%20con%20elsantinLabs"
-                  className="inline-flex items-center gap-3 bg-accent-gold text-dev-hub-bg py-4 px-8 rounded-lg font-bold neu-elevated-subtle transition-all duration-300 hover:bg-accent-gold-hover active:scale-95"
+                  className="inline-flex items-center gap-3 bg-accent-gold text-white py-4 px-8 rounded-lg font-semibold neu-elevated-subtle transition-all duration-300 hover:bg-accent-gold-hover active:scale-95"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -294,7 +294,7 @@ export default function Home() {
                 </a>
                 <a
                   href="mailto:santiago@elsantin.com?subject=Consulta%20sobre%20Desarrollo%20Web&body=Hola%20Santiago,%0A%0AEstoy%20interesado%20en%20desarrollar%20un%20sitio%20web%20con%20elsantin%20Labs.%0A%0ASaludos"
-                  className="inline-flex items-center gap-3 bg-transparent text-dev-hub-text-primary py-4 px-8 rounded-lg font-bold border-2 border-dev-hub-border neu-elevated-subtle transition-all duration-300 hover:border-accent-gold hover:text-accent-gold active:scale-95"
+                  className="inline-flex items-center gap-3 bg-transparent text-dev-hub-text-primary py-4 px-8 rounded-lg font-semibold border-2 border-dev-hub-border neu-elevated-subtle transition-all duration-300 hover:border-accent-gold hover:text-accent-gold active:scale-95"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
