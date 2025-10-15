@@ -30,42 +30,42 @@ export default function Home() {
             </p>
             <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               <PlanCard
-                name="Landing Page"
-                description="Perfecta para lanzar productos, servicios o campañas con impacto inmediato."
+                name="Presencia Digital"
+                description="Ideal para lanzar productos, servicios o campañas con impacto inmediato."
                 price={180}
                 features={[
-                  "1 página optimizada",
+                  "Landing Page (1 página)",
                   "Diseño 100% personalizado",
-                  "Formulario de contacto",
+                  "Formulario de contacto funcional",
                   "Optimización SEO básica",
-                  "Responsive design"
+                  "Adaptable a móviles y tablets"
                 ]}
                 buttonText="Solicitar"
               />
               <PlanCard
                 name="Sitio Profesional"
-                description="Ideal para negocios y profesionales que necesitan presencia web completa."
+                description="Para negocios y profesionales que necesitan presencia web completa."
                 price={250}
                 features={[
-                  "Hasta 5 páginas",
-                  "Diseño personalizado",
+                  "Hasta 3 páginas",
+                  "Diseño profesional personalizado",
                   "Formulario de contacto",
                   "Optimización SEO",
-                  "Integración redes sociales"
+                  "Integración con redes sociales"
                 ]}
                 buttonText="Solicitar"
                 isFeatured
               />
               <PlanCard
-                name="Sitio Avanzado"
-                description="La solución completa para empresas que buscan destacar en su sector."
+                name="Presencia Corporativa"
+                description="Solución completa para empresas que buscan destacar en su sector."
                 price={350}
                 features={[
-                  "Hasta 10 páginas",
+                  "Hasta 5 páginas",
                   "Blog o Portfolio integrado",
                   "SEO Avanzado",
                   "Google Analytics",
-                  "Animaciones personalizadas"
+                  "Animaciones y efectos personalizados"
                 ]}
                 buttonText="Solicitar"
               />
