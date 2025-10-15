@@ -78,7 +78,11 @@ export default function ProjectSelector() {
         {selectedType && (
           <div className="text-center animate-fade-in-up">
             <a
-              href={`#contact?type=${selectedType}`}
+              href={`/contact?type=${selectedType}`}
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = `${window.location.pathname}?type=${selectedType}#contact`;
+              }}
               className="inline-flex items-center gap-2 bg-accent-gold text-white py-4 px-8 rounded-lg font-semibold neu-elevated-subtle transition-all duration-300 hover:bg-accent-gold-hover active:scale-95 shadow-lg"
             >
               Solicitar Cotización
