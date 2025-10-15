@@ -28,42 +28,67 @@ export default function Home() {
             </p>
             <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               <PlanCard
-                name="Presencia Esencial"
-                description="Para profesionales y marcas que necesitan una base digital sólida y profesional."
-                price={299}
+                name="Landing Page"
+                description="Perfecta para lanzar productos, servicios o campañas con impacto inmediato."
+                price={180}
                 features={[
-                  "Hasta 4 páginas",
+                  "1 página optimizada",
                   "Diseño 100% personalizado",
-                  "Formulario de contacto funcional",
-                  "Optimización SEO básica"
+                  "Formulario de contacto",
+                  "Optimización SEO básica",
+                  "Responsive design"
                 ]}
-                buttonText="Me Interesa"
+                buttonText="Solicitar"
               />
               <PlanCard
-                name="Crecimiento Profesional"
-                description="Ideal para expandir tu alcance, compartir tu conocimiento y conectar con tu audiencia."
-                price={449}
+                name="Sitio Profesional"
+                description="Ideal para negocios y profesionales que necesitan presencia web completa."
+                price={250}
                 features={[
-                  "Todo lo del plan Esencial, más:",
-                  "Hasta 7 páginas",
-                  "Blog o Portafolio integrado",
-                  "Carga de 3 artículos/proyectos"
+                  "Hasta 5 páginas",
+                  "Diseño personalizado",
+                  "Formulario de contacto",
+                  "Optimización SEO",
+                  "Integración redes sociales"
                 ]}
-                buttonText="Iniciar Consulta"
+                buttonText="Solicitar"
                 isFeatured
               />
               <PlanCard
-                name="Líder de Opinión"
-                description="La solución completa para establecerte como una autoridad en tu sector."
-                price={599}
+                name="Sitio Avanzado"
+                description="La solución completa para empresas que buscan destacar en su sector."
+                price={350}
                 features={[
-                  "Todo lo del plan Profesional, más:",
                   "Hasta 10 páginas",
-                  "Optimización SEO Avanzada",
-                  "Integración con Google Analytics"
+                  "Blog o Portfolio integrado",
+                  "SEO Avanzado",
+                  "Google Analytics",
+                  "Animaciones personalizadas"
                 ]}
-                buttonText="Conversemos"
+                buttonText="Solicitar"
               />
+            </div>
+
+            {/* Custom Projects Card */}
+            <div className="mt-12 max-w-[900px] mx-auto">
+              <div className="neu-elevated rounded-xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 border-2 border-accent-gold">
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="font-heading text-2xl font-bold mb-3 text-dev-hub-text-primary">
+                    ¿Necesitas algo más complejo?
+                  </h3>
+                  <p className="text-dev-hub-text-secondary">
+                    Para páginas complejas, aplicaciones web personalizadas o proyectos a medida, contáctanos y conversemos sobre tu idea.
+                  </p>
+                </div>
+                <a
+                  href="https://wa.me/584121969544?text=Hola%20Santiago,%20necesito%20un%20proyecto%20personalizado"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-accent-gold text-white py-3 px-8 rounded-lg font-semibold neu-elevated-subtle transition-all duration-300 hover:bg-accent-gold-hover active:scale-95 shadow-lg whitespace-nowrap"
+                >
+                  Contáctanos
+                </a>
+              </div>
             </div>
           </div>
         </section>
