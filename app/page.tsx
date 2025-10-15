@@ -9,12 +9,14 @@ import FloatingCTA from "@/components/FloatingCTA";
 import ProjectSelector from "@/components/ProjectSelector";
 import ContactForm from "@/components/ContactForm";
 import FAQ from "@/components/FAQ";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
   return (
     <>
       <ScrollProgress />
       <FloatingCTA />
+      <ThemeToggle />
       <Header />
       <main>
         <Hero />

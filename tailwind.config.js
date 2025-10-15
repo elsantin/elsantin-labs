@@ -8,14 +8,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dev-hub-bg': '#0d1117',
-        'dev-hub-surface': '#161b22',
-        'dev-hub-text-primary': '#c9d1d9',
-        'dev-hub-text-secondary': '#8b949e',
-        'dev-hub-border': '#30363d',
-        'accent-gold': '#a37e4f',
-        'accent-gold-hover': '#b8915e',
-        'text-on-gold': '#0d1117',
+        'dev-hub-bg': 'var(--color-dev-hub-bg)',
+        'dev-hub-surface': 'var(--color-dev-hub-surface)',
+        'dev-hub-text-primary': 'var(--color-dev-hub-text-primary)',
+        'dev-hub-text-secondary': 'var(--color-dev-hub-text-secondary)',
+        'dev-hub-border': 'var(--color-dev-hub-border)',
+        'accent-gold': 'var(--color-accent-gold)',
+        'accent-gold-hover': 'var(--color-accent-gold-hover)',
+        'text-on-gold': 'var(--color-text-on-gold)',
       },
       fontFamily: {
         body: ['var(--font-body)'],

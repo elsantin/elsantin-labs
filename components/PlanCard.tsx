@@ -17,8 +17,8 @@ export default function PlanCard({ name, description, price, revisions, features
         </div>
       )}
       
-      <h3 className="font-heading text-2xl font-bold mb-3">{name}</h3>
-      <p className="text-dev-hub-text-secondary text-sm mb-6 min-h-[3rem]">{description}</p>
+      <h3 className="font-heading text-2xl font-bold mb-3 text-center">{name}</h3>
+      <p className="text-dev-hub-text-secondary text-sm mb-6 min-h-[3rem] text-center">{description}</p>
       
       <div className="mb-6 text-center">
         <div>

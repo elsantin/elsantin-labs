@@ -3,10 +3,10 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center px-8 py-24 overflow-hidden">
       {/* Background image */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat hero-bg"
         style={{ backgroundImage: 'url(/images/hero6.jpg)' }}
       >
-        <div className="absolute inset-0 bg-dev-hub-bg opacity-80"></div>
+        <div className="absolute inset-0 bg-dev-hub-bg opacity-80 hero-overlay"></div>
       </div>
 
       {/* Animated gradient background */}
