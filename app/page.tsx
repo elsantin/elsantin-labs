@@ -35,10 +35,10 @@ export default function Home() {
                 price={180}
                 features={[
                   "Landing Page (1 página)",
-                  "Diseño 100% personalizado",
-                  "Formulario de contacto funcional",
+                  "Diseño personalizado",
+                  "Formulario de contacto",
                   "Optimización SEO básica",
-                  "Adaptable a móviles y tablets"
+                  "Responsive (móvil y tablet)"
                 ]}
                 buttonText="Solicitar"
               />
@@ -47,11 +47,11 @@ export default function Home() {
                 description="Para negocios y profesionales que necesitan presencia web completa."
                 price={250}
                 features={[
+                  "Todo lo anterior, más:",
                   "Hasta 3 páginas",
-                  "Diseño profesional personalizado",
-                  "Formulario de contacto",
-                  "Optimización SEO",
-                  "Integración con redes sociales"
+                  "Optimización SEO mejorada",
+                  "Integración con redes sociales",
+                  "Mapa de ubicación (Google Maps)"
                 ]}
                 buttonText="Solicitar"
                 isFeatured
@@ -61,11 +61,11 @@ export default function Home() {
                 description="Solución completa para empresas que buscan destacar en su sector."
                 price={350}
                 features={[
+                  "Todo lo anterior, más:",
                   "Hasta 5 páginas",
                   "Blog o Portfolio integrado",
-                  "SEO Avanzado",
-                  "Google Analytics",
-                  "Animaciones y efectos personalizados"
+                  "SEO Avanzado + Google Analytics",
+                  "Animaciones personalizadas"
                 ]}
                 buttonText="Solicitar"
               />
