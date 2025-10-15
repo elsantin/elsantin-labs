@@ -19,13 +19,13 @@ const techIcons: { [key: string]: { icon: JSX.Element; color: string } } = {
 
 export default function ProjectCard({ title, description, image, technologies, liveUrl, repoUrl }: ProjectCardProps) {
   return (
-    <div className="group rounded-xl overflow-hidden neu-elevated transition-all duration-300">
+    <div className="group rounded-xl overflow-hidden neu-elevated transition-all duration-500 hover:scale-[1.02]">
       <div className="relative h-56 overflow-hidden bg-dev-hub-bg">
         <Image
           src={image}
           alt={title}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
       </div>
       
