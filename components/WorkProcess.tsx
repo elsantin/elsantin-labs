@@ -71,9 +71,7 @@ export default function WorkProcess() {
         {/* CTA */}
         <div className="text-center mt-12">
           <a
-            href="https://wa.me/584121969544?text=Hola%20Santiago,%20quiero%20iniciar%20un%20proyecto%20contigo"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
             className="inline-block bg-accent-gold text-white py-3 px-8 rounded-lg font-semibold neu-elevated-subtle transition-all duration-300 hover:bg-accent-gold-hover active:scale-95 shadow-lg"
           >
             Iniciar Mi Proyecto

@@ -40,7 +40,7 @@ export default function Hero() {
             href="#contact"
             className="bg-transparent border-2 border-dev-hub-border text-dev-hub-text-primary py-3 px-8 rounded-lg font-semibold transition-all duration-300 hover:border-accent-gold hover:text-accent-gold active:scale-95"
           >
-            Contactar
+            Enviar Mensaje
           </a>
         </div>
 
