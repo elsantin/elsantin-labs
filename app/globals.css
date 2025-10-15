@@ -18,6 +18,15 @@
     /* Fonts */
     --font-body: "Exo 2", sans-serif;
     --font-heading: "Rajdhani", sans-serif;
+
+    /* Neumorphism Depth System */
+    --neu-bg-base: #0d1117;
+    --neu-bg-light: #1a1f29;
+    --neu-bg-dark: #070a0f;
+    --neu-shadow-light: rgba(255, 255, 255, 0.05);
+    --neu-shadow-dark: rgba(0, 0, 0, 0.5);
+    --neu-shadow-inset-light: rgba(255, 255, 255, 0.03);
+    --neu-shadow-inset-dark: rgba(0, 0, 0, 0.4);
   }
 
   * {
@@ -109,5 +118,57 @@
   .glow-text {
     text-shadow: 0 0 40px rgba(163, 126, 79, 0.5),
                  0 0 80px rgba(163, 126, 79, 0.3);
+  }
+
+  /* Neumorphism Elevation (Raised Elements) */
+  .neu-elevated {
+    background: var(--neu-bg-light);
+    box-shadow: 
+      -8px -8px 16px var(--neu-shadow-light),
+      8px 8px 16px var(--neu-shadow-dark);
+  }
+
+  .neu-elevated-subtle {
+    background: var(--neu-bg-light);
+    box-shadow: 
+      -4px -4px 8px var(--neu-shadow-light),
+      4px 4px 8px var(--neu-shadow-dark);
+  }
+
+  .neu-elevated-strong {
+    background: var(--neu-bg-light);
+    box-shadow: 
+      -12px -12px 24px var(--neu-shadow-light),
+      12px 12px 24px var(--neu-shadow-dark);
+  }
+
+  /* Neumorphism Recessed (Inset Elements) */
+  .neu-recessed {
+    background: var(--neu-bg-dark);
+    box-shadow: 
+      inset 4px 4px 8px var(--neu-shadow-inset-dark),
+      inset -4px -4px 8px var(--neu-shadow-inset-light);
+  }
+
+  .neu-recessed-deep {
+    background: var(--neu-bg-dark);
+    box-shadow: 
+      inset 6px 6px 12px var(--neu-shadow-inset-dark),
+      inset -6px -6px 12px var(--neu-shadow-inset-light);
+  }
+
+  /* Neumorphism Hover States */
+  .neu-elevated:hover {
+    box-shadow: 
+      -10px -10px 20px var(--neu-shadow-light),
+      10px 10px 20px var(--neu-shadow-dark);
+    transform: translateY(-2px);
+  }
+
+  .neu-elevated-subtle:hover {
+    box-shadow: 
+      -6px -6px 12px var(--neu-shadow-light),
+      6px 6px 12px var(--neu-shadow-dark);
+    transform: translateY(-1px);
   }
 }

@@ -6,9 +6,10 @@ export default function Footer() {
           {/* Brand */}
           <div className="text-center md:text-left">
             <div className="font-heading text-2xl font-bold mb-2">
-              <span className="text-dev-hub-text-primary">{`{`}elsantin</span>
+              <span className="text-accent-gold">{`{`}</span>
+              <span className="text-dev-hub-text-primary">elsantin</span>
               <span className="text-accent-gold">Labs</span>
-              <span className="text-dev-hub-text-primary">{`}`}</span>
+              <span className="text-accent-gold">{`}`}</span>
             </div>
             <p className="text-dev-hub-text-secondary text-sm">
               Desarrollo Web desde la Isla de Margarita, Venezuela

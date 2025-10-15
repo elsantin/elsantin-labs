@@ -18,9 +18,10 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-[1200px] mx-auto text-center">
         <h1 className="font-heading font-bold text-[clamp(3rem,8vw,5rem)] leading-tight mb-6 animate-fade-in-up">
-          <span className="text-dev-hub-text-primary">{`{`}elsantin</span>
+          <span className="text-accent-gold">{`{`}</span>
+          <span className="text-dev-hub-text-primary">elsantin</span>
           <span className="text-accent-gold glow-text">Labs</span>
-          <span className="text-dev-hub-text-primary">{`}`}</span>
+          <span className="text-accent-gold">{`}`}</span>
         </h1>
         <p className="text-dev-hub-text-secondary text-[clamp(1.1rem,3vw,1.5rem)] max-w-[800px] mx-auto mb-8 animate-fade-in-up animation-delay-200">
           Creamos sitios web de alto rendimiento con tecnología Jamstack. Optimizados para velocidad, seguridad y una

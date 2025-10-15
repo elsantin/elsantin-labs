@@ -7,7 +7,7 @@ interface AddonCardProps {
 
 export default function AddonCard({ icon, name, description, price }: AddonCardProps) {
   return (
-    <div className="bg-dev-hub-surface border border-dev-hub-border rounded-xl p-6 transition-all duration-300 hover:border-accent-gold hover:shadow-[0_0_20px_rgba(163,126,79,0.1)] hover:-translate-y-1">
+    <div className="rounded-xl p-6 neu-elevated-subtle transition-all duration-300">
       <div className="flex justify-center mb-4 text-accent-gold">
         {icon}
       </div>

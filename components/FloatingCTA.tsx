@@ -28,7 +28,7 @@ export default function FloatingCTA() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full border-2 border-dev-hub-border bg-transparent hover:bg-accent-gold hover:border-accent-gold text-dev-hub-text-primary hover:text-text-on-gold transition-all duration-300 flex items-center justify-center group ${
+      className={`fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full neu-elevated-subtle hover:bg-accent-gold text-dev-hub-text-primary hover:text-text-on-gold transition-all duration-300 flex items-center justify-center group active:scale-90 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
       }`}
       aria-label="Volver arriba"

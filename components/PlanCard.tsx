@@ -9,7 +9,7 @@ interface PlanCardProps {
 
 export default function PlanCard({ name, description, price, features, buttonText, isFeatured }: PlanCardProps) {
   return (
-    <div className={`relative bg-dev-hub-surface border ${isFeatured ? 'border-accent-gold' : 'border-dev-hub-border'} rounded-xl p-8 transition-all duration-300 hover:border-accent-gold hover:shadow-[0_0_30px_rgba(163,126,79,0.15)] hover:-translate-y-1`}>
+    <div className={`relative rounded-xl p-8 transition-all duration-300 ${isFeatured ? 'neu-elevated-strong border-2 border-accent-gold' : 'neu-elevated'}`}>
       {isFeatured && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent-gold text-text-on-gold px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
           Más Popular
@@ -35,7 +35,7 @@ export default function PlanCard({ name, description, price, features, buttonTex
         ))}
       </ul>
 
-      <button className="w-full bg-accent-gold text-text-on-gold py-3 px-6 rounded-lg font-medium transition-all duration-300 hover:bg-accent-gold-hover hover:shadow-[0_8px_20px_rgba(163,126,79,0.3)] hover:-translate-y-0.5">
+      <button className="w-full bg-accent-gold text-text-on-gold py-3 px-6 rounded-lg font-medium neu-elevated-subtle transition-all duration-300 hover:bg-accent-gold-hover active:scale-95">
         {buttonText}
       </button>
     </div>

@@ -19,7 +19,7 @@ const techIcons: { [key: string]: { icon: JSX.Element; color: string } } = {
 
 export default function ProjectCard({ title, description, image, technologies, liveUrl, repoUrl }: ProjectCardProps) {
   return (
-    <div className="group bg-dev-hub-surface border border-dev-hub-border rounded-xl overflow-hidden transition-all duration-300 hover:border-accent-gold hover:shadow-[0_0_30px_rgba(163,126,79,0.15)] hover:-translate-y-2">
+    <div className="group rounded-xl overflow-hidden neu-elevated transition-all duration-300">
       <div className="relative h-56 overflow-hidden bg-dev-hub-bg">
         <Image
           src={image}
