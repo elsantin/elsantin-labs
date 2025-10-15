@@ -20,7 +20,7 @@ export default function AddonCard({ icon, name, description, price }: AddonCardP
         <span className="text-4xl font-bold text-dev-hub-text-primary">{price}</span>
       </div>
 
-      <button className="w-full bg-transparent border border-accent-gold text-accent-gold py-2.5 px-6 rounded-lg font-medium transition-all duration-300 hover:bg-accent-gold hover:text-text-on-gold">
+      <button className="w-full bg-transparent border-2 border-accent-gold text-accent-gold py-2.5 px-6 rounded-lg font-bold transition-all duration-300 hover:bg-accent-gold hover:text-dev-hub-bg active:scale-95">
         Agregar
       </button>
     </div>

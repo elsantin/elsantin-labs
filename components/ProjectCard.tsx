@@ -51,12 +51,12 @@ export default function ProjectCard({ title, description, image, technologies, l
 
         <div className="flex gap-3">
           {liveUrl && (
-            <button className="flex-1 bg-accent-gold text-text-on-gold py-2 px-4 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-accent-gold-hover">
+            <button className="flex-1 bg-accent-gold text-dev-hub-bg py-2 px-4 rounded-lg text-sm font-bold transition-all duration-300 hover:bg-accent-gold-hover active:scale-95 shadow-md">
               Ver Proyecto
             </button>
           )}
           {repoUrl && (
-            <button className="flex-1 bg-transparent border border-dev-hub-border text-dev-hub-text-primary py-2 px-4 rounded-lg text-sm font-medium transition-all duration-300 hover:border-accent-gold hover:text-accent-gold">
+            <button className="flex-1 bg-transparent border-2 border-dev-hub-border text-dev-hub-text-primary py-2 px-4 rounded-lg text-sm font-bold transition-all duration-300 hover:border-accent-gold hover:text-accent-gold active:scale-95">
               Ver Código
             </button>
           )}
