@@ -6,8 +6,9 @@ import ProjectCard from "@/components/ProjectCard";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import FloatingCTA from "@/components/FloatingCTA";
-import BudgetCalculator from "@/components/BudgetCalculator";
+import ProjectSelector from "@/components/ProjectSelector";
 import WorkProcess from "@/components/WorkProcess";
+import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
   return (
@@ -150,8 +151,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Budget Calculator */}
-        <BudgetCalculator />
+        {/* Project Selector */}
+        <ProjectSelector />
 
         {/* Work Process */}
         <WorkProcess />
@@ -338,6 +339,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Contact Form */}
+        <ContactForm />
       </main>
       <Footer />
     </>

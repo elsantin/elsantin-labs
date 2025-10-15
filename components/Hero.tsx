@@ -27,7 +27,24 @@ export default function Hero() {
           Creamos sitios web de alto rendimiento con tecnología Jamstack. Optimizados para velocidad, seguridad y una
           experiencia de usuario que convierte visitantes en clientes.
         </p>
-        <div className="flex gap-4 flex-wrap justify-center text-sm animate-fade-in-up animation-delay-400 mb-20">
+
+        {/* CTAs */}
+        <div className="flex gap-4 justify-center mb-12 animate-fade-in-up animation-delay-400">
+          <a
+            href="#services"
+            className="bg-accent-gold text-white py-3 px-8 rounded-lg font-semibold neu-elevated-subtle transition-all duration-300 hover:bg-accent-gold-hover active:scale-95 shadow-lg"
+          >
+            Ver Planes
+          </a>
+          <a
+            href="#contact"
+            className="bg-transparent border-2 border-dev-hub-border text-dev-hub-text-primary py-3 px-8 rounded-lg font-semibold transition-all duration-300 hover:border-accent-gold hover:text-accent-gold active:scale-95"
+          >
+            Contactar
+          </a>
+        </div>
+
+        <div className="flex gap-4 flex-wrap justify-center text-sm animate-fade-in-up animation-delay-600 mb-20">
           {["HTML5", "CSS3", "JavaScript", "Jamstack", "Core Web Vitals", "IA Asistida", "SEO"].map((tech, index) => (
             <span
               key={tech}
