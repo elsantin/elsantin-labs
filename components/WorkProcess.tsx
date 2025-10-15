@@ -37,24 +37,30 @@ export default function WorkProcess() {
         </p>
 
         <div className="relative grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {/* Animated connecting line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 -translate-y-1/2 pointer-events-none">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-dev-hub-border to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-accent-gold/0 via-accent-gold to-accent-gold/0 animate-flow"></div>
+          {/* Animated connecting line - dashed */}
+          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 pointer-events-none overflow-hidden">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'repeating-linear-gradient(90deg, #a37e4f 0, #a37e4f 10px, transparent 10px, transparent 20px)',
+              backgroundSize: '40px 2px'
+            }}></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-gold to-transparent opacity-60 animate-flow"></div>
           </div>
 
           {steps.map((step, index) => (
             <div
               key={index}
-              className="neu-elevated-subtle rounded-xl p-6 relative transition-all duration-300 hover:scale-105 z-10"
+              className="neu-elevated-subtle rounded-xl p-6 relative transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-accent-gold/10 z-10 group"
             >
-              {/* Step Number */}
-              <div className="text-accent-gold text-5xl font-bold opacity-20 absolute top-4 right-4">
+              {/* Step Number with glow on hover */}
+              <div className="text-accent-gold text-5xl font-bold opacity-20 absolute top-4 right-4 group-hover:opacity-40 transition-opacity duration-300">
                 {step.number}
               </div>
 
-              {/* Pulse dot connector */}
-              <div className="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-accent-gold rounded-full animate-pulse shadow-lg shadow-accent-gold/50"></div>
+              {/* Pulse dot connector with ring */}
+              <div className="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                <div className="w-4 h-4 bg-accent-gold rounded-full animate-pulse shadow-lg shadow-accent-gold/50"></div>
+                <div className="absolute inset-0 w-4 h-4 bg-accent-gold rounded-full animate-ping opacity-30"></div>
+              </div>
 
               {/* Content */}
               <div className="relative z-10">

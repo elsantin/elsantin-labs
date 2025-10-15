@@ -114,7 +114,7 @@ export default function Home() {
                 }
                 name="Sistema de Citas"
                 description="Integración completa con calendarios y notificaciones automáticas."
-                price={180}
+                price={90}
               />
               <AddonCard
                 icon={
@@ -122,9 +122,9 @@ export default function Home() {
                     <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
                   </svg>
                 }
-                name="Galería Premium"
+                name="Galería de Imágenes"
                 description="Galería avanzada con filtros, lightbox y optimización de imágenes."
-                price={120}
+                price={60}
               />
               <AddonCard
                 icon={
@@ -132,9 +132,9 @@ export default function Home() {
                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
                   </svg>
                 }
-                name="Blog con Contenido"
+                name="Blog con Contenido IA"
                 description="Blog funcional con 10 artículos optimizados para SEO."
-                price={150}
+                price={75}
               />
               <AddonCard
                 icon={
@@ -145,7 +145,7 @@ export default function Home() {
                 }
                 name="Newsletter Integration"
                 description="Sistema de suscripción y envío de newsletters automatizado."
-                price={100}
+                price={50}
               />
             </div>
           </div>
