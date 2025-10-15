@@ -2,12 +2,13 @@ interface PlanCardProps {
   name: string;
   description: string;
   price: number;
+  revisions?: number;
   features: string[];
   buttonText: string;
   isFeatured?: boolean;
 }
 
-export default function PlanCard({ name, description, price, features, buttonText, isFeatured }: PlanCardProps) {
+export default function PlanCard({ name, description, price, revisions, features, buttonText, isFeatured }: PlanCardProps) {
   return (
     <div className={`relative rounded-xl p-8 transition-all duration-300 ${isFeatured ? 'neu-elevated-strong border-2 border-accent-gold' : 'neu-elevated'}`}>
       {isFeatured && (
@@ -19,9 +20,18 @@ export default function PlanCard({ name, description, price, features, buttonTex
       <h3 className="font-heading text-2xl font-bold mb-3">{name}</h3>
       <p className="text-dev-hub-text-secondary text-sm mb-6 min-h-[3rem]">{description}</p>
       
-      <div className="mb-6">
-        <span className="text-accent-gold text-lg font-semibold">$</span>
-        <span className="text-5xl font-bold text-dev-hub-text-primary">{price}</span>
+      <div className="mb-6 text-center">
+        <div>
+          <span className="text-accent-gold text-lg font-semibold">$</span>
+          <span className="text-5xl font-bold text-dev-hub-text-primary">{price}</span>
+        </div>
+        {revisions && (
+          <div className="mt-3 inline-block bg-accent-gold/10 border border-accent-gold/30 rounded-full px-4 py-1">
+            <span className="text-accent-gold text-xs font-semibold">
+              {revisions} {revisions === 1 ? 'Revisión incluida' : 'Revisiones incluidas'}
+            </span>
+          </div>
+        )}
       </div>
 
       <ul className="space-y-3 mb-8">

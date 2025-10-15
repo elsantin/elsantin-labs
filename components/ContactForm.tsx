@@ -8,7 +8,20 @@ export default function ContactForm() {
     email: '',
     phone: '',
     projectType: '',
+    budget: '',
     message: ''
+  });
+
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const [touched, setTouched] = useState({
+    name: false,
+    email: false,
+    message: false
   });
 
   useEffect(() => {
@@ -26,16 +39,39 @@ export default function ContactForm() {
     }
   }, []);
 
+  // Validaciones
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      name: formData.name.trim().length < 2 ? 'El nombre debe tener al menos 2 caracteres' : '',
+      email: !validateEmail(formData.email) ? 'Email inválido' : '',
+      message: formData.message.trim().length < 10 ? 'El mensaje debe tener al menos 10 caracteres' : ''
+    };
+    setErrors(newErrors);
+    return !newErrors.name && !newErrors.email && !newErrors.message;
+  };
+
+  const handleBlur = (field: 'name' | 'email' | 'message') => {
+    setTouched({ ...touched, [field]: true });
+    validateForm();
+  };
+
   const handleWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
-    const whatsappMessage = `Hola Santiago, soy ${formData.name}.%0A%0AEmail: ${formData.email}%0ATel: ${formData.phone}%0ATipo de proyecto: ${formData.projectType || 'No especificado'}%0A%0AMensaje: ${formData.message}`;
+    if (!validateForm()) return;
+    const whatsappMessage = `Hola Santiago, soy ${formData.name}.%0A%0AEmail: ${formData.email}%0ATel: ${formData.phone || 'No proporcionado'}%0ATipo de proyecto: ${formData.projectType || 'No especificado'}%0APresupuesto: ${formData.budget || 'No especificado'}%0A%0AMensaje: ${formData.message}`;
     window.open(`https://wa.me/584121969544?text=${whatsappMessage}`, '_blank');
   };
 
   const handleEmail = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
     const subject = `Consulta: ${formData.projectType || 'Proyecto Web'}`;
-    const body = `Hola Santiago,%0A%0ASoy ${formData.name}.%0A%0AEmail: ${formData.email}%0ATeléfono: ${formData.phone || 'No proporcionado'}%0ATipo de proyecto: ${formData.projectType || 'No especificado'}%0A%0AMensaje:%0A${formData.message}`;
+    const body = `Hola Santiago,%0A%0ASoy ${formData.name}.%0A%0AEmail: ${formData.email}%0ATeléfono: ${formData.phone || 'No proporcionado'}%0ATipo de proyecto: ${formData.projectType || 'No especificado'}%0APresupuesto: ${formData.budget || 'No especificado'}%0A%0AMensaje:%0A${formData.message}`;
     window.location.href = `mailto:santiago@elsantin.com?subject=${subject}&body=${body}`;
   };
 
@@ -60,9 +96,15 @@ export default function ContactForm() {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full px-4 py-3 rounded-lg bg-dev-hub-surface border border-dev-hub-border text-dev-hub-text-primary focus:outline-none focus:border-accent-gold transition-colors"
+                onBlur={() => handleBlur('name')}
+                className={`w-full px-4 py-3 rounded-lg bg-dev-hub-surface border text-dev-hub-text-primary focus:outline-none transition-colors ${
+                  touched.name && errors.name ? 'border-red-500 focus:border-red-500' : 'border-dev-hub-border focus:border-accent-gold'
+                }`}
                 placeholder="Tu nombre"
               />
+              {touched.name && errors.name && (
+                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+              )}
             </div>
             <div>
               <label className="block text-dev-hub-text-primary font-semibold mb-2 text-sm">
@@ -73,9 +115,23 @@ export default function ContactForm() {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full px-4 py-3 rounded-lg bg-dev-hub-surface border border-dev-hub-border text-dev-hub-text-primary focus:outline-none focus:border-accent-gold transition-colors"
+                onBlur={() => handleBlur('email')}
+                className={`w-full px-4 py-3 rounded-lg bg-dev-hub-surface border text-dev-hub-text-primary focus:outline-none transition-colors ${
+                  touched.email && errors.email ? 'border-red-500 focus:border-red-500' : 'border-dev-hub-border focus:border-accent-gold'
+                }`}
                 placeholder="tu@email.com"
               />
+              {touched.email && errors.email && (
+                <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+              )}
+              {touched.email && !errors.email && formData.email && (
+                <p className="text-green-500 text-xs mt-1 flex items-center gap-1">
+                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  Email válido
+                </p>
+              )}
             </div>
           </div>
 
@@ -92,23 +148,41 @@ export default function ContactForm() {
             />
           </div>
 
-          <div className="mb-6">
-            <label className="block text-dev-hub-text-primary font-semibold mb-2 text-sm">
-              Tipo de Proyecto *
-            </label>
-            <select
-              required
-              value={formData.projectType}
-              onChange={(e) => setFormData({...formData, projectType: e.target.value})}
-              className="w-full px-4 py-3 rounded-lg bg-dev-hub-surface border border-dev-hub-border text-dev-hub-text-primary focus:outline-none focus:border-accent-gold transition-colors"
-            >
-              <option value="">Selecciona un tipo</option>
-              <option value="Landing Page">Landing Page</option>
-              <option value="Sitio Corporativo">Sitio Corporativo</option>
-              <option value="Portfolio">Portfolio</option>
-              <option value="E-commerce">E-commerce</option>
-              <option value="Otro">Otro</option>
-            </select>
+          <div className="grid gap-6 md:grid-cols-2 mb-6">
+            <div>
+              <label className="block text-dev-hub-text-primary font-semibold mb-2 text-sm">
+                Tipo de Proyecto *
+              </label>
+              <select
+                required
+                value={formData.projectType}
+                onChange={(e) => setFormData({...formData, projectType: e.target.value})}
+                className="w-full px-4 py-3 rounded-lg bg-dev-hub-surface border border-dev-hub-border text-dev-hub-text-primary focus:outline-none focus:border-accent-gold transition-colors"
+              >
+                <option value="">Selecciona un tipo</option>
+                <option value="Landing Page">Landing Page</option>
+                <option value="Sitio Corporativo">Sitio Corporativo</option>
+                <option value="Portfolio">Portfolio</option>
+                <option value="E-commerce">E-commerce</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-dev-hub-text-primary font-semibold mb-2 text-sm">
+                Presupuesto Estimado (opcional)
+              </label>
+              <select
+                value={formData.budget}
+                onChange={(e) => setFormData({...formData, budget: e.target.value})}
+                className="w-full px-4 py-3 rounded-lg bg-dev-hub-surface border border-dev-hub-border text-dev-hub-text-primary focus:outline-none focus:border-accent-gold transition-colors"
+              >
+                <option value="">Selecciona un rango</option>
+                <option value="$150-$250">$150 - $250</option>
+                <option value="$250-$400">$250 - $400</option>
+                <option value="$400-$600">$400 - $600</option>
+                <option value="$600+">Más de $600</option>
+              </select>
+            </div>
           </div>
 
           <div className="mb-6">
@@ -120,9 +194,18 @@ export default function ContactForm() {
               rows={5}
               value={formData.message}
               onChange={(e) => setFormData({...formData, message: e.target.value})}
-              className="w-full px-4 py-3 rounded-lg bg-dev-hub-surface border border-dev-hub-border text-dev-hub-text-primary focus:outline-none focus:border-accent-gold transition-colors resize-none"
+              onBlur={() => handleBlur('message')}
+              className={`w-full px-4 py-3 rounded-lg bg-dev-hub-surface border text-dev-hub-text-primary focus:outline-none transition-colors resize-none ${
+                touched.message && errors.message ? 'border-red-500 focus:border-red-500' : 'border-dev-hub-border focus:border-accent-gold'
+              }`}
               placeholder="Describe qué tipo de sitio web necesitas, funcionalidades deseadas, plazos, etc."
             />
+            {touched.message && errors.message && (
+              <p className="text-red-500 text-xs mt-1">{errors.message}</p>
+            )}
+            <p className="text-dev-hub-text-secondary text-xs mt-1">
+              {formData.message.length} caracteres (mínimo 10)
+            </p>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">

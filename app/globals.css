@@ -52,6 +52,38 @@
     overflow-x: hidden;
   }
 
+  /* Consistent Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  h1 { font-size: clamp(2.5rem, 6vw, 3.5rem); }
+  h2 { font-size: clamp(2rem, 5vw, 2.5rem); }
+  h3 { font-size: clamp(1.5rem, 4vw, 2rem); }
+  h4 { font-size: clamp(1.25rem, 3vw, 1.5rem); }
+
+  p {
+    font-family: var(--font-body);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  /* Consistent Spacing System */
+  section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  @media (max-width: 768px) {
+    section {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+  }
+
   body::before {
     content: '';
     position: fixed;

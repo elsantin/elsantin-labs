@@ -1,8 +1,41 @@
 export default function Footer() {
   return (
-    <footer className="bg-dev-hub-surface border-t border-dev-hub-border py-10">
+    <footer className="bg-dev-hub-surface border-t border-dev-hub-border py-12">
       <div className="max-w-[1200px] mx-auto px-8">
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-8">
+          {/* Payment Methods Section */}
+          <div className="w-full text-center border-b border-dev-hub-border pb-8">
+            <h3 className="text-dev-hub-text-secondary text-sm font-semibold mb-4 uppercase tracking-wider">
+              Métodos de Pago
+            </h3>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              {/* PayPal */}
+              <div className="bg-dev-hub-bg px-4 py-2 rounded-lg border border-dev-hub-border">
+                <span className="text-accent-gold font-bold text-sm">PayPal</span>
+              </div>
+              {/* Binance */}
+              <div className="bg-dev-hub-bg px-4 py-2 rounded-lg border border-dev-hub-border">
+                <span className="text-accent-gold font-bold text-sm">Binance</span>
+              </div>
+              {/* Zelle */}
+              <div className="bg-dev-hub-bg px-4 py-2 rounded-lg border border-dev-hub-border">
+                <span className="text-accent-gold font-bold text-sm">Zelle</span>
+              </div>
+              {/* USDT */}
+              <div className="bg-dev-hub-bg px-4 py-2 rounded-lg border border-dev-hub-border">
+                <span className="text-accent-gold font-bold text-sm">USDT</span>
+              </div>
+              {/* Pago Móvil */}
+              <div className="bg-dev-hub-bg px-4 py-2 rounded-lg border border-dev-hub-border">
+                <span className="text-accent-gold font-bold text-sm">Pago Móvil</span>
+              </div>
+              {/* Transferencia Bancaria */}
+              <div className="bg-dev-hub-bg px-4 py-2 rounded-lg border border-dev-hub-border">
+                <span className="text-accent-gold font-bold text-sm">Transferencia</span>
+              </div>
+            </div>
+          </div>
+
           {/* Social Links */}
           <div className="flex items-center gap-6">
             <a 

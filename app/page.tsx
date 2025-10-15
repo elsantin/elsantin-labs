@@ -8,6 +8,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import FloatingCTA from "@/components/FloatingCTA";
 import ProjectSelector from "@/components/ProjectSelector";
 import ContactForm from "@/components/ContactForm";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
@@ -17,6 +18,46 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        
+        {/* Impact Numbers Section */}
+        <section className="py-16 bg-dev-hub-surface/30">
+          <div className="max-w-[1200px] mx-auto px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="text-accent-gold font-heading text-4xl md:text-5xl font-bold mb-2">
+                  7
+                </div>
+                <div className="text-dev-hub-text-secondary text-sm md:text-base">
+                  Días promedio de entrega
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-accent-gold font-heading text-4xl md:text-5xl font-bold mb-2">
+                  100%
+                </div>
+                <div className="text-dev-hub-text-secondary text-sm md:text-base">
+                  Proyectos con soporte técnico
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-accent-gold font-heading text-4xl md:text-5xl font-bold mb-2">
+                  30
+                </div>
+                <div className="text-dev-hub-text-secondary text-sm md:text-base">
+                  Días de soporte post-entrega
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-accent-gold font-heading text-4xl md:text-5xl font-bold mb-2">
+                  24h
+                </div>
+                <div className="text-dev-hub-text-secondary text-sm md:text-base">
+                  Tiempo de respuesta máximo
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         
         {/* Services Section */}
         <section className="py-24" id="services">
@@ -33,6 +74,7 @@ export default function Home() {
                 name="Presencia Digital"
                 description="Ideal para lanzar productos, servicios o campañas con impacto inmediato."
                 price={180}
+                revisions={1}
                 features={[
                   "Landing Page (1 página)",
                   "Diseño personalizado",
@@ -46,6 +88,7 @@ export default function Home() {
                 name="Sitio Profesional"
                 description="Para negocios y profesionales que necesitan presencia web completa."
                 price={250}
+                revisions={2}
                 features={[
                   "Todo lo anterior, más:",
                   "Hasta 3 páginas",
@@ -60,6 +103,7 @@ export default function Home() {
                 name="Presencia Corporativa"
                 description="Solución completa para empresas que buscan destacar en su sector."
                 price={350}
+                revisions={3}
                 features={[
                   "Todo lo anterior, más:",
                   "Hasta 5 páginas",
@@ -90,6 +134,57 @@ export default function Home() {
                 >
                   Contáctanos
                 </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Payment Terms Section */}
+        <section className="py-16 bg-dev-hub-surface/50">
+          <div className="max-w-[1000px] mx-auto px-8">
+            <div className="neu-elevated rounded-2xl p-8 md:p-12 border-l-4 border-accent-gold">
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 rounded-full bg-accent-gold/10 flex items-center justify-center">
+                    <svg className="w-8 h-8 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-heading text-2xl font-bold mb-3 text-accent-gold">
+                    Condiciones de Contratación
+                  </h3>
+                  <p className="text-dev-hub-text-primary mb-4 leading-relaxed">
+                    <strong>Pago inicial del 50%</strong> para iniciar el proyecto. El 50% restante se abona tras la entrega final y tu conformidad con el resultado.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm">
+                    <div className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-accent-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-dev-hub-text-secondary">Garantía de satisfacción</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-accent-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-dev-hub-text-secondary">Soporte post-entrega incluido</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-accent-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-dev-hub-text-secondary">Revisiones incluidas en el precio</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-accent-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-dev-hub-text-secondary">Transparencia total en el proceso</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -355,6 +450,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <FAQ />
 
         {/* Contact Form */}
         <ContactForm />
