@@ -20,14 +20,14 @@ export default function Header() {
     <header className="fixed top-0 left-0 w-full z-[1000] px-8 h-[70px] flex items-center bg-[rgba(13,17,23,0.8)] backdrop-blur-[10px] border-b border-[var(--color-dev-hub-border)] transition-colors duration-300">
       <nav className="flex justify-between items-center w-full max-w-[1200px] mx-auto gap-4 h-full pointer-events-auto">
         {/* Logo */}
-        <Link href="#" className="font-[var(--font-heading)] text-[1.8rem] font-bold no-underline relative inline-flex items-center flex-shrink-0 min-w-[160px] pointer-events-auto group">
-          <span className="text-[var(--color-accent-gold)] inline-block transition-transform duration-[0.4s] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:-translate-x-2">
+        <Link href="#" className="font-[var(--font-heading)] text-[1.8rem] font-bold no-underline relative inline-flex items-center flex-shrink-0 pointer-events-auto group">
+          <span className="text-accent-gold inline-block transition-transform duration-500 ease-out group-hover:-translate-x-3">
             {"{"}
           </span>
-          <span className="text-[var(--color-dev-hub-text-primary)]">
-            elsantin<span className="text-[var(--color-accent-gold)] font-bold tracking-[0.5px]">Labs</span>
+          <span className="text-accent-gold inline-block mx-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse">
+            _
           </span>
-          <span className="text-[var(--color-accent-gold)] inline-block transition-transform duration-[0.4s] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:translate-x-2">
+          <span className="text-accent-gold inline-block transition-transform duration-500 ease-out group-hover:translate-x-3">
             {"}"}
           </span>
         </Link>

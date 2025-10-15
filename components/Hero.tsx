@@ -39,11 +39,20 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator - Modern mouse icon */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg className="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+          <div className="flex flex-col items-center gap-2">
+            <svg className="w-6 h-10 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              {/* Mouse body */}
+              <rect x="8" y="4" width="8" height="14" rx="4" strokeLinecap="round" strokeLinejoin="round"/>
+              {/* Mouse wheel */}
+              <line x1="12" y1="8" x2="12" y2="11" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse"/>
+            </svg>
+            <svg className="w-4 h-4 text-accent-gold -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              {/* Arrow down */}
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7" />
+            </svg>
+          </div>
         </div>
       </div>
     </section>

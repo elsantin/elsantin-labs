@@ -1,23 +1,10 @@
 export default function Footer() {
   return (
-    <footer className="bg-dev-hub-surface border-t border-dev-hub-border py-12">
+    <footer className="bg-dev-hub-surface border-t border-dev-hub-border py-10">
       <div className="max-w-[1200px] mx-auto px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          {/* Brand */}
-          <div className="text-center md:text-left">
-            <div className="font-heading text-2xl font-bold mb-2">
-              <span className="text-accent-gold">{`{`}</span>
-              <span className="text-dev-hub-text-primary">elsantin</span>
-              <span className="text-accent-gold">Labs</span>
-              <span className="text-accent-gold">{`}`}</span>
-            </div>
-            <p className="text-dev-hub-text-secondary text-sm">
-              Desarrollo Web desde la Isla de Margarita, Venezuela
-            </p>
-          </div>
-
+        <div className="flex flex-col items-center gap-6">
           {/* Social Links */}
-          <div className="flex gap-6">
+          <div className="flex items-center gap-6">
             <a 
               href="https://github.com/elsantin" 
               target="_blank" 
@@ -52,13 +39,16 @@ export default function Footer() {
               </svg>
             </a>
           </div>
-        </div>
 
-        {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-dev-hub-border text-center">
-          <p className="text-dev-hub-text-secondary text-sm">
-            © {new Date().getFullYear()} elsantin Labs. Todos los derechos reservados.
-          </p>
+          {/* Copyright */}
+          <div className="text-center">
+            <p className="text-dev-hub-text-secondary text-sm">
+              © {new Date().getFullYear()} <span className="text-accent-gold">{`{`}</span>elsantin<span className="text-accent-gold">Labs{`}`}</span>
+            </p>
+            <p className="text-dev-hub-text-secondary text-xs mt-1">
+              Isla de Margarita, Venezuela
+            </p>
+          </div>
         </div>
       </div>
     </footer>
