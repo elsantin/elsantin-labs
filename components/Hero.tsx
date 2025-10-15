@@ -40,7 +40,7 @@ export default function Hero() {
         </div>
 
         {/* Scroll indicator - Modern mouse icon */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 animate-float">
           <div className="flex flex-col items-center gap-2">
             <svg className="w-6 h-10 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
               {/* Mouse body */}
