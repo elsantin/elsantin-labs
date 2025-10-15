@@ -98,6 +98,20 @@
   }
 }
 
+@keyframes flow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
 @layer utilities {
   .animate-fade-in-up {
     animation: fade-in-up 0.8s ease-out forwards;
@@ -110,6 +124,10 @@
 
   .animate-float {
     animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-flow {
+    animation: flow 4s ease-in-out infinite;
   }
 
   .animation-delay-200 {

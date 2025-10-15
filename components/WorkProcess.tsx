@@ -36,16 +36,25 @@ export default function WorkProcess() {
           Un proceso simple y transparente para llevar tu proyecto de la idea a la realidad
         </p>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="relative grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {/* Animated connecting line */}
+          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 -translate-y-1/2 pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-dev-hub-border to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-accent-gold/0 via-accent-gold to-accent-gold/0 animate-flow"></div>
+          </div>
+
           {steps.map((step, index) => (
             <div
               key={index}
-              className="neu-elevated-subtle rounded-xl p-6 relative transition-all duration-300 hover:scale-105"
+              className="neu-elevated-subtle rounded-xl p-6 relative transition-all duration-300 hover:scale-105 z-10"
             >
               {/* Step Number */}
               <div className="text-accent-gold text-5xl font-bold opacity-20 absolute top-4 right-4">
                 {step.number}
               </div>
+
+              {/* Pulse dot connector */}
+              <div className="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-accent-gold rounded-full animate-pulse shadow-lg shadow-accent-gold/50"></div>
 
               {/* Content */}
               <div className="relative z-10">
@@ -59,11 +68,6 @@ export default function WorkProcess() {
                   <span className="text-accent-gold text-xs font-semibold">{step.duration}</span>
                 </div>
               </div>
-
-              {/* Connector line (except last) */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-accent-gold to-transparent"></div>
-              )}
             </div>
           ))}
         </div>
