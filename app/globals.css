@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* elsantin Labs Color Palette */
+    --color-dev-hub-bg: #0d1117;
+    --color-dev-hub-surface: #161b22;
+    --color-dev-hub-text-primary: #c9d1d9;
+    --color-dev-hub-text-secondary: #8b949e;
+    --color-dev-hub-border: #30363d;
+    --color-accent-gold: #a37e4f;
+    --color-accent-gold-hover: #b8915e;
+    --color-text-on-gold: #0d1117;
+    --header-height: 70px;
+    
+    /* Fonts */
+    --font-body: "Exo 2", sans-serif;
+    --font-heading: "Rajdhani", sans-serif;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-dev-hub-bg);
+    color: var(--color-dev-hub-text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -50px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(50px, 50px) scale(1.05);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 40px rgba(163, 126, 79, 0.5),
+                 0 0 80px rgba(163, 126, 79, 0.3);
+  }
+}

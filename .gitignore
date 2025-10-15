@@ -1,34 +1,41 @@
-# ============================================================================
-# ELSANTIN LABS FRONTEND - GITIGNORE PROFESIONAL
-# ============================================================================
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Dependencias Node.js (innecesarias en JAMstack CDN)
-node_modules/
-package-lock.json
-package.json
-npm-debug.log*
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# Logs y cache
-*.log
-.npm/
-.cache/
+# testing
+/coverage
 
-# Archivos temporales
-*.tmp
-*.temp
+# next.js
+/.next/
+/out/
 
-# Sistema operativo
+# production
+/build
+
+# misc
 .DS_Store
-Thumbs.db
+*.pem
 
-# IDEs
-.vscode/
-.idea/
-*.swp
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# Archivos de entorno
+# env files (can opt-in for committing if needed)
 .env*
 
-# Archivos de build (por si acaso)
-dist/
-build/
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
