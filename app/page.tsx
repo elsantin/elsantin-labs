@@ -6,6 +6,8 @@ import ProjectCard from "@/components/ProjectCard";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import FloatingCTA from "@/components/FloatingCTA";
+import BudgetCalculator from "@/components/BudgetCalculator";
+import WorkProcess from "@/components/WorkProcess";
 
 export default function Home() {
   return (
@@ -147,6 +149,12 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Budget Calculator */}
+        <BudgetCalculator />
+
+        {/* Work Process */}
+        <WorkProcess />
 
         {/* Portfolio Section */}
         <section className="py-24" id="portfolio">
