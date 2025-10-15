@@ -27,7 +27,7 @@ export default function Hero() {
           Creamos sitios web de alto rendimiento con tecnología Jamstack. Optimizados para velocidad, seguridad y una
           experiencia de usuario que convierte visitantes en clientes.
         </p>
-        <div className="flex gap-4 flex-wrap justify-center text-sm animate-fade-in-up animation-delay-400">
+        <div className="flex gap-4 flex-wrap justify-center text-sm animate-fade-in-up animation-delay-400 mb-20">
           {["HTML5", "CSS3", "JavaScript", "Jamstack", "Core Web Vitals", "IA Asistida", "SEO"].map((tech, index) => (
             <span
               key={tech}
@@ -40,7 +40,7 @@ export default function Hero() {
         </div>
 
         {/* Scroll indicator - Modern mouse icon */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
           <div className="flex flex-col items-center gap-2">
             <svg className="w-6 h-10 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
               {/* Mouse body */}
