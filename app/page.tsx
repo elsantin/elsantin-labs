@@ -7,7 +7,6 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import FloatingCTA from "@/components/FloatingCTA";
 import ProjectSelector from "@/components/ProjectSelector";
-import WorkProcess from "@/components/WorkProcess";
 import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
@@ -154,9 +153,6 @@ export default function Home() {
         {/* Project Selector */}
         <ProjectSelector />
 
-        {/* Work Process */}
-        <WorkProcess />
-
         {/* Portfolio Section */}
         <section className="py-24" id="portfolio">
           <div className="max-w-[1200px] mx-auto px-8">
@@ -210,11 +206,31 @@ export default function Home() {
               Un flujo transparente y eficiente en 4 pasos que garantiza resultados excepcionales y una colaboración
               sin sorpresas.
             </p>
-            <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            <div className="relative grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+              {/* Animated connecting line */}
+              <div className="hidden lg:block absolute top-10 left-0 right-0 h-[2px] pointer-events-none z-0">
+                <svg className="w-full h-full" preserveAspectRatio="none">
+                  <line 
+                    x1="10%" 
+                    y1="1" 
+                    x2="90%" 
+                    y2="1" 
+                    stroke="#a37e4f" 
+                    strokeWidth="2"
+                    strokeDasharray="8 6"
+                    strokeLinecap="round"
+                    opacity="0.6"
+                  />
+                </svg>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-gold to-transparent opacity-40 animate-flow"></div>
+              </div>
+
               {[1, 2, 3, 4].map((num) => (
-                <div key={num} className="text-center">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[var(--color-dev-hub-surface)] border-2 border-[var(--color-accent-gold)] flex items-center justify-center font-[var(--font-heading)] text-4xl font-bold text-[var(--color-accent-gold)]">
+                <div key={num} className="text-center relative z-10 group">
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[var(--color-dev-hub-surface)] border-2 border-[var(--color-accent-gold)] flex items-center justify-center font-[var(--font-heading)] text-4xl font-bold text-[var(--color-accent-gold)] transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-accent-gold/30 relative">
                     {num}
+                    <div className="absolute inset-0 rounded-full bg-accent-gold opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 rounded-full border-2 border-accent-gold animate-ping opacity-20"></div>
                   </div>
                   <h3 className="font-[var(--font-heading)] text-xl mb-3">
                     {num === 1 && "Consulta y Estrategia"}
